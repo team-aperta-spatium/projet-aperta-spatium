@@ -26,6 +26,7 @@ public class dash2 : MonoBehaviour
     public bool reiniVel = false;
 
     float dureeCdDash;
+    float dashRestant;
 
     Rigidbody rb;
 
@@ -34,19 +35,40 @@ public class dash2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        dashRestant = logiqueAmelioration.nbrDashMax;
     }
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(mouvement2.toucheSol);
+
         rb = GetComponent<Rigidbody>();
         scriptMouve = GetComponent<mouvement2>();
 
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (mouvement2.toucheSol)
         {
-            Dash();
+            if (dashRestant < logiqueAmelioration.nbrDashMax)
+            {
+                Invoke("ReiniDashAir", dureeCdDash);
+            }
         }
+
+        if (dashRestant > 0)
+        {
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                if (dashRestant <= 0)
+                {
+                    dashRestant = 0;
+                }
+
+                dashRestant--;
+
+                Dash();
+            }
+        }
+
 
         if (dureeCdDash > 0)
         {
@@ -146,5 +168,10 @@ public class dash2 : MonoBehaviour
         }
 
         return direction.normalized;
+    }
+
+    void ReiniDashAir()
+    {
+        dashRestant = logiqueAmelioration.nbrDashMax;
     }
 }

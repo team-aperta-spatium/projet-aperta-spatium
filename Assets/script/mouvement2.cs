@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class mouvement2 : MonoBehaviour
 {
+    public static bool toucheSol;
+
     [Header("Mouvement")]
     public float dragSol;
     public float vitesseMarche;
@@ -43,11 +45,9 @@ public class mouvement2 : MonoBehaviour
 
     RaycastHit hitPentes;
 
-    bool toucheSol;
     bool pretSaut;
     bool sortPente;
     bool garderMomentum;
-    bool peutBouger;
 
     public Transform orientation;
 
@@ -59,8 +59,6 @@ public class mouvement2 : MonoBehaviour
     float derniereVitesseDesiree;
     float facteurChangeVitesse;
     float sautRestant;
-    float dragAir;
-    float massAir;
 
     etatMouve dernierEtat;
 
@@ -71,7 +69,7 @@ public class mouvement2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sautRestant = 2;
+        sautRestant = logiqueAmelioration.nbrSautMax;
 
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
@@ -79,9 +77,6 @@ public class mouvement2 : MonoBehaviour
         pretSaut = true;
 
         echelleYDebut = transform.localScale.y;
-
-        dragAir = dragSol / 6;
-        peutBouger = true;
     }
 
     // Update is called once per frame
@@ -89,38 +84,19 @@ public class mouvement2 : MonoBehaviour
     {
         toucheSol = Physics.Raycast(transform.position, Vector3.down, hauteurPerso * 0.5f + 0.2f, quoiSol);
 
-        if (peutBouger)
-        {
-            MesInputs();
-        }
+        MesInputs();
+
         ControleVitesse();
         ControlleurEtatMouve();
 
-        //Debug.Log(dragAir);
-
         if (toucheSol)
         {
-            //dragAir = dragSol / 6;
-            //massAir = 2;
-
-            if (sautRestant < 2)
+            if (sautRestant < logiqueAmelioration.nbrSautMax)
             {
                 ReiniSautDouble();
 
                 Invoke("ReiniSaut", cdSaut);
             }
-        }
-        else
-        {
-            //if (dragAir >= 3)
-            //{
-            //    massAir++;
-            //    dragAir = 3;
-            //}
-            //else
-            //{
-            //    dragAir += 0.01f;
-            //}
         }
 
         if (etat == etatMouve.marche || etat == etatMouve.course || etat == etatMouve.accroupi)
@@ -130,23 +106,13 @@ public class mouvement2 : MonoBehaviour
         else
         {
             rb.drag = 0;
-            Invoke("DragAir", 1f);
         }
 
-        if (toucheSol && dernierEtat == etatMouve.air)
-        {
-            
-        }
-
-        Debug.Log(peutBouger);
     }
 
     void FixedUpdate()
     {
-        if (peutBouger)
-        {
-            MouvePerso();
-        }
+        MouvePerso();
     }
 
     void ControlleurEtatMouve()
@@ -343,9 +309,7 @@ public class mouvement2 : MonoBehaviour
 
     void ReiniSautDouble()
     {
-        sautRestant = 2;
-
-        Invoke("ReiniMouve", 0f);
+        sautRestant = logiqueAmelioration.nbrSautMax;
     }
 
     bool SurPente()
@@ -362,21 +326,5 @@ public class mouvement2 : MonoBehaviour
     Vector3 ObtenirDirectionMouvePente()
     {
         return Vector3.ProjectOnPlane(directionMouve, hitPentes.normal).normalized;
-    }
-
-    void DragAir()
-    {
-        //rb.AddForce(-transform.up * 1f, ForceMode.Impulse);
-    }
-
-    void ReiniMouve()
-    {
-        peutBouger = false;
-        Invoke("PeutBouger", 1f);
-    }
-
-    void PeutBouger()
-    {
-        peutBouger = true;
     }
 }
