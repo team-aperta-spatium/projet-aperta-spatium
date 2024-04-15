@@ -330,6 +330,9 @@ MonoBehaviour:
   obsS: {fileID: 7410246048582571578}
   obsO: {fileID: 7849252055792553385}
   laCamera: {fileID: 0}
+  camPerso: {fileID: 0}
+  canvasMiniJeu: {fileID: 0}
+  perso: {fileID: 0}
   ctnMiniJeu: {fileID: 3766130697736080650}
   cadenas: {fileID: 8934437190089173785}
   cadenasBrise: {fileID: 2800000, guid: f28952554d21dcf42aac1588f25f1842, type: 3}
