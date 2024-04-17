@@ -42,6 +42,7 @@ public class mouvement2 : MonoBehaviour
     public bool enDash;
 
     public GameObject camPerso;
+    public GameObject Menu;
 
     RaycastHit hitPentes;
 
@@ -108,6 +109,14 @@ public class mouvement2 : MonoBehaviour
             rb.drag = 0;
         }
 
+        if (Input.GetKeyDown("escape") && Menu.activeInHierarchy)
+        {
+            Menu.SetActive(false);
+        }
+        else if(Input.GetKeyDown("escape"))
+        {
+            Menu.SetActive(true);
+        }
     }
 
     void FixedUpdate()
