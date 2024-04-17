@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class testUI : MonoBehaviour
 {
     public GameObject toggle;
+    public GameObject parent;
     public GameObject nom;
     public GameObject description;
     public TMP_Text txtNom;
@@ -31,9 +33,9 @@ public class testUI : MonoBehaviour
 
     public void SetActif()
     {
-        toggle.SetActive(true);
         nom.GetComponent<TextMeshProUGUI>().enabled = true;
         description.GetComponent<TextMeshProUGUI>().enabled = true;
+        Destroy(GameObject.FindWithTag("toggle"));
     }
 
     public void AfficherTripleSaut()
@@ -42,14 +44,44 @@ public class testUI : MonoBehaviour
         txtDescription.text = tripleSaut.description;
         tripleSautActif = true;
         doubleDashActif = false;
+
+        GameObject toggleClone = Instantiate(toggle);
+
+        toggleClone.SetActive(true);
+
+        toggleClone.transform.SetParent(parent.transform, false);
+
+        if (tripleSaut.actif)
+        {
+            toggle.GetComponent<Toggle>().isOn = true;
+        }
+        else
+        {
+            toggle.GetComponent<Toggle>().isOn = false;
+        }
     }
     
     public void AfficherDoubleDash()
     {
         txtNom.text = doubleDash.nom;
         txtDescription.text = doubleDash.description;
-        tripleSautActif = false;
         doubleDashActif = true;
+        tripleSautActif = false;
+
+        GameObject toggleClone = Instantiate(toggle);
+
+        toggleClone.SetActive(true);
+
+        toggleClone.transform.SetParent(parent.transform, false);
+
+        if (doubleDash.actif)
+        {
+            toggle.GetComponent<Toggle>().isOn = true;
+        }
+        else
+        {
+            toggle.GetComponent<Toggle>().isOn = false;
+        }
     }
 
     public void SetBoolAmelioration()
@@ -58,13 +90,9 @@ public class testUI : MonoBehaviour
         {
             tripleSaut.actif = toggleBool;
         }
-        
-        if(doubleDashActif)
+        else if (doubleDashActif)
         {
-            doubleDashActif = toggleBool;
+            doubleDash.actif = toggleBool;
         }
-
-        Debug.Log("triple saut:" + tripleSautActif);
-        Debug.Log("double dash:" + doubleDashActif);
     }
 }

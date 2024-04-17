@@ -18,7 +18,6 @@ public class uiToggleAmelioration : MonoBehaviour
 
     public void OnToggleChanged(bool toggle)
     {
-        testUI.toggleBool = toggle;
-        
+        testUI.toggleBool = toggle; 
     }
 }
