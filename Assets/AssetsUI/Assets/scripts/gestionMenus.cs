@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class gestionMenus : MonoBehaviour
 {
@@ -27,6 +28,10 @@ public class gestionMenus : MonoBehaviour
     public Texture2D imgMapNE;
     public Texture2D imgMapSW;
     public Texture2D imgMapSE;
+
+    public GameObject menu;
+
+    public static bool enPause;
 
     public TextAsset infoMap;
     [System.Serializable]
@@ -58,6 +63,18 @@ public class gestionMenus : MonoBehaviour
         menuPause.GetComponent<RectTransform>().anchoredPosition = new Vector2(posPause, 0);
         menuEquip.GetComponent<RectTransform>().anchoredPosition = new Vector2(posEquip, 0);
         menuMap.GetComponent<RectTransform>().anchoredPosition = new Vector2(posMap, 0);
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (enPause)
+            {
+                depause();
+            }
+            else
+            {
+                pause();
+            }
+        }
     }
 
     public void Gauche()
@@ -110,5 +127,24 @@ public class gestionMenus : MonoBehaviour
         quete1.SetText("");
         quete2.SetText("");
         quete3.SetText("");
+    }
+
+    public void depause()
+    {
+        menu.SetActive(false);
+        Time.timeScale = 1f;
+        enPause = false;
+    }
+
+    public void pause()
+    {
+        menu.SetActive(true);
+        Time.timeScale = 0f;
+        enPause = true;
+    }
+
+    public void quitter()
+    {
+        SceneManager.LoadScene(0);
     }
 }
