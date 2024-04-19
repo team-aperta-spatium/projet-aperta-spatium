@@ -1484,8 +1484,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de2f8957285b28147b5b86ab1b1a9bd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss: {fileID: 0}
   navBoss: {fileID: 1573010156}
   joueur: {fileID: 2132924319}
+  animator: {fileID: 894453778}
+  onStop: 0
+  animOn: 0
 --- !u!195 &1573010156
 NavMeshAgent:
   m_ObjectHideFlags: 0
