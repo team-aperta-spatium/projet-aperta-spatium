@@ -8,88 +8,98 @@ public class comportementBoss : MonoBehaviour
     public GameObject boss;
     public NavMeshAgent navBoss;
     public GameObject joueur;
-    public Vector3 direction;
+    public Animator animator;
 
     Vector3 Q1;
     Vector3 Q2;
     Vector3 Q3;
     Vector3 Q4;
 
+    int dernierQ;
+
     public bool onStop;
+    public bool animOn;
 
     // Start is called before the first frame update
     void Start()
     {
-        onStop = true;
-
-        int qAle = Random.Range(0, 4);
+        onStop = false;
+        animOn = false;
 
         Q1 = new Vector3(12.5f, 4.25f, 12.5f);
         Q2 = new Vector3(12.5f, 4.25f, -12.5f);
         Q3 = new Vector3(-12.5f, 4.25f, -12.5f);
         Q4 = new Vector3(-12.5f, 4.25f, 12.5f);
-        
-        if(qAle == 0)
-        {
-            navBoss.SetDestination(Q1);
-        }
-        else if(qAle == 1)
-        {
-            navBoss.SetDestination(Q2);
-        }
-        else if (qAle == 2)
-        {
-            navBoss.SetDestination(Q3);
-        }
-        else
-        {
-            navBoss.SetDestination(Q4);
-        }
+
+        nextDestination();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        RaycastHit ray;
-        Physics.Linecast(boss.transform.position, joueur.transform.position, out ray);
-        Debug.DrawLine(boss.transform.position, joueur.transform.position, Color.red);
-        Vector3 v3RayDirection = ray.point - boss.transform.position;
-
-        if (onStop == true && navBoss.remainingDistance <= 0.2)
+        if (navBoss.remainingDistance <= 0.2)
         {
-            //float angle = Vector3.Angle(v3RayDirection, transform.forward);
-            //boss.transform.rotation = Quaternion.Euler(0, angle + 45, 0);
-
+            onStop = true;
             boss.transform.LookAt(joueur.transform.position);
 
 
             int nbAle = Random.Range(0, 1000000);
             if(nbAle >= 999550)
             {
-                
+                grosseAttaque();
             }
         }
 
-        /*
-        if(navBoss.destination == Q1 && navBoss.remainingDistance <= 0.1)
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8 && animOn)
         {
-            navBoss.SetDestination(Q2);
+            onStop = false;
+            animOn = false;
+            nextDestination();
         }
-        else if(navBoss.destination == Q2 && navBoss.remainingDistance <= 0.1)
-        {
-            navBoss.SetDestination(Q3);
-        }
-        else if (navBoss.destination == Q3 && navBoss.remainingDistance <= 0.1)
-        {
-            navBoss.SetDestination(Q4);
-        }
-        else if (navBoss.destination == Q4 && navBoss.remainingDistance <= 0.1)
+    }
+
+    public void grosseAttaque()
+    {
+        animator.SetTrigger("grosseAttaque");
+        Invoke("checkAnim", 1f);
+    }
+
+    public void nextDestination()
+    {
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+        boss.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        int qAle = Random.Range(0, 4);
+
+        if (qAle == 0 && dernierQ != 1)
         {
             navBoss.SetDestination(Q1);
+            dernierQ = 1;
         }
-        print(navBoss.destination);
-        */
+        else if (qAle == 1 && dernierQ != 2)
+        {
+            navBoss.SetDestination(Q2);
+            dernierQ = 2;
+        }
+        else if (qAle == 2 && dernierQ != 3)
+        {
+            navBoss.SetDestination(Q3);
+            dernierQ = 3;
+        }
+        else if(qAle == 3 && dernierQ != 4)
+        {
+            navBoss.SetDestination(Q4);
+            dernierQ = 4;
+        }
+        else
+        {
+            nextDestination();
+        }
+    }
 
+    public void checkAnim()
+    {
+        animOn = true;
     }
 }
