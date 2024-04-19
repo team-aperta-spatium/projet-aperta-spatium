@@ -66,7 +66,7 @@ public class AI : MonoBehaviour
         }
 
         v3RayDirection = joueur.transform.position - ennemie.transform.position;
-        print(v3RayDirection);
+        //print(v3RayDirection);
     }
 
     private void OnTriggerEnter(Collider collision)

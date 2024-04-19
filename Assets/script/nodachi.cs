@@ -29,6 +29,9 @@ public class nodachi : MonoBehaviour
     float timerAttaqueLourd1;
     float timerAttaqueSpecialePrep;
     float cdAttaque;
+    float dmgNormal;
+    float dmgLourd;
+    float dmgSpeciale;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +53,10 @@ public class nodachi : MonoBehaviour
         attaqueSpeciale2EnAttente = false;
         attaqueSpeciale = false;
         cdAttaque = 0;
+
+        dmgNormal = 34;
+        dmgLourd = 50;
+        dmgSpeciale = 100;
     }
 
     // Update is called once per frame
@@ -212,6 +219,26 @@ public class nodachi : MonoBehaviour
         if (cdAttaque > 0)
         {
             cdAttaque -= Time.deltaTime;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "ennemi") 
+        {
+            Debug.Log("true");
+            if (attaqueNormale)
+            {
+                other.gameObject.GetComponent<vieEnnemi>().nbrVie -= dmgNormal;
+            }
+            else if (attaqueLourde)
+            {
+                other.gameObject.GetComponent<vieEnnemi>().nbrVie -= dmgLourd;
+            }
+            else if (attaqueSpeciale)
+            {
+                other.gameObject.GetComponent<vieEnnemi>().nbrVie -= dmgSpeciale;
+            }
         }
     }
 
