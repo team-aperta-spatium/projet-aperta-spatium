@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,12 +11,16 @@ public class comportementBoss : MonoBehaviour
     public GameObject joueur;
     public Animator animator;
 
+    public GameObject baseProjectiles;
+    public GameObject projectile;
+
     Vector3 Q1;
     Vector3 Q2;
     Vector3 Q3;
     Vector3 Q4;
 
     int dernierQ;
+    int i;
 
     public bool onStop;
     public bool animOn;
@@ -32,6 +37,7 @@ public class comportementBoss : MonoBehaviour
         Q4 = new Vector3(-12.5f, 4.25f, 12.5f);
 
         nextDestination();
+
         
     }
 
@@ -44,11 +50,12 @@ public class comportementBoss : MonoBehaviour
             boss.transform.LookAt(joueur.transform.position);
 
 
-            int nbAle = Random.Range(0, 1000000);
+            int nbAle = UnityEngine.Random.Range(0, 1000000);
             if(nbAle >= 999550)
             {
                 grosseAttaque();
             }
+            lanceProjectile();
         }
 
         if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8 && animOn)
@@ -70,7 +77,7 @@ public class comportementBoss : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, 0);
         boss.transform.rotation = Quaternion.Euler(0, 0, 0);
 
-        int qAle = Random.Range(0, 4);
+        int qAle = UnityEngine.Random.Range(0, 4);
 
         if (qAle == 0 && dernierQ != 1)
         {
@@ -101,5 +108,23 @@ public class comportementBoss : MonoBehaviour
     public void checkAnim()
     {
         animOn = true;
+    }
+
+    public void lanceProjectile()
+    {
+        for (i = 0; i < 5; i++)
+        {
+            GameObject projActif = Instantiate(projectile, baseProjectiles.transform.position, Quaternion.identity);
+            projActif.SetActive(true);
+            StartCoroutine(TireProj(i, projActif));
+            
+        }
+    }
+
+    IEnumerator TireProj(int i, GameObject projActif)
+    {
+        print(i);
+        yield return new WaitForSeconds(i);
+        projActif.GetComponent<Rigidbody>().AddForce((boss.transform.forward + new Vector3(2*i - 2, 0, 0)) * 1000);
     }
 }
