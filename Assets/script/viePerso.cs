@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class vieEnnemi : MonoBehaviour
+public class viePerso : MonoBehaviour
 {
-    public float nbrVie;
+    public float nbrViePerso;
+    public GameObject perso;
 
     // Start is called before the first frame update
     void Start()
     {
-        nbrVie = 100;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (nbrVie <= 0)
+        if (nbrViePerso <= 0)
         {
-            Destroy(transform.parent.gameObject);
-            Destroy(gameObject);
+            Destroy(perso);
         }
     }
 }

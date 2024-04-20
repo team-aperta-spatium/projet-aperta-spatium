@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ennemie: {fileID: 7557096089088232331}
-  joueur: {fileID: 0}
+  joueur: {fileID: 6282461544353076454, guid: bd1a123259fdc3f4c81848d27729de55, type: 3}
   hitbox: {fileID: 7482094184646817307}
   trouverPerso: 0
   attEnCours: 0
@@ -163,6 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a17853efc20a8e54d9596a10d411f989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attaque: 0
+  nbrDmgEnnemi: 20
 --- !u!1001 &98228123278189846
 PrefabInstance:
   m_ObjectHideFlags: 0

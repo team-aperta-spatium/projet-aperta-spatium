@@ -28,7 +28,7 @@ public class AI : MonoBehaviour
     {
         if (Physics.Linecast(transform.position, joueur.transform.position, out RaycastHit hitInfo))
         {
-            if(hitInfo.collider.name == "perso" && trouverPerso == true)
+            if(hitInfo.collider.tag == "perso" && trouverPerso == true)
             {
                 ennemie.SetDestination(joueur.transform.position);
                 ennemie.speed = 10f;
@@ -71,7 +71,7 @@ public class AI : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.name == "perso")
+        if (collision.tag == "perso")
         {
             trouverPerso = true;
             CancelInvoke("perduPerso");
@@ -80,7 +80,7 @@ public class AI : MonoBehaviour
 
     private void OnTriggerExit(Collider collision)
     {
-        if (collision.name == "perso")
+        if (collision.tag == "perso")
         {
             ennemie.speed = 4f;
             Invoke("perduPerso", 5f);

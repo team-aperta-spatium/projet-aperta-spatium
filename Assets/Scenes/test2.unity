@@ -1703,7 +1703,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4208420026254392138, guid: 9c4aa6375b5160943b34c2a9885ff5c8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 13.16
+      value: 50.9
       objectReference: {fileID: 0}
     - target: {fileID: 4208420026254392138, guid: 9c4aa6375b5160943b34c2a9885ff5c8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1831,7 +1831,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7482094184646817307, guid: 9c4aa6375b5160943b34c2a9885ff5c8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7826760213767206260, guid: 9c4aa6375b5160943b34c2a9885ff5c8, type: 3}
       propertyPath: m_Layer
@@ -1901,6 +1901,7 @@ GameObject:
   - component: {fileID: 1820189283}
   - component: {fileID: 1820189282}
   - component: {fileID: 1820189281}
+  - component: {fileID: 1820189284}
   m_Layer: 3
   m_Name: Terrain
   m_TagString: Untagged
@@ -1985,6 +1986,37 @@ Transform:
   - {fileID: 623014105}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1820189284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820189280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 2
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 1
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 82b47be28c91d2643abe0ff1b7bbebe0, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &1904953193
 GameObject:
   m_ObjectHideFlags: 0
@@ -2546,6 +2578,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6282461544353076454, guid: bd1a123259fdc3f4c81848d27729de55, type: 3}
       propertyPath: m_Name
+      value: perso
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282461544353076454, guid: bd1a123259fdc3f4c81848d27729de55, type: 3}
+      propertyPath: m_TagString
       value: perso
       objectReference: {fileID: 0}
     m_RemovedComponents: []
