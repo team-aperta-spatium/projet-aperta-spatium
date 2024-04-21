@@ -13,6 +13,7 @@ public class comportementBoss : MonoBehaviour
 
     public GameObject baseProjectiles;
     public GameObject projectile;
+    public List<GameObject> groupeProj;
 
     Vector3 Q1;
     Vector3 Q2;
@@ -20,7 +21,6 @@ public class comportementBoss : MonoBehaviour
     Vector3 Q4;
 
     int dernierQ;
-    int i;
 
     public bool onStop;
     public bool animOn;
@@ -55,7 +55,10 @@ public class comportementBoss : MonoBehaviour
             {
                 grosseAttaque();
             }
-            lanceProjectile();
+            else if(nbAle <= 500)
+            {
+                lanceProjectile();
+            }            
         }
 
         if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8 && animOn)
@@ -112,19 +115,21 @@ public class comportementBoss : MonoBehaviour
 
     public void lanceProjectile()
     {
-        for (i = 0; i < 5; i++)
+        groupeProj = new List<GameObject>();
+        for (int i = 0; i < 5; i++)
         {
-            GameObject projActif = Instantiate(projectile, baseProjectiles.transform.position, Quaternion.identity);
-            projActif.SetActive(true);
-            StartCoroutine(TireProj(i, projActif));
-            
+            float floatI = i;
+            groupeProj.Add(Instantiate(projectile, baseProjectiles.transform.position, Quaternion.identity));
+            StartCoroutine(TireProj(groupeProj[i], floatI));
         }
     }
 
-    IEnumerator TireProj(int i, GameObject projActif)
+    IEnumerator TireProj(GameObject projActif, float i)
     {
-        print(i);
-        yield return new WaitForSeconds(i);
-        projActif.GetComponent<Rigidbody>().AddForce((boss.transform.forward + new Vector3(2*i - 2, 0, 0)) * 1000);
+        yield return new WaitForSeconds(i/10f);
+        projActif.AddComponent<Rigidbody>();
+        projActif.AddComponent<projDestroy>();
+        projActif.SetActive(true);
+        projActif.GetComponent<Rigidbody>().AddForce((boss.transform.forward + new Vector3(i/2 - 1f, 0, 0)) * 1000);
     }
 }
