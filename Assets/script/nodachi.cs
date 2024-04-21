@@ -62,106 +62,121 @@ public class nodachi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (attaqueNormale || attaqueLourde || attaqueSpeciale)
         {
-            if (cdAttaque <=  0)
+            mouvement2.attaqueEnCours = true;
+        }
+        else
+        {
+            mouvement2.attaqueEnCours = false;
+        }
+
+        if (mouvement2.actionPossible)
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                if (!attaqueSpeciale && !attaqueLourde)
+                if (cdAttaque <=  0)
                 {
-                    if (!attaque1EnCours && !attaque2EnCours && !attaque3EnCours)
+                    if (!attaqueSpeciale && !attaqueLourde)
                     {
-                        GetComponent<Animator>().SetBool("attaque1", true);
-                        Invoke("ArretAttaque1", 1f);
-                        attaque1EnCours = true;
-                        timerAttaque1 = 1f;
-                        attaqueNormale = true;
-                    }
-                    else if (attaque1EnCours && !attaque2EnCours && !attaque3EnCours)
-                    {
-                        attaque2EnAttente = true;
-                    }
-                    else if (attaque2EnCours && !attaque3EnCours)
-                    {
-                        attaque3EnAttente = true;
-                    }               
-                    else if (attaque2EnAttente)
-                    {
-                        attaque3EnAttente = true;
+                        if (!attaque1EnCours && !attaque2EnCours && !attaque3EnCours)
+                        {
+                            GetComponent<Animator>().SetBool("attaque1", true);
+                            Invoke("ArretAttaque1", 1f);
+                            attaque1EnCours = true;
+                            timerAttaque1 = 1f;
+                            attaqueNormale = true;
+                            mouvement2.endurance -= 5;
+                            mouvement2.actionEnCours = true;
+                        }
+                        else if (attaque1EnCours && !attaque2EnCours && !attaque3EnCours)
+                        {
+                            attaque2EnAttente = true;
+                        }
+                        else if (attaque2EnCours && !attaque3EnCours)
+                        {
+                            attaque3EnAttente = true;
+                        }               
+                        else if (attaque2EnAttente)
+                        {
+                            attaque3EnAttente = true;
+                        }
                     }
                 }
             }
-        }
         
-        if (Input.GetKeyDown(KeyCode.Mouse1))
-        {
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                if (cdAttaque <= 0)
+                {
+                    if (!attaqueSpeciale && !attaqueNormale)
+                    {
+                        if (!attaqueLourd1EnCours && !attaqueLourd2EnCours)
+                        {
+                            GetComponent<Animator>().SetBool("attaqueLourd1", true);
+                            Invoke("ArretAttaqueLourd1", 2.5f);
+                            attaqueLourd1EnCours = true;
+                            timerAttaqueLourd1 = 2.5f;
+                            attaqueLourde = true;
+                            mouvement2.endurance -= 10;
+                            mouvement2.actionEnCours = true;
+                        }
+                        else if (attaqueLourd1EnCours && !attaqueLourd2EnCours)
+                        {
+                            attaqueLourd2EnAttente = true;
+                        }
+                    }
+                }
+            }
+
             if (cdAttaque <= 0)
-            {
-                if (!attaqueSpeciale && !attaqueNormale)
+            {   
+                if (!attaqueNormale && !attaqueLourde)
                 {
-                    if (!attaqueLourd1EnCours && !attaqueLourd2EnCours)
+                    if (Input.GetKey(KeyCode.LeftAlt))
                     {
-                        GetComponent<Animator>().SetBool("attaqueLourd1", true);
-                        Invoke("ArretAttaqueLourd1", 2.5f);
-                        attaqueLourd1EnCours = true;
-                        timerAttaqueLourd1 = 2.5f;
-                        attaqueLourde = true;
+                        if (Input.GetKeyDown(KeyCode.Mouse0) && attaqueSpeciale)
+                        {
+                            if (timerAttaqueSpecialePrep > 0)
+                            {
+                                attaqueSpeciale1EnAttente = true;
+                            }
+                            else
+                            {
+                                Invoke("AttaqueSpeciale1", 0f);
+                                Invoke("ArretAttaqueSpeciale1", 1f);
+                            }
+                        }
+                        else if (Input.GetKeyDown(KeyCode.Mouse1) && attaqueSpeciale)
+                        {
+                            if (timerAttaqueSpecialePrep > 0)
+                            {
+                                attaqueSpeciale2EnAttente = true;
+                            }
+                            else
+                            {
+                                Invoke("AttaqueSpeciale2", 0f);
+                                Invoke("ArretAttaqueSpeciale2", 1f);
+                            }
+                        }
+                        else if (!attaqueSpeciale)
+                        {
+                            attaqueSpecialePrep = true;
+                            GetComponent<Animator>().SetBool("attaqueSpecialePrep", true);
+                            timerAttaqueSpecialePrep = 0.67f;
+                            attaqueSpeciale = true;
+                        }
                     }
-                    else if (attaqueLourd1EnCours && !attaqueLourd2EnCours)
+                    else if (Input.GetKeyUp(KeyCode.LeftAlt))
                     {
-                        attaqueLourd2EnAttente = true;
+                        attaqueSpecialePrep = false;
+                        GetComponent<Animator>().SetBool("attaqueSpecialePrep", false);
+                        timerAttaqueSpecialePrep = 0;
+                        attaqueSpeciale = false;
                     }
                 }
             }
         }
-
-        if (cdAttaque <= 0)
-        {   
-            if (!attaqueNormale && !attaqueLourde)
-            {
-                if (Input.GetKey(KeyCode.LeftAlt))
-                {
-                    if (Input.GetKeyDown(KeyCode.Mouse0) && attaqueSpeciale)
-                    {
-                        if (timerAttaqueSpecialePrep > 0)
-                        {
-                            attaqueSpeciale1EnAttente = true;
-                        }
-                        else
-                        {
-                            Invoke("AttaqueSpeciale1", 0f);
-                            Invoke("ArretAttaqueSpeciale1", 1f);
-                        }
-                    }
-                    else if (Input.GetKeyDown(KeyCode.Mouse1) && attaqueSpeciale)
-                    {
-                        if (timerAttaqueSpecialePrep > 0)
-                        {
-                            attaqueSpeciale2EnAttente = true;
-                        }
-                        else
-                        {
-                            Invoke("AttaqueSpeciale2", 0f);
-                            Invoke("ArretAttaqueSpeciale2", 1f);
-                        }
-                    }
-                    else if (!attaqueSpeciale)
-                    {
-                        attaqueSpecialePrep = true;
-                        GetComponent<Animator>().SetBool("attaqueSpecialePrep", true);
-                        timerAttaqueSpecialePrep = 0.67f;
-                        attaqueSpeciale = true;
-                    }
-                }
-                else if (Input.GetKeyUp(KeyCode.LeftAlt))
-                {
-                    attaqueSpecialePrep = false;
-                    GetComponent<Animator>().SetBool("attaqueSpecialePrep", false);
-                    timerAttaqueSpecialePrep = 0;
-                    attaqueSpeciale = false;
-                }
-            }
-        }
-
 
         if (attaque2EnAttente && timerAttaque1 <= 0.25f)
         {
@@ -251,6 +266,8 @@ public class nodachi : MonoBehaviour
         GetComponent<Animator>().SetBool("attaque1", false);
         timerAttaque2 = 1f;
         timerAttaque1 = 0f;
+        mouvement2.endurance -= 5;
+        mouvement2.actionEnCours = true;
     }
 
     void Attaque3()
@@ -261,6 +278,8 @@ public class nodachi : MonoBehaviour
         attaque3EnAttente = false;
         GetComponent<Animator>().SetBool("attaque2", false);
         timerAttaque2 = 0f;
+        mouvement2.endurance -= 5;
+        mouvement2.actionEnCours = true;
     }
     
     void AttaqueLourd2()
@@ -271,6 +290,8 @@ public class nodachi : MonoBehaviour
         attaqueLourd2EnAttente = false;
         GetComponent<Animator>().SetBool("attaqueLourd1", false);
         timerAttaqueLourd1 = 0f;
+        mouvement2.endurance -= 10;
+        mouvement2.actionEnCours = true;
     }
 
     void AttaqueSpeciale1()
@@ -281,6 +302,8 @@ public class nodachi : MonoBehaviour
         GetComponent<Animator>().SetBool("attaqueSpecialePrep", false);
         GetComponent<Animator>().SetBool("attaqueSpeciale1", true);
         timerAttaqueSpecialePrep = 0f;
+        mouvement2.endurance -= 20;
+        mouvement2.actionEnCours = true;
     }
     
     void AttaqueSpeciale2()
@@ -291,6 +314,8 @@ public class nodachi : MonoBehaviour
         GetComponent<Animator>().SetBool("attaqueSpecialePrep", false);
         GetComponent<Animator>().SetBool("attaqueSpeciale2", true);
         timerAttaqueSpecialePrep = 0f;
+        mouvement2.endurance -= 20;
+        mouvement2.actionEnCours = true;
     }
 
     void ArretAttaque1()
@@ -299,6 +324,7 @@ public class nodachi : MonoBehaviour
         attaque1EnCours = false;
         cdAttaque = tempCdAttaque;
         attaqueNormale = false;
+        mouvement2.actionEnCours = false;
     }
 
     void ArretAttaque2()
@@ -307,6 +333,7 @@ public class nodachi : MonoBehaviour
         attaque2EnCours = false;
         cdAttaque = tempCdAttaque;
         attaqueNormale = false;
+        mouvement2.actionEnCours = false;
     }
 
     void ArretAttaque3()
@@ -315,6 +342,7 @@ public class nodachi : MonoBehaviour
         attaque3EnCours = false;
         cdAttaque = tempCdAttaque;
         attaqueNormale = false;
+        mouvement2.actionEnCours = false;
     }
 
     void ArretAttaqueLourd1()
@@ -323,6 +351,7 @@ public class nodachi : MonoBehaviour
         attaqueLourd1EnCours = false;
         cdAttaque = tempCdAttaque;
         attaqueLourde = false;
+        mouvement2.actionEnCours = false;
     }
 
     void ArretAttaqueLourd2()
@@ -331,6 +360,7 @@ public class nodachi : MonoBehaviour
         attaqueLourd2EnCours = false;
         cdAttaque = tempCdAttaque;
         attaqueLourde = false;
+        mouvement2.actionEnCours = false;
     }
 
     void ArretAttaqueSpeciale1()
@@ -339,6 +369,7 @@ public class nodachi : MonoBehaviour
         attaqueSpeciale1 = false;
         cdAttaque = tempCdAttaque;
         attaqueSpeciale = false;
+        mouvement2.actionEnCours = false;
     }
     
     void ArretAttaqueSpeciale2()
@@ -347,5 +378,6 @@ public class nodachi : MonoBehaviour
         attaqueSpeciale2 = false;
         cdAttaque = tempCdAttaque;
         attaqueSpeciale = false;
+        mouvement2.actionEnCours = false;
     }
 }

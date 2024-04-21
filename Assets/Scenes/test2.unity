@@ -2584,6 +2584,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: perso
       objectReference: {fileID: 0}
+    - target: {fileID: 9032853814204220428, guid: bd1a123259fdc3f4c81848d27729de55, type: 3}
+      propertyPath: endurance
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

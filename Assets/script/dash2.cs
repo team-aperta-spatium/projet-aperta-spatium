@@ -76,46 +76,52 @@ public class dash2 : MonoBehaviour
 
     void Dash()
     {
-        if (dureeCdDash > 0)
+        if (mouvement2.actionPossible)
         {
-            return;
+            if (dureeCdDash > 0)
+            {
+                return;
+            }
+            else
+            {
+                dureeCdDash = cdDash;
+            }
+
+            scriptMouve.enDash = true;
+
+            scriptMouve.vitesseYMax = vitesseDashYMax;
+
+            cam.FaireFov(fovDash);
+
+            Transform tAvant;
+
+            if (utiliseCameraAvant)
+            {
+                tAvant = cameraPerso;
+            }
+            else
+            {
+                tAvant = orientation;
+            }
+
+            Vector3 direction = ObtenirDirection(tAvant);
+
+            Vector3 forceAAppliquer = direction * forceDash + orientation.right * forceDashHaut;
+
+            if (desactiverGravite)
+            {
+                rb.useGravity = false;
+            }
+
+            delaiForceAAppliquer = forceAAppliquer;
+
+            Invoke("DelaiForceDash", 0.025f);
+
+            Invoke("ReiniDash", dureeDash);
+
+            mouvement2.endurance -= 25;
+            mouvement2.actionEnCours = true;
         }
-        else
-        {
-            dureeCdDash = cdDash;
-        }
-
-        scriptMouve.enDash = true;
-
-        scriptMouve.vitesseYMax = vitesseDashYMax;
-
-        cam.FaireFov(fovDash);
-
-        Transform tAvant;
-
-        if (utiliseCameraAvant)
-        {
-            tAvant = cameraPerso;
-        }
-        else
-        {
-            tAvant = orientation;
-        }
-
-        Vector3 direction = ObtenirDirection(tAvant);
-
-        Vector3 forceAAppliquer = direction * forceDash + orientation.right * forceDashHaut;
-
-        if (desactiverGravite)
-        {
-            rb.useGravity = false;
-        }
-
-        delaiForceAAppliquer = forceAAppliquer;
-
-        Invoke("DelaiForceDash", 0.025f);
-
-        Invoke("ReiniDash", dureeDash);
     }
 
     Vector3 delaiForceAAppliquer;
