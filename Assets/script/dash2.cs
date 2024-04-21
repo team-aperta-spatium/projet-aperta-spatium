@@ -41,7 +41,7 @@ public class dash2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(mouvement2.toucheSol);
+        //Debug.Log(mouvement2.toucheSol);
 
         rb = GetComponent<Rigidbody>();
         scriptMouve = GetComponent<mouvement2>();
