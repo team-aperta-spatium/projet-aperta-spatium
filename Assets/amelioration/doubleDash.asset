@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc3d961a75736c48b9fe3c002942132, type: 3}
   m_Name: doubleDash
   m_EditorClassIdentifier: 
-  enPossesion: 0
+  enPossesion: 1
   nom: double dash
-  actif: 0
+  actif: 1
   description: ajoute un dash au joueur

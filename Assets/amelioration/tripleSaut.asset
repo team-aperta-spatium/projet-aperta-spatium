@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc3d961a75736c48b9fe3c002942132, type: 3}
   m_Name: tripleSaut
   m_EditorClassIdentifier: 
-  enPossesion: 0
+  enPossesion: 1
   nom: triple saut
-  actif: 0
+  actif: 1
   description: ajoute un saut au joueur
