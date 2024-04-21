@@ -69,10 +69,14 @@ public class gestionMenus : MonoBehaviour
             if (enPause)
             {
                 depause();
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
             }
             else
             {
                 pause();
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
             }
         }
     }
