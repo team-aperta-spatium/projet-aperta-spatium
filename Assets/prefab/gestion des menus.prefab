@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5595421859475573820
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4076376064974810416}
+  - component: {fileID: 113159988502377674}
+  m_Layer: 5
+  m_Name: gestion des menus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4076376064974810416
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5595421859475573820}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 3291, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &113159988502377674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5595421859475573820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0e143179146c474291a8960ce3446d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuPause: {fileID: 0}
+  menuEquip: {fileID: 0}
+  menuMap: {fileID: 0}
+  mapNW: {fileID: 0}
+  mapNE: {fileID: 0}
+  mapSW: {fileID: 0}
+  mapSE: {fileID: 0}
+  nomPartieMap: {fileID: 0}
+  quete1: {fileID: 0}
+  quete2: {fileID: 0}
+  quete3: {fileID: 0}
+  posPause: 0
+  posEquip: 0
+  posMap: 0
+  imgMapNW: {fileID: 2800000, guid: 2441089ed1033304194f06c21da75c8e, type: 3}
+  imgMapNE: {fileID: 2800000, guid: 2c49921301dae4b4b8a90232e0d3de74, type: 3}
+  imgMapSW: {fileID: 2800000, guid: 9b57211292039994c8abcd7cff978ced, type: 3}
+  imgMapSE: {fileID: 2800000, guid: fa1cdc91e5e8ec34a8f903f5a1df7ba6, type: 3}
+  menu: {fileID: 0}
+  infoMap: {fileID: 4900000, guid: 4fa4b3b1c554e5141b192ec7f23aa2b4, type: 3}
+  mapList:
+    map: []
