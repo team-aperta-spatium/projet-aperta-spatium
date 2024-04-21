@@ -11,6 +11,9 @@ TagManager:
   - button f2
   - button f1
   - button f6
+  - toggle
+  - ennemi
+  - perso
   layers:
   - Default
   - TransparentFX
@@ -18,8 +21,8 @@ TagManager:
   - quoiSol
   - Water
   - UI
-  - 
-  - 
+  - ennemi
+  - armes
   - 
   - 
   - 
