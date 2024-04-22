@@ -1,0 +1,25 @@
+{
+  "map": [
+    {
+      "donneeNomPartieMap": "mapNW",
+      "donneeQuete1": "trouver coffre 1",
+      "donneeQuete2": "trouver coffre 2",
+      "donneeQuete3": "trouver coffre 3"
+    },
+    {
+      "donneeNomPartieMap": "mapNE",
+      "donneeQuete1": "trouver coffre 1",
+      "donneeQuete2": "trouver coffre 2",
+      "donneeQuete3": "trouver coffre 3"
+    },
+    {
+      "donneeNomPartieMap": "mapSW",
+      "donneeQuete1": "trouver coffre 1",
+      "donneeQuete2": "trouver coffre 2"
+    },
+    {
+      "donneeNomPartieMap": "mapSE",
+      "donneeQuete1": "trouver coffre 1"
+    }
+  ]
+}
