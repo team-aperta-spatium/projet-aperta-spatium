@@ -6,6 +6,12 @@ public class mouvement2 : MonoBehaviour
 {
     public static bool toucheSol;
 
+    [Header("endurance")]
+    public static float endurance;
+    public static bool actionPossible;
+    public static bool actionEnCours;
+    public static bool attaqueEnCours;
+
     [Header("Mouvement")]
     public float dragSol;
     public float vitesseMarche;
@@ -77,6 +83,8 @@ public class mouvement2 : MonoBehaviour
         pretSaut = true;
 
         echelleYDebut = transform.localScale.y;
+        endurance = 100;
+        actionPossible = true;
     }
 
     // Update is called once per frame
@@ -108,6 +116,35 @@ public class mouvement2 : MonoBehaviour
             rb.drag = 0;
         }
 
+        if (etat == etatMouve.course)
+        {
+            endurance -= 0.05f;
+            actionEnCours = true;
+        }
+
+        Debug.Log(endurance);
+
+        if (endurance <= 0)
+        {
+            endurance = 0;
+            actionPossible = false;
+            vitesseDesiree = vitesseMarche;
+        }
+        else if (endurance > 0 && endurance < 100 && !actionEnCours && Time.timeScale != 0 && !attaqueEnCours && actionPossible)
+        {
+            endurance += 0.06f;
+        }
+
+        if (!actionPossible)
+        {
+            endurance += 0.04f;
+
+            if (endurance >= 100)
+            {
+                endurance = 100;
+                actionPossible = true;
+            }
+        }
     }
 
     void FixedUpdate()
@@ -130,13 +167,21 @@ public class mouvement2 : MonoBehaviour
         }
         else if (toucheSol && Input.GetKey(KeyCode.LeftShift))
         {
-            etat = etatMouve.course;
-            vitesseDesiree = vitesseCourse;
+            if (actionPossible)
+            {
+                etat = etatMouve.course;
+                vitesseDesiree = vitesseCourse;
+            }
         }
         else if (toucheSol)
         {
             etat = etatMouve.marche;
             vitesseDesiree = vitesseMarche;
+
+            if (!attaqueEnCours)
+            {
+                actionEnCours = false;
+            }
         }
         else
         {
@@ -293,11 +338,17 @@ public class mouvement2 : MonoBehaviour
 
     void Saut()
     {
-        sortPente = true;
+        if (actionPossible)
+        {
+            sortPente = true;
 
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        rb.AddForce(transform.up * forceSaut, ForceMode.Impulse);
+            rb.AddForce(transform.up * forceSaut, ForceMode.Impulse);
+
+            endurance -= 10;
+            actionEnCours = true;
+        }
     }
 
     void ReiniSaut()
