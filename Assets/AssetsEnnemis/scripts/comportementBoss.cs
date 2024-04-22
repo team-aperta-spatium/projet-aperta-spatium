@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,10 @@ public class comportementBoss : MonoBehaviour
     public NavMeshAgent navBoss;
     public GameObject joueur;
     public Animator animator;
+
+    public GameObject baseProjectiles;
+    public GameObject projectile;
+    public List<GameObject> groupeProj;
 
     Vector3 Q1;
     Vector3 Q2;
@@ -32,6 +37,7 @@ public class comportementBoss : MonoBehaviour
         Q4 = new Vector3(-12.5f, 4.25f, 12.5f);
 
         nextDestination();
+
         
     }
 
@@ -44,11 +50,15 @@ public class comportementBoss : MonoBehaviour
             boss.transform.LookAt(joueur.transform.position);
 
 
-            int nbAle = Random.Range(0, 1000000);
+            int nbAle = UnityEngine.Random.Range(0, 1000000);
             if(nbAle >= 999550)
             {
                 grosseAttaque();
             }
+            else if(nbAle <= 500)
+            {
+                lanceProjectile();
+            }            
         }
 
         if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8 && animOn)
@@ -70,7 +80,7 @@ public class comportementBoss : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, 0);
         boss.transform.rotation = Quaternion.Euler(0, 0, 0);
 
-        int qAle = Random.Range(0, 4);
+        int qAle = UnityEngine.Random.Range(0, 4);
 
         if (qAle == 0 && dernierQ != 1)
         {
@@ -101,5 +111,25 @@ public class comportementBoss : MonoBehaviour
     public void checkAnim()
     {
         animOn = true;
+    }
+
+    public void lanceProjectile()
+    {
+        groupeProj = new List<GameObject>();
+        for (int i = 0; i < 5; i++)
+        {
+            float floatI = i;
+            groupeProj.Add(Instantiate(projectile, baseProjectiles.transform.position, Quaternion.identity));
+            StartCoroutine(TireProj(groupeProj[i], floatI));
+        }
+    }
+
+    IEnumerator TireProj(GameObject projActif, float i)
+    {
+        yield return new WaitForSeconds(i/10f);
+        projActif.AddComponent<Rigidbody>();
+        projActif.AddComponent<projDestroy>();
+        projActif.SetActive(true);
+        projActif.GetComponent<Rigidbody>().AddForce((boss.transform.forward + new Vector3(i/2 - 1f, 0, 0)) * 1000);
     }
 }

@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class hitbox : MonoBehaviour
 {
-    public bool attaque;
-    public float nbrDmgEnnemi;
-
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.tag == "perso")
+        if(collision.name == "perso")
         {
-            if (attaque)
-            {
-                collision.gameObject.GetComponent<viePerso>().nbrViePerso -= nbrDmgEnnemi;
-            }
+            print("ATTRAPER LE GOGO");
         }
     }
 }
