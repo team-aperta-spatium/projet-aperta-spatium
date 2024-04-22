@@ -48,6 +48,7 @@ public class mouvement2 : MonoBehaviour
     public bool enDash;
 
     public GameObject camPerso;
+    public GameObject uiEnergie;
 
     RaycastHit hitPentes;
 
@@ -122,8 +123,6 @@ public class mouvement2 : MonoBehaviour
             actionEnCours = true;
         }
 
-        Debug.Log(endurance);
-
         if (endurance <= 0)
         {
             endurance = 0;
@@ -145,6 +144,8 @@ public class mouvement2 : MonoBehaviour
                 actionPossible = true;
             }
         }
+
+        uiEnergie.GetComponent<pieChart>().valeur = endurance / 100;
     }
 
     void FixedUpdate()

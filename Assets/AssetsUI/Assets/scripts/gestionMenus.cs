@@ -52,6 +52,10 @@ public class gestionMenus : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        menu.SetActive(false);
+        Time.timeScale = 1f;
+        enPause = false;
+
         posPause = 0;
         posEquip = 1920;
         posMap = -1920;

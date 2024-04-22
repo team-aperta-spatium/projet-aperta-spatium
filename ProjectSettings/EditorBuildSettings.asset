@@ -10,5 +10,8 @@ EditorBuildSettings:
     guid: 7f2fd594561f0af40a0c5468a561266e
   - enabled: 1
     path: Assets/Scenes/SceneCompleteGame.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    guid: badfbebbb231e064ea1c2cf907045e20
+  - enabled: 1
+    path: Assets/AssetsEnnemis/Scenes/boss.unity
+    guid: 8cd723970d8e62649ae74051e37ae99b
   m_configObjects: {}
