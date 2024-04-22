@@ -12,7 +12,7 @@ public class gestionItem : MonoBehaviour
     void Update()
     {
         y = parent.GetComponent<RectTransform>().position.y;
-        GetComponent<RectTransform>().position = new Vector2(-0.001f * Mathf.Pow(-y + 150f, 2) + 200, GetComponent<RectTransform>().position.y);
+        GetComponent<RectTransform>().position = new Vector2(-0.001f * Mathf.Pow(-y + 150f, 2) + 500f, GetComponent<RectTransform>().position.y);
         GetComponent<RawImage>().uvRect = new Rect(y / 200, 0, 1, 1);
     }
 }
