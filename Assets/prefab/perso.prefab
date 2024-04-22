@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 5498979491753633795}
   m_Layer: 7
   m_Name: orientation
-  m_TagString: Untagged
+  m_TagString: perso
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,9 +230,10 @@ GameObject:
   - component: {fileID: 8710364599185464886}
   - component: {fileID: 7555344139733198118}
   - component: {fileID: 7476321763081760296}
+  - component: {fileID: 3862333044465089271}
   m_Layer: 7
   m_Name: persoObj
-  m_TagString: Untagged
+  m_TagString: perso
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -327,6 +328,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3862333044465089271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4134536616363357928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 123910a447478254e8ab6976d2ab64c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nbrViePerso: 100
+  perso: {fileID: 6282461544353076454}
 --- !u!1 &4576210598311220473
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +356,7 @@ GameObject:
   - component: {fileID: 1233992755523926765}
   m_Layer: 7
   m_Name: perso
-  m_TagString: Player
+  m_TagString: perso
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -586,7 +601,7 @@ GameObject:
   - component: {fileID: 4597545330761572558}
   m_Layer: 0
   m_Name: perso
-  m_TagString: Untagged
+  m_TagString: perso
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -707,9 +722,9 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 8
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -763,7 +778,7 @@ GameObject:
   - component: {fileID: 7280198991169521109}
   m_Layer: 7
   m_Name: ref
-  m_TagString: Untagged
+  m_TagString: perso
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
