@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class gestionVies : MonoBehaviour
 {
-    int nbVies = 6;
-    public int vieActive;
+    float nbVies = 6;
+    public float vieActive;
+    public GameObject persoObj;
+
 
     public GameObject vie1;
     public GameObject vie2;
@@ -24,10 +27,7 @@ public class gestionVies : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            vieActive--;
-        }
+        vieActive = persoObj.GetComponent<viePerso>().nbrViePerso;
 
         if (nbVies - vieActive > 0) { vie1.SetActive(false); }
         if (nbVies - vieActive > 1) { vie2.SetActive(false); }

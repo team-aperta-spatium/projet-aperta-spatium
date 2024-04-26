@@ -141,6 +141,8 @@ public class gestionMenus : MonoBehaviour
     {
         menu.SetActive(false);
         Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         enPause = false;
     }
 
