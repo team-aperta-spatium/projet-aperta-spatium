@@ -6,9 +6,9 @@ public class hitbox : MonoBehaviour
 {
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.name == "perso")
+        if(collision.tag == "perso")
         {
-            print("ATTRAPER LE GOGO");
+            collision.GetComponent<viePerso>().nbrViePerso -= 20;
         }
     }
 }
