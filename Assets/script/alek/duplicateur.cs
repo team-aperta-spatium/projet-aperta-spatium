@@ -1,12 +1,14 @@
 using BrewedInk.CRT;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class duplicateur : MonoBehaviour
 {
+    public inventaire tripleSaut;
+    public inventaire doubleDash;
+    public GameObject tripleSautObj;
+    public GameObject doubleDashObj;
+    public GameObject parentClone;
     public GameObject canvas;
     public GameObject obsN;
     public GameObject obsE;
@@ -22,6 +24,8 @@ public class duplicateur : MonoBehaviour
     public GameObject canvasMiniJeu;
     public Rigidbody perso;
     public GameObject ctnMiniJeu;
+
+    GameObject ameliorationACloner;
 
     public RawImage cadenas;
     public Texture cadenasBrise;
@@ -110,7 +114,7 @@ public class duplicateur : MonoBehaviour
     void Victoire()
     {
         cadenas.texture = cadenasBrise;
-        Invoke("FermerMiniJeu", 2f);
+        Invoke("FermerMiniJeu", 2f);   
     }
 
     void FermerMiniJeu()
@@ -123,6 +127,34 @@ public class duplicateur : MonoBehaviour
         InteractionCoffre.jeuActif = false;
         perso.constraints = RigidbodyConstraints.None;
         perso.constraints = RigidbodyConstraints.FreezeRotation;
+
+        if (!tripleSaut.enPossesion && !doubleDash.enPossesion)
+        {
+            int nbrRandom = Random.Range(1, 3);
+
+            if (nbrRandom == 1)
+            {
+                GameObject cloneAmelioration = Instantiate(tripleSautObj, parentClone.transform.position, parentClone.transform.rotation);
+                cloneAmelioration.SetActive(true);
+            }
+            else if (nbrRandom == 2)
+            {
+                GameObject cloneAmelioration = Instantiate(doubleDashObj, parentClone.transform.position, parentClone.transform.rotation);
+                cloneAmelioration.SetActive(true);
+            }
+        }
+        else if (!tripleSaut.enPossesion && doubleDash.enPossesion)
+        {
+            GameObject cloneAmelioration = Instantiate(tripleSautObj, parentClone.transform.position, parentClone.transform.rotation);
+            cloneAmelioration.SetActive(true);
+        }
+        else if (tripleSaut.enPossesion && !doubleDash.enPossesion)
+        {
+            GameObject cloneAmelioration = Instantiate(doubleDashObj, parentClone.transform.position, parentClone.transform.rotation);
+            cloneAmelioration.SetActive(true);
+        }
+
+        Destroy(parentClone);
     }
 
     public void Defaite()

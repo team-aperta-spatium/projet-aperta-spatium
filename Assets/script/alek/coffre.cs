@@ -27,7 +27,7 @@ public class coffre : MonoBehaviour
 
         if (distanceAuPerso <= distanceDetection)
         {
-            if (Input.GetKeyUp(KeyCode.T))
+            if (Input.GetKeyUp(KeyCode.E))
             {
                 canvasMiniJeu.SetActive(true);
                 cameraPerso.SetActive(false);
