@@ -34,6 +34,13 @@ public class gestionMenus : MonoBehaviour
     public static bool enPause;
 
     public TextAsset infoMap;
+
+    public GameObject conteneur;
+    public GameObject equipement;
+    public TextMeshPro nomDescEquip;
+    public TextMeshPro DescEquip;
+    int nbItems;
+
     [System.Serializable]
     public class DonneeMap
     {
@@ -68,6 +75,9 @@ public class gestionMenus : MonoBehaviour
         menuEquip.GetComponent<RectTransform>().anchoredPosition = new Vector2(posEquip, 0);
         menuMap.GetComponent<RectTransform>().anchoredPosition = new Vector2(posMap, 0);
 
+        nbItems = conteneur.transform.childCount;
+        conteneur.GetComponent<RectTransform>().sizeDelta = new Vector2(700f, nbItems * 300f);
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (enPause)
@@ -82,6 +92,11 @@ public class gestionMenus : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            ajoutEquip("test");
         }
     }
 
@@ -137,6 +152,15 @@ public class gestionMenus : MonoBehaviour
         quete3.SetText("");
     }
 
+    public void ajoutEquip(string nom)
+    {
+        GameObject ctnItemClone = Instantiate(equipement);
+        ctnItemClone.transform.parent = conteneur.transform;
+        ctnItemClone.transform.localScale = new Vector3(1f, 1f, 1f);
+        GameObject nomEquip = ctnItemClone.transform.GetChild(0).GetChild(0).gameObject;
+        nomEquip.GetComponent<TMP_Text>().SetText(nom);
+    }
+
     public void depause()
     {
         menu.SetActive(false);
@@ -156,5 +180,6 @@ public class gestionMenus : MonoBehaviour
     public void quitter()
     {
         SceneManager.LoadScene(0);
+      
     }
 }
