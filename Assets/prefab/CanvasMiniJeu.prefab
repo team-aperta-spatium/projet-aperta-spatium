@@ -252,7 +252,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5181240877669745157
 RectTransform:
   m_ObjectHideFlags: 0
@@ -324,15 +324,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61bf30ea23bd9a446a53faab111922fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tripleSaut: {fileID: 11400000, guid: 4eb7f31871c554345800424b5a9ac50d, type: 2}
+  doubleDash: {fileID: 11400000, guid: 01d265a0c5cd93c499c82eb1bf64bcea, type: 2}
+  tripleSautObj: {fileID: 5333780776747534537, guid: aac4575ecbd477a4f8cc6468594b4f7e, type: 3}
+  doubleDashObj: {fileID: 1280721102302212942, guid: e3e142b83c8688b45ba95750233a0a96, type: 3}
   canvas: {fileID: 6446724415772177699}
   obsN: {fileID: 8700115575514073421}
   obsE: {fileID: 7272574383062560272}
   obsS: {fileID: 7410246048582571578}
   obsO: {fileID: 7849252055792553385}
   laCamera: {fileID: 0}
-  camPerso: {fileID: 0}
-  canvasMiniJeu: {fileID: 0}
-  perso: {fileID: 0}
+  canvasMiniJeu: {fileID: 6446724415772177699}
   ctnMiniJeu: {fileID: 3766130697736080650}
   cadenas: {fileID: 8934437190089173785}
   cadenasBrise: {fileID: 2800000, guid: f28952554d21dcf42aac1588f25f1842, type: 3}
@@ -514,7 +516,7 @@ GameObject:
   - component: {fileID: 765156483312159114}
   - component: {fileID: 2553760893687340523}
   m_Layer: 5
-  m_Name: CanvasMiniJeu
+  m_Name: canvasMiniJeu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -565,7 +567,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &765156483312159114
 MonoBehaviour:

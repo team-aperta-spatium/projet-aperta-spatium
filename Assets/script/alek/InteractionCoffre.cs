@@ -6,13 +6,13 @@ using UnityEngine;
 
 public class InteractionCoffre : MonoBehaviour
 {
-    public GameObject duplicateur;
+    GameObject duplicateur;
     int[][] table;
     public float vitesseRound;
     public float vitesseObstacle;
 
-    public GameObject laCamera;
-    public GameObject ctnMiniJeu;
+    GameObject laCamera;
+    GameObject ctnMiniJeu;
 
     static public bool jeuActif;
 
@@ -41,6 +41,10 @@ public class InteractionCoffre : MonoBehaviour
         table[8][0] = 0; table[8][1] = 1; table[8][2] = 1; table[8][3] = 0;
         table[9][0] = 1; table[9][1] = 0; table[9][2] = 1; table[9][3] = 0;
         jeuActif = false;
+
+        duplicateur = GameObject.Find("duplicateur");
+        laCamera = GameObject.Find("cameraMiniJeu");
+        ctnMiniJeu = GameObject.Find("ctnMiniJeu");
     }
 
     void Update()

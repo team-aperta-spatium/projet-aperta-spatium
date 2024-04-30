@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class coffre : MonoBehaviour
 {
-    public Transform perso;
-    public Rigidbody persoGO;
+    GameObject perso;
+    Rigidbody persoGO;
+
     public float distanceDetection;
     public GameObject canvasTxt;
-    public GameObject canvasMiniJeu;
-    public GameObject cameraPerso;
-    public GameObject cameraMiniJeu;
+    public GameObject refClone;
+
+    GameObject canvasMiniJeu;
+    GameObject cameraPerso;
+    GameObject parentTxt;
+    GameObject cloneTxt;
+    GameObject cameraMiniJeu;
+    bool clonageFait;
 
     static public bool canvasMiniJeuActif;
 
@@ -18,38 +24,56 @@ public class coffre : MonoBehaviour
     void Start()
     {
         canvasMiniJeuActif = false;
+        perso = GameObject.Find("perso");
+        persoGO = perso.GetComponent<Rigidbody>();
+        cameraPerso = GameObject.Find("cameraPerso");
+        parentTxt = GameObject.Find("txtProximite");
+        canvasMiniJeu = GameObject.Find("canvasMiniJeu");
+        cameraMiniJeu = GameObject.Find("cameraMiniJeu");
     }
 
     // Update is called once per frame
     void Update()
     {
-        float distanceAuPerso = Vector3.Distance(transform.position, perso.position);
+        float distanceAuPerso = Vector3.Distance(transform.position, perso.transform.position);
 
         if (distanceAuPerso <= distanceDetection)
         {
             if (Input.GetKeyUp(KeyCode.E))
             {
-                canvasMiniJeu.SetActive(true);
-                cameraPerso.SetActive(false);
-                cameraMiniJeu.SetActive(true);
+                canvasMiniJeu.GetComponent<Canvas>().enabled = true;
+                cameraPerso.GetComponent<Camera>().enabled = false;
+                cameraPerso.GetComponent<AudioListener>().enabled = false;
+                cameraMiniJeu.GetComponent<Camera>().enabled = true;
+                cameraMiniJeu.GetComponent<AudioListener>().enabled = true;
                 canvasMiniJeuActif = true;
+                refClone.SetActive(true);
             }
 
             if (canvasMiniJeuActif == true)
             {
                 persoGO.constraints = RigidbodyConstraints.FreezeAll;
-                canvasTxt.SetActive(false);
+                Destroy(cloneTxt);
+                clonageFait = false;
                 GetComponent<InteractionCoffre>().enabled = true;
             }
             else
             {
-                canvasTxt.SetActive(true);
+                if (!clonageFait)
+                {
+                    cloneTxt = Instantiate(canvasTxt);
+                    cloneTxt.SetActive(true);
+                    cloneTxt.transform.SetParent(parentTxt.transform);
+                    cloneTxt.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 80, 0);
+                    clonageFait = true;
+                }
                 GetComponent<InteractionCoffre>().enabled = false;
             }
         }
         else
         {
-            canvasTxt.SetActive(false);
+            Destroy(cloneTxt);
+            clonageFait = false;
         }
     }
 }
