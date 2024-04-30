@@ -5,42 +5,64 @@ using TMPro;
 
 public class gestionAmelioPourTestUtil : MonoBehaviour
 {
-    public Transform perso;
     public float distanceDetection;
-    public GameObject parentTxt;
-    public GameObject txt;
     public inventaire amelioration;
+    public GameObject txtTripleSaut;
+    public GameObject txtDoubleDash;
+    GameObject perso;
+    GameObject parentTxt;
+    GameObject txtClone;
+    bool clonageFait;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        perso = GameObject.FindWithTag("perso");
+        parentTxt = GameObject.Find("txtProximite");
     }
 
     // Update is called once per frame
     void Update()
     {
-        float distanceAuPerso = Vector3.Distance(transform.position, perso.position);
+        float distanceAuPerso = Vector3.Distance(transform.position, perso.transform.position);
 
         if (distanceAuPerso <= distanceDetection)
         {
-            GameObject cloneCanvas = Instantiate(parentTxt);
-            cloneCanvas.SetActive(true);
-
-            GameObject cloneTxt = Instantiate(txt);
-            cloneTxt.SetActive(true);
-            cloneTxt.transform.SetParent(cloneCanvas.transform, false);
+            if (!clonageFait)
+            {
+                CloneTxt();
+                clonageFait = true;
+            }
 
             if (Input.GetKeyDown(KeyCode.E))
             {
                 amelioration.enPossesion = true;
                 amelioration.actif = true;
                 Destroy(gameObject);
+                Destroy(txtClone);
             }
         }
         else
         {
-            txt.SetActive(false);
+            Destroy(txtClone);
+            clonageFait = false;
         }
+    }
+
+    void CloneTxt()
+    {
+        if (gameObject.tag == "prefabTripleSaut")
+        {
+            txtClone = Instantiate(txtTripleSaut);
+        }
+        else if (gameObject.tag == "prefabDoubleDash")
+        {
+            txtClone = Instantiate(txtDoubleDash);
+        }
+
+        txtClone.SetActive(true);
+        txtClone.transform.SetParent(parentTxt.transform);
+        txtClone.GetComponent<RectTransform>().sizeDelta = new Vector2(925, 50);
+        txtClone.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 80, 0);
     }
 }

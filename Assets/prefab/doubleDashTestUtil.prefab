@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2965585587044963978}
   m_Layer: 0
   m_Name: doubleDashTestUtil
-  m_TagString: Untagged
+  m_TagString: prefabDoubleDash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,8 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 397d2d1ce783fef4081e2975fcb79ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perso: {fileID: 4597545330761572558, guid: bd1a123259fdc3f4c81848d27729de55, type: 3}
   distanceDetection: 5
-  parentTxt: {fileID: 2601329977708823335, guid: ae6b731adfc4e53448176185f73157f7, type: 3}
-  txt: {fileID: 2504317678538222717, guid: c28bfe70c6a8a4444b25f5fc09cf2fff, type: 3}
   amelioration: {fileID: 11400000, guid: 01d265a0c5cd93c499c82eb1bf64bcea, type: 2}
+  txtTripleSaut: {fileID: 2504317678538222717, guid: c28bfe70c6a8a4444b25f5fc09cf2fff, type: 3}
+  txtDoubleDash: {fileID: 2504317678538222717, guid: 9a878c3152f1f6749b1a5d0fa5d624bd, type: 3}
