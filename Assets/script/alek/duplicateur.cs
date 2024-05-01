@@ -18,10 +18,10 @@ public class duplicateur : MonoBehaviour
     private GameObject cloneObsS;
     private GameObject cloneObsO;
 
-    public GameObject laCamera;
     public GameObject canvasMiniJeu;
     public GameObject ctnMiniJeu;
 
+    GameObject laCamera;
     GameObject parentClone;
     GameObject camPerso;
     GameObject persoObj;
@@ -29,6 +29,7 @@ public class duplicateur : MonoBehaviour
 
     public RawImage cadenas;
     public Texture cadenasBrise;
+    public Texture cadenasNormal;
     float vitesseObstacle;
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,7 @@ public class duplicateur : MonoBehaviour
         camPerso = GameObject.Find("cameraPerso");
         persoObj = GameObject.Find("perso");
         persoRb = persoObj.GetComponent<Rigidbody>();
+        laCamera = GameObject.Find("cameraMiniJeu");
     }
 
     // Update is called once per frame
@@ -122,10 +124,12 @@ public class duplicateur : MonoBehaviour
     void FermerMiniJeu()
     {
         laCamera.GetComponent<CRTCameraBehaviour>().enabled = false;
-        ctnMiniJeu.SetActive(false);
-        laCamera.SetActive(false);
+        //ctnMiniJeu.SetActive(false);
+        laCamera.GetComponent<Camera>().enabled = false;
+        laCamera.GetComponent<AudioListener>().enabled = false;
         camPerso.GetComponent<Camera>().enabled = true;
         camPerso.GetComponent<AudioListener>().enabled = true;
+        canvasMiniJeu.GetComponent<Canvas>().enabled = false;
         coffre.canvasMiniJeuActif = false;
         InteractionCoffre.jeuActif = false;
         persoRb.constraints = RigidbodyConstraints.None;
@@ -157,17 +161,20 @@ public class duplicateur : MonoBehaviour
             cloneAmelioration.SetActive(true);
         }
 
-        Destroy(parentClone);
+        Destroy(parentClone.transform.parent.gameObject);
+        cadenas.texture = cadenasNormal;
     }
 
     public void Defaite()
     {
         CancelInvoke();
         laCamera.GetComponent<CRTCameraBehaviour>().enabled = false;
-        ctnMiniJeu.SetActive(false);
-        laCamera.SetActive(false);
+        //ctnMiniJeu.SetActive(false);
+        laCamera.GetComponent<Camera>().enabled = false;
+        laCamera.GetComponent<AudioListener>().enabled = false;
         camPerso.GetComponent<Camera>().enabled = true;
         camPerso.GetComponent<AudioListener>().enabled = true;
+        canvasMiniJeu.GetComponent<Canvas>().enabled = false;
         coffre.canvasMiniJeuActif = false;
         InteractionCoffre.jeuActif = false;
         persoRb.constraints = RigidbodyConstraints.None;

@@ -14,7 +14,7 @@ public class obstacleSud : MonoBehaviour
     {
         e = canvas.GetComponent<RectTransform>().sizeDelta.x / canvas.GetComponent<RectTransform>().sizeDelta.y;
         vitesseReel = -vitesseObstacle * (canvas.GetComponent<RectTransform>().sizeDelta.y / canvas.GetComponent<RectTransform>().sizeDelta.x);
-        GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, -canvas.transform.position.y * 3 / 4);
+        //GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, -canvas.transform.position.y * 3 / 4);
     }
 
     // Update is called once per frame

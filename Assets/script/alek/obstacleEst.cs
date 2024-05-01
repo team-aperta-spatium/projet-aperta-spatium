@@ -14,7 +14,7 @@ public class obstacleEst : MonoBehaviour
     {
         e = canvas.GetComponent<RectTransform>().sizeDelta.y / canvas.GetComponent<RectTransform>().sizeDelta.x;
         vitesseReel = vitesseObstacle * (canvas.GetComponent<RectTransform>().sizeDelta.x / canvas.GetComponent<RectTransform>().sizeDelta.y);
-        GetComponent<RectTransform>().anchoredPosition = new Vector2(canvas.transform.position.x /2.5f, 0f);
+        //GetComponent<RectTransform>().anchoredPosition = new Vector2(canvas.transform.position.x /2.5f, 0f);
     }
 
     // Update is called once per frame

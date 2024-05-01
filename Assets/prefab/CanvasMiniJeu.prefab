@@ -333,11 +333,11 @@ MonoBehaviour:
   obsE: {fileID: 7272574383062560272}
   obsS: {fileID: 7410246048582571578}
   obsO: {fileID: 7849252055792553385}
-  laCamera: {fileID: 0}
   canvasMiniJeu: {fileID: 6446724415772177699}
   ctnMiniJeu: {fileID: 3766130697736080650}
   cadenas: {fileID: 8934437190089173785}
   cadenasBrise: {fileID: 2800000, guid: f28952554d21dcf42aac1588f25f1842, type: 3}
+  cadenasNormal: {fileID: 2800000, guid: 57f0c61a84b268b498ee4657bb5f6b10, type: 3}
 --- !u!1 &4615340680318837886
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +531,7 @@ RectTransform:
   m_GameObject: {fileID: 6446724415772177699}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.13032737, y: 0.13032737, z: 0.13032737}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 331369687978601540}
@@ -553,9 +553,9 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6446724415772177699}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -591,7 +591,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &2553760893687340523
 MonoBehaviour:
   m_ObjectHideFlags: 0
