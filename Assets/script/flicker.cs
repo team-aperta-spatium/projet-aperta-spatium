@@ -8,7 +8,7 @@ public class flicker : MonoBehaviour
     void Update()
     {
         int randomNb = Random.Range(1, raritee);
-        if(randomNb == 99)
+        if(randomNb == 1)
         {
             fermer();
             Invoke("gererFlick", 0.1f);
