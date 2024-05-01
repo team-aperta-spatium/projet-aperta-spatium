@@ -53,15 +53,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5bc6258c648bf43d599bd3ddeae8ca43, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2011.4
+      value: 1858.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5bc6258c648bf43d599bd3ddeae8ca43, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 23.979
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5bc6258c648bf43d599bd3ddeae8ca43, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 173.9
+      value: 212.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5bc6258c648bf43d599bd3ddeae8ca43, type: 3}
       propertyPath: m_LocalRotation.w
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d79d4c88cf15a45438e25624efce7386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vitesseRound: 1
+  vitesseRound: 3
   vitesseObstacle: 1
 --- !u!4 &1142118011925550169 stripped
 Transform:
