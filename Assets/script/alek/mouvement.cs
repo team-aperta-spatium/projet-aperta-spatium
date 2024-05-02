@@ -36,11 +36,11 @@ public class mouvement : MonoBehaviour
 
         if (Input.GetKey("a"))
         {
-            boite.Rotate(0f, 0f, 1.25f);
+            boite.Rotate(0f, 0f, 0.75f);
         }
         else if (Input.GetKey("d"))
         {
-            boite.Rotate(0f, 0f, -1.25f);
+            boite.Rotate(0f, 0f, -0.75f);
         }
     }
 }

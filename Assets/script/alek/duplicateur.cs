@@ -1,12 +1,13 @@
 using BrewedInk.CRT;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class duplicateur : MonoBehaviour
 {
+    public inventaire tripleSaut;
+    public inventaire doubleDash;
+    public GameObject tripleSautObj;
+    public GameObject doubleDashObj;
     public GameObject canvas;
     public GameObject obsN;
     public GameObject obsE;
@@ -17,25 +18,32 @@ public class duplicateur : MonoBehaviour
     private GameObject cloneObsS;
     private GameObject cloneObsO;
 
-    public GameObject laCamera;
-    public GameObject camPerso;
     public GameObject canvasMiniJeu;
-    public Rigidbody perso;
     public GameObject ctnMiniJeu;
+
+    GameObject laCamera;
+    GameObject parentClone;
+    GameObject camPerso;
+    GameObject persoObj;
+    Rigidbody persoRb;
 
     public RawImage cadenas;
     public Texture cadenasBrise;
+    public Texture cadenasNormal;
     float vitesseObstacle;
     // Start is called before the first frame update
     void Start()
     {
-        
+        camPerso = GameObject.Find("cameraPerso");
+        persoObj = GameObject.Find("perso");
+        persoRb = persoObj.GetComponent<Rigidbody>();
+        laCamera = GameObject.Find("cameraMiniJeu");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        parentClone = GameObject.Find("refClone");
     }
 
     public void debutJeu(int[][] table, float vObs, float vRounds)
@@ -110,31 +118,66 @@ public class duplicateur : MonoBehaviour
     void Victoire()
     {
         cadenas.texture = cadenasBrise;
-        Invoke("FermerMiniJeu", 2f);
+        Invoke("FermerMiniJeu", 2f);   
     }
 
     void FermerMiniJeu()
     {
         laCamera.GetComponent<CRTCameraBehaviour>().enabled = false;
-        ctnMiniJeu.SetActive(false);
-        laCamera.SetActive(false);
-        camPerso.SetActive(true);
+        //ctnMiniJeu.SetActive(false);
+        laCamera.GetComponent<Camera>().enabled = false;
+        laCamera.GetComponent<AudioListener>().enabled = false;
+        camPerso.GetComponent<Camera>().enabled = true;
+        camPerso.GetComponent<AudioListener>().enabled = true;
+        canvasMiniJeu.GetComponent<Canvas>().enabled = false;
         coffre.canvasMiniJeuActif = false;
         InteractionCoffre.jeuActif = false;
-        perso.constraints = RigidbodyConstraints.None;
-        perso.constraints = RigidbodyConstraints.FreezeRotation;
+        persoRb.constraints = RigidbodyConstraints.None;
+        persoRb.constraints = RigidbodyConstraints.FreezeRotation;
+
+        if (!tripleSaut.enPossesion && !doubleDash.enPossesion)
+        {
+            int nbrRandom = Random.Range(1, 3);
+
+            if (nbrRandom == 1)
+            {
+                GameObject cloneAmelioration = Instantiate(tripleSautObj, parentClone.transform.position, parentClone.transform.rotation);
+                cloneAmelioration.SetActive(true);
+            }
+            else if (nbrRandom == 2)
+            {
+                GameObject cloneAmelioration = Instantiate(doubleDashObj, parentClone.transform.position, parentClone.transform.rotation);
+                cloneAmelioration.SetActive(true);
+            }
+        }
+        else if (!tripleSaut.enPossesion && doubleDash.enPossesion)
+        {
+            GameObject cloneAmelioration = Instantiate(tripleSautObj, parentClone.transform.position, parentClone.transform.rotation);
+            cloneAmelioration.SetActive(true);
+        }
+        else if (tripleSaut.enPossesion && !doubleDash.enPossesion)
+        {
+            GameObject cloneAmelioration = Instantiate(doubleDashObj, parentClone.transform.position, parentClone.transform.rotation);
+            cloneAmelioration.SetActive(true);
+        }
+
+        Destroy(parentClone.transform.parent.gameObject);
+        cadenas.texture = cadenasNormal;
     }
 
     public void Defaite()
     {
         CancelInvoke();
         laCamera.GetComponent<CRTCameraBehaviour>().enabled = false;
-        ctnMiniJeu.SetActive(false);
-        laCamera.SetActive(false);
-        camPerso.SetActive(true);
+        //ctnMiniJeu.SetActive(false);
+        laCamera.GetComponent<Camera>().enabled = false;
+        laCamera.GetComponent<AudioListener>().enabled = false;
+        camPerso.GetComponent<Camera>().enabled = true;
+        camPerso.GetComponent<AudioListener>().enabled = true;
+        canvasMiniJeu.GetComponent<Canvas>().enabled = false;
         coffre.canvasMiniJeuActif = false;
         InteractionCoffre.jeuActif = false;
-        perso.constraints = RigidbodyConstraints.None;
-        perso.constraints = RigidbodyConstraints.FreezeRotation;
+        persoRb.constraints = RigidbodyConstraints.None;
+        persoRb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 }

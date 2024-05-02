@@ -77,7 +77,7 @@ namespace BrewedInk.CRT
 		{
 			if (_runtimeMaterial != null)
 			{
-				Destroy(_runtimeMaterial);
+				//Destroy(_runtimeMaterial);
 				_runtimeMaterial = null;
 			}
 		}
