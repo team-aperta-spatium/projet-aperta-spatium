@@ -134,7 +134,7 @@ public class mouvement2 : MonoBehaviour
             endurance += 0.06f;
         }
 
-        if (!actionPossible)
+        if (!actionPossible && Time.timeScale != 0)
         {
             endurance += 0.04f;
 

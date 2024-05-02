@@ -5,6 +5,7 @@ using UnityEngine;
 public class vieEnnemi : MonoBehaviour
 {
     public float nbrVie;
+    public GameObject ennemie;
 
     // Start is called before the first frame update
     void Start()
@@ -17,8 +18,7 @@ public class vieEnnemi : MonoBehaviour
     {
         if (nbrVie <= 0)
         {
-            Destroy(transform.parent.gameObject);
-            Destroy(gameObject);
+            ennemie.GetComponent<AI>().mort();
         }
     }
 }

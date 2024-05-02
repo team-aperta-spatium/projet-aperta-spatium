@@ -15,6 +15,8 @@ public class comportementBoss : MonoBehaviour
     public GameObject projectile;
     public List<GameObject> groupeProj;
 
+    public GameObject hitboxAtt;
+
     Vector3 Q1;
     Vector3 Q2;
     Vector3 Q3;
@@ -24,12 +26,14 @@ public class comportementBoss : MonoBehaviour
 
     public bool onStop;
     public bool animOn;
+    public bool attaqueOn;
 
     // Start is called before the first frame update
     void Start()
     {
         onStop = false;
         animOn = false;
+        attaqueOn = false;
 
         Q1 = new Vector3(12.5f, 4.25f, 12.5f);
         Q2 = new Vector3(12.5f, 4.25f, -12.5f);
@@ -49,22 +53,26 @@ public class comportementBoss : MonoBehaviour
             onStop = true;
             boss.transform.LookAt(joueur.transform.position);
 
-
-            int nbAle = UnityEngine.Random.Range(0, 1000000);
-            if(nbAle >= 999550)
+            if (!attaqueOn)
             {
-                grosseAttaque();
+                int nbAle = UnityEngine.Random.Range(0, 1000000);
+                if (nbAle >= 999550)
+                {
+                    grosseAttaque();
+                    attaqueOn=true;
+                }
+                else if (nbAle <= 500)
+                {
+                    lanceProjectile();
+                }
             }
-            else if(nbAle <= 500)
-            {
-                lanceProjectile();
-            }            
         }
 
         if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8 && animOn)
         {
             onStop = false;
             animOn = false;
+            attaqueOn = false;
             nextDestination();
         }
     }
@@ -72,6 +80,7 @@ public class comportementBoss : MonoBehaviour
     public void grosseAttaque()
     {
         animator.SetTrigger("grosseAttaque");
+        Invoke("hitboxActive", 1f);
         Invoke("checkAnim", 1f);
     }
 
@@ -122,6 +131,17 @@ public class comportementBoss : MonoBehaviour
             groupeProj.Add(Instantiate(projectile, baseProjectiles.transform.position, Quaternion.identity));
             StartCoroutine(TireProj(groupeProj[i], floatI));
         }
+    }
+
+    public void hitboxActive()
+    {
+        hitboxAtt.SetActive(true);
+        Invoke("hitboxDesactive", 0.5f);
+    }
+
+    public void hitboxDesactive()
+    {
+        hitboxAtt.SetActive(false);
     }
 
     IEnumerator TireProj(GameObject projActif, float i)

@@ -35,7 +35,6 @@ public class controleArtefact : MonoBehaviour
         else
         {
             txt.SetActive(false);
-            Debug.Log("false");
         }
     }
 }
