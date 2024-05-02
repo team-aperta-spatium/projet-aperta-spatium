@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class hitbox : MonoBehaviour
@@ -8,7 +6,7 @@ public class hitbox : MonoBehaviour
     {
         if(collision.tag == "perso")
         {
-            collision.GetComponent<viePerso>().nbrViePerso -= 20;
+            collision.GetComponent<viePerso>().nbrViePerso -= 1;
         }
     }
 }
