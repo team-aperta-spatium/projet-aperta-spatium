@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -441,11 +441,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 374641062}
   m_CullTransparentMesh: 1
---- !u!1 &392891674 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5958540424292390230, guid: 216fc3e7612d4e34792d9db971cfa8a7, type: 3}
-  m_PrefabInstance: {fileID: 569027658503891764}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &481750735 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 89707986545574720, guid: bd1a123259fdc3f4c81848d27729de55, type: 3}
@@ -570,13 +565,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e079a754fdb1b7f498c2be0f704a8f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perso: {fileID: 1395658787}
-  persoGO: {fileID: 1395658788}
   distanceDetection: 5
   canvasTxt: {fileID: 904694446}
-  canvasMiniJeu: {fileID: 710706569}
-  cameraPerso: {fileID: 481750735}
-  cameraMiniJeu: {fileID: 1381342235}
+  refClone: {fileID: 0}
 --- !u!114 &623014107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -589,11 +580,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d79d4c88cf15a45438e25624efce7386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duplicateur: {fileID: 392891674}
   vitesseRound: 1
   vitesseObstacle: 1
-  laCamera: {fileID: 1381342235}
-  ctnMiniJeu: {fileID: 723130756}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,16 +700,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!1 &710706569 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4451274755321816058, guid: 216fc3e7612d4e34792d9db971cfa8a7, type: 3}
-  m_PrefabInstance: {fileID: 569027658503891764}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &723130756 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5832931824160873427, guid: 216fc3e7612d4e34792d9db971cfa8a7, type: 3}
-  m_PrefabInstance: {fileID: 569027658503891764}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &904694446
 GameObject:
   m_ObjectHideFlags: 0
@@ -1334,16 +1312,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1378186969}
   m_CullTransparentMesh: 1
---- !u!1 &1381342235 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5040070212916641118, guid: 216fc3e7612d4e34792d9db971cfa8a7, type: 3}
-  m_PrefabInstance: {fileID: 569027658503891764}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1395658787 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5202556844413428474, guid: bd1a123259fdc3f4c81848d27729de55, type: 3}
-  m_PrefabInstance: {fileID: 1496922640287261925}
-  m_PrefabAsset: {fileID: 0}
 --- !u!54 &1395658788 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 829121376135064810, guid: bd1a123259fdc3f4c81848d27729de55, type: 3}

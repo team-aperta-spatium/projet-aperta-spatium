@@ -516,7 +516,7 @@ GameObject:
   - component: {fileID: 765156483312159114}
   - component: {fileID: 2553760893687340523}
   m_Layer: 5
-  m_Name: canvasMiniJeu
+  m_Name: CanvasMiniJeu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
