@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class comportementBoss : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class comportementBoss : MonoBehaviour
     public NavMeshAgent navBoss;
     public GameObject joueur;
     public Animator animator;
+    public GameObject canvasGagne;
 
     public GameObject baseProjectiles;
     public GameObject projectile;
@@ -28,12 +30,16 @@ public class comportementBoss : MonoBehaviour
     public bool animOn;
     public bool attaqueOn;
 
+    public bool mort;
+    public float nbrVies = 1000;
+
     // Start is called before the first frame update
     void Start()
     {
         onStop = false;
         animOn = false;
         attaqueOn = false;
+        mort = false;
 
         Q1 = new Vector3(12.5f, 4.25f, 12.5f);
         Q2 = new Vector3(12.5f, 4.25f, -12.5f);
@@ -48,32 +54,43 @@ public class comportementBoss : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (navBoss.remainingDistance <= 0.2)
+        if (!mort)
         {
-            onStop = true;
-            boss.transform.LookAt(joueur.transform.position);
-
-            if (!attaqueOn)
+            if (navBoss.remainingDistance <= 0.2)
             {
-                int nbAle = UnityEngine.Random.Range(0, 1000000);
-                if (nbAle >= 999550)
+                onStop = true;
+                boss.transform.LookAt(joueur.transform.position);
+
+                if (!attaqueOn)
                 {
-                    grosseAttaque();
-                    attaqueOn=true;
-                }
-                else if (nbAle <= 500)
-                {
-                    lanceProjectile();
+                    int nbAle = UnityEngine.Random.Range(0, 1000000);
+                    if (nbAle >= 999550)
+                    {
+                        grosseAttaque();
+                        attaqueOn = true;
+                    }
+                    else if (nbAle <= 500)
+                    {
+                        lanceProjectile();
+                    }
                 }
             }
-        }
 
-        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8 && animOn)
+            if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8 && animOn)
+            {
+                onStop = false;
+                animOn = false;
+                attaqueOn = false;
+                nextDestination();
+            }
+        }
+         if(nbrVies <= 0)
         {
-            onStop = false;
-            animOn = false;
-            attaqueOn = false;
-            nextDestination();
+            bossMort();
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene(0);
+            }
         }
     }
 
@@ -142,6 +159,21 @@ public class comportementBoss : MonoBehaviour
     public void hitboxDesactive()
     {
         hitboxAtt.SetActive(false);
+    }
+
+    public void bossMort()
+    {
+        mort = true;
+        Destroy(navBoss);
+        animator.SetBool("mort", true);
+        Invoke("callGagne", 5f);
+        print("ok");
+    }
+
+    public void callGagne()
+    {
+        print("ok2");
+        canvasGagne.SetActive(true);
     }
 
     IEnumerator TireProj(GameObject projActif, float i)

@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class nodachi : MonoBehaviour
@@ -241,7 +238,6 @@ public class nodachi : MonoBehaviour
     {
         if (other.gameObject.tag == "ennemi") 
         {
-            Debug.Log("true");
             if (attaqueNormale)
             {
                 other.gameObject.GetComponent<vieEnnemi>().nbrVie -= dmgNormal;
@@ -253,6 +249,22 @@ public class nodachi : MonoBehaviour
             else if (attaqueSpeciale)
             {
                 other.gameObject.GetComponent<vieEnnemi>().nbrVie -= dmgSpeciale;
+            }
+        }
+
+        if (other.gameObject.tag == "boss")
+        {
+            if (attaqueNormale)
+            {
+                other.gameObject.GetComponentInParent<comportementBoss>().nbrVies -= dmgNormal;
+            }
+            else if (attaqueLourde)
+            {
+                other.gameObject.GetComponentInParent<comportementBoss>().nbrVies -= dmgLourd;
+            }
+            else if (attaqueSpeciale)
+            {
+                other.gameObject.GetComponentInParent<comportementBoss>().nbrVies -= dmgSpeciale;
             }
         }
     }
