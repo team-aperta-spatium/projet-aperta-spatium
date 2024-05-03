@@ -2471,7 +2471,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: gestionMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: gestionMenus, Assembly-CSharp
         m_MethodName: quitter
         m_Mode: 1
         m_Arguments:
@@ -2968,7 +2968,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef2838b6c508ffe44935cc4d843939f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
   parent: {fileID: 8577319555369876843}
+  tailleCanvas: 0
 --- !u!114 &3395459206815906874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2981,7 +2983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a584b5cbbe9ce418df0c660d1728f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  descTripleSaut: {fileID: 9179600318150018940}
+  descEquip: {fileID: 0}
   nom: {fileID: 8931884408264827087}
 --- !u!1 &5855183366702700696
 GameObject:
@@ -3241,7 +3243,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: gestionMenu, Assembly-CSharp
+        m_TargetAssemblyTypeName: gestionMenus, Assembly-CSharp
         m_MethodName: depause
         m_Mode: 1
         m_Arguments:
