@@ -8,6 +8,7 @@ public class AI : MonoBehaviour
     public NavMeshAgent ennemie;
     public GameObject joueur;
     public GameObject hitbox;
+    public GameObject nav;
     public bool trouverPerso;
     public bool attEnCours;
     public bool etatMort;
@@ -129,5 +130,6 @@ public class AI : MonoBehaviour
     private void detruire()
     {
         Destroy(gameObject);
+        Destroy(nav);
     }
 }
