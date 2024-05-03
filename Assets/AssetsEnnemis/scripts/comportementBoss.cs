@@ -166,7 +166,7 @@ public class comportementBoss : MonoBehaviour
         mort = true;
         Destroy(navBoss);
         animator.SetBool("mort", true);
-        Invoke("callGagne", 5f);
+        Invoke("callGagne", 3f);
         print("ok");
     }
 

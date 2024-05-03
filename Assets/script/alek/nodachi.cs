@@ -83,7 +83,6 @@ public class nodachi : MonoBehaviour
                             attaque1EnCours = true;
                             timerAttaque1 = 1f;
                             attaqueNormale = true;
-                            mouvement2.endurance -= 5;
                             mouvement2.actionEnCours = true;
                         }
                         else if (attaque1EnCours && !attaque2EnCours && !attaque3EnCours)
@@ -115,7 +114,6 @@ public class nodachi : MonoBehaviour
                             attaqueLourd1EnCours = true;
                             timerAttaqueLourd1 = 2.5f;
                             attaqueLourde = true;
-                            mouvement2.endurance -= 10;
                             mouvement2.actionEnCours = true;
                         }
                         else if (attaqueLourd1EnCours && !attaqueLourd2EnCours)
@@ -278,7 +276,6 @@ public class nodachi : MonoBehaviour
         GetComponent<Animator>().SetBool("attaque1", false);
         timerAttaque2 = 1f;
         timerAttaque1 = 0f;
-        mouvement2.endurance -= 5;
         mouvement2.actionEnCours = true;
     }
 
@@ -290,7 +287,6 @@ public class nodachi : MonoBehaviour
         attaque3EnAttente = false;
         GetComponent<Animator>().SetBool("attaque2", false);
         timerAttaque2 = 0f;
-        mouvement2.endurance -= 5;
         mouvement2.actionEnCours = true;
     }
     
@@ -302,7 +298,6 @@ public class nodachi : MonoBehaviour
         attaqueLourd2EnAttente = false;
         GetComponent<Animator>().SetBool("attaqueLourd1", false);
         timerAttaqueLourd1 = 0f;
-        mouvement2.endurance -= 10;
         mouvement2.actionEnCours = true;
     }
 
@@ -314,7 +309,7 @@ public class nodachi : MonoBehaviour
         GetComponent<Animator>().SetBool("attaqueSpecialePrep", false);
         GetComponent<Animator>().SetBool("attaqueSpeciale1", true);
         timerAttaqueSpecialePrep = 0f;
-        mouvement2.endurance -= 20;
+        mouvement2.endurance -= 5;
         mouvement2.actionEnCours = true;
     }
     
@@ -326,7 +321,7 @@ public class nodachi : MonoBehaviour
         GetComponent<Animator>().SetBool("attaqueSpecialePrep", false);
         GetComponent<Animator>().SetBool("attaqueSpeciale2", true);
         timerAttaqueSpecialePrep = 0f;
-        mouvement2.endurance -= 20;
+        mouvement2.endurance -= 5;
         mouvement2.actionEnCours = true;
     }
 

@@ -131,12 +131,12 @@ public class mouvement2 : MonoBehaviour
         }
         else if (endurance > 0 && endurance < 100 && !actionEnCours && Time.timeScale != 0 && !attaqueEnCours && actionPossible)
         {
-            endurance += 0.06f;
+            endurance += 0.25f;
         }
 
         if (!actionPossible && Time.timeScale != 0)
         {
-            endurance += 0.04f;
+            endurance += 0.6f;
 
             if (endurance >= 100)
             {
@@ -348,7 +348,7 @@ public class mouvement2 : MonoBehaviour
             rb.AddForce(transform.up * forceSaut, ForceMode.Impulse);
 
             endurance -= 10;
-            actionEnCours = true;
+            //actionEnCours = true;
         }
     }
 

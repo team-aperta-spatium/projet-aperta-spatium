@@ -12,8 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/SceneCompleteGame.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/AssetsEnnemis/Scenes/boss.unity
-    guid: 8cd723970d8e62649ae74051e37ae99b
+    path: Assets/AssetsEnnemis/Scenes/bossTrueModel.unity
+    guid: c2cec4a9eff61394eb6f9bf2e360048b
   - enabled: 1
     path: Assets/Scenes/mort.unity
     guid: 80d476352d902764fa3bfb74e9a72431

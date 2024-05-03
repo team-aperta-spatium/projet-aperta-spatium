@@ -29,7 +29,7 @@ public class controleArtefact : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.P))
             {
-                SceneManager.LoadScene("boss");
+                SceneManager.LoadScene("bossTrueModel");
             }
         }
         else

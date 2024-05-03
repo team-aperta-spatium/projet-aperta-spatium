@@ -148,6 +148,8 @@ public class dash2 : MonoBehaviour
         {
             rb.useGravity = true;
         }
+
+        mouvement2.actionEnCours = false;
     }
 
     Vector3 ObtenirDirection(Transform tAvant)
