@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/AssetsEnnemis/Scenes/boss.unity
     guid: 8cd723970d8e62649ae74051e37ae99b
+  - enabled: 1
+    path: Assets/Scenes/mort.unity
+    guid: 80d476352d902764fa3bfb74e9a72431
   m_configObjects: {}
