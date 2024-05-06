@@ -14,10 +14,19 @@ public class testUI : MonoBehaviour
     public TMP_Text txtDescription;
     public inventaire doubleDash;
     public inventaire tripleSaut;
-    public static bool toggleBool;
 
-    bool tripleSautActif;
-    bool doubleDashActif;
+    public static bool tripleSautActif;
+    public static bool doubleDashActif;
+
+    public static bool toggleBool;
+    public static bool tripleSautActivee;
+    public static bool doubleDashActivee;
+
+    float timerInvokeTripleSaut;
+    float timerInvokeDoubleDash;
+
+    bool invokeTripleSaut;
+    bool invokeDoubleDash;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +37,50 @@ public class testUI : MonoBehaviour
     void Update()
     {
         SetBoolAmelioration();
+
+        if (tripleSaut.actif)
+        {
+            tripleSautActivee = true;
+        }
+        else
+        {
+            tripleSautActivee = false;
+        }
+
+        if (doubleDash.actif)
+        {
+            doubleDashActivee = true;
+        }
+        else
+        {
+            doubleDashActivee = false;
+        }
+
+        if (timerInvokeTripleSaut > 0)
+        {
+            timerInvokeTripleSaut -= 0.001f;
+        }
+        else
+        {
+            if (invokeTripleSaut)
+            {
+                AfficherTripleSautDelai();
+                invokeTripleSaut = false;
+            }
+        }
+        
+        if (timerInvokeDoubleDash > 0)
+        {
+            timerInvokeDoubleDash -= 0.001f;
+        }
+        else
+        {
+            if (invokeDoubleDash)
+            {
+                AfficherDoubleDashDelai();
+                invokeDoubleDash = false;
+            }
+        }
     }
 
     public void SetActif()
@@ -35,52 +88,29 @@ public class testUI : MonoBehaviour
         nom.GetComponent<TextMeshProUGUI>().enabled = true;
         description.GetComponent<TextMeshProUGUI>().enabled = true;
         Destroy(GameObject.FindWithTag("toggle"));
+        Debug.Log("1");
     }
 
     public void AfficherTripleSaut()
     {
-        txtNom.text = tripleSaut.nom;
-        txtDescription.text = tripleSaut.description;
-        tripleSautActif = true;
         doubleDashActif = false;
 
-        GameObject toggleClone = Instantiate(toggle);
+        GameObject toggleObj = GameObject.Find("toggle");
+        Destroy(toggleObj);
 
-        toggleClone.SetActive(true);
-
-        toggleClone.transform.SetParent(parent.transform, false);
-
-        if (tripleSaut.actif)
-        {
-            toggle.GetComponent<Toggle>().isOn = true;
-        }
-        else
-        {
-            toggle.GetComponent<Toggle>().isOn = false;
-        }
+        timerInvokeTripleSaut = 0.01f;
+        invokeTripleSaut = true;
     }
     
     public void AfficherDoubleDash()
     {
-        txtNom.text = doubleDash.nom;
-        txtDescription.text = doubleDash.description;
-        doubleDashActif = true;
         tripleSautActif = false;
 
-        GameObject toggleClone = Instantiate(toggle);
+        GameObject toggleObj = GameObject.Find("toggle");
+        Destroy(toggleObj);
 
-        toggleClone.SetActive(true);
-
-        toggleClone.transform.SetParent(parent.transform, false);
-
-        if (doubleDash.actif)
-        {
-            toggle.GetComponent<Toggle>().isOn = true;
-        }
-        else
-        {
-            toggle.GetComponent<Toggle>().isOn = false;
-        }
+        timerInvokeDoubleDash = 0.01f;
+        invokeDoubleDash = true;
     }
 
     public void SetBoolAmelioration()
@@ -89,9 +119,59 @@ public class testUI : MonoBehaviour
         {
             tripleSaut.actif = toggleBool;
         }
-        else if (doubleDashActif)
+
+        if (doubleDashActif)
         {
             doubleDash.actif = toggleBool;
+        }
+    }
+
+    void AfficherTripleSautDelai()
+    {
+        toggleBool = tripleSautActivee;
+        txtNom.text = tripleSaut.nom;
+        txtDescription.text = tripleSaut.description;
+        tripleSautActif = true;
+        
+
+        GameObject toggleClone = Instantiate(toggle);
+
+        toggleClone.SetActive(true);
+
+        toggleClone.transform.SetParent(parent.transform, false);
+        Debug.Log("2");
+
+        if (tripleSautActivee)
+        {
+            toggleClone.GetComponent<Toggle>().isOn = true;
+        }
+        else
+        {
+            toggleClone.GetComponent<Toggle>().isOn = false;
+        }
+    }
+    
+    void AfficherDoubleDashDelai()
+    {
+        toggleBool = doubleDashActivee;
+        txtNom.text = doubleDash.nom;
+        txtDescription.text = doubleDash.description;
+        doubleDashActif = true;
+        
+
+        GameObject toggleClone = Instantiate(toggle);
+
+        toggleClone.SetActive(true);
+
+        toggleClone.transform.SetParent(parent.transform, false);
+
+        if (doubleDashActivee)
+        {
+            toggleClone.GetComponent<Toggle>().isOn = true;
+        }
+        else
+        {
+            toggleClone.GetComponent<Toggle>().isOn = false;
         }
     }
 }
