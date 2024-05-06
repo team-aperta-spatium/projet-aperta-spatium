@@ -141,7 +141,7 @@ public class duplicateur : MonoBehaviour
 
         if (!tripleSaut.enPossesion && !doubleDash.enPossesion)
         {
-            int nbrRandom = Random.Range(1, 3);
+            int nbrRandom = UnityEngine.Random.Range(1, 3);
 
             if (nbrRandom == 1)
             {
