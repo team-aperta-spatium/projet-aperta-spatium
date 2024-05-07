@@ -28,9 +28,20 @@ public class testUI : MonoBehaviour
     bool invokeTripleSaut;
     bool invokeDoubleDash;
 
+    public static float compteurAmelioration;
+
     // Start is called before the first frame update
     void Start()
     {
+        if (tripleSautActivee)
+        {
+            compteurAmelioration += 1;
+        }
+        
+        if (doubleDashActivee)
+        {
+            compteurAmelioration += 1;
+        }
     }
 
     // Update is called once per frame
@@ -88,7 +99,6 @@ public class testUI : MonoBehaviour
         nom.GetComponent<TextMeshProUGUI>().enabled = true;
         description.GetComponent<TextMeshProUGUI>().enabled = true;
         Destroy(GameObject.FindWithTag("toggle"));
-        Debug.Log("1");
     }
 
     public void AfficherTripleSaut()
@@ -139,7 +149,6 @@ public class testUI : MonoBehaviour
         toggleClone.SetActive(true);
 
         toggleClone.transform.SetParent(parent.transform, false);
-        Debug.Log("2");
 
         if (tripleSautActivee)
         {
