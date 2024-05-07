@@ -33,12 +33,14 @@ public class testUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (tripleSautActivee)
+        compteurAmelioration = 0;
+
+        if (tripleSaut.actif)
         {
             compteurAmelioration += 1;
         }
         
-        if (doubleDashActivee)
+        if (doubleDash.actif)
         {
             compteurAmelioration += 1;
         }
@@ -69,7 +71,7 @@ public class testUI : MonoBehaviour
 
         if (timerInvokeTripleSaut > 0)
         {
-            timerInvokeTripleSaut -= 0.001f;
+            timerInvokeTripleSaut -= 0.005f;
         }
         else
         {
@@ -92,6 +94,8 @@ public class testUI : MonoBehaviour
                 invokeDoubleDash = false;
             }
         }
+
+        Debug.Log(compteurAmelioration);
     }
 
     public void SetActif()

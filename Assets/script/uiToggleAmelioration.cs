@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class uiToggleAmelioration : MonoBehaviour
 {
+    public inventaire tripleSaut;
+    public inventaire doubleDash;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,9 +17,17 @@ public class uiToggleAmelioration : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (testUI.compteurAmelioration == 3)
+        if (testUI.compteurAmelioration >= 3)
         {
-            GetComponent<Toggle>().interactable = false;
+            if (GetComponent<Toggle>().isOn)
+            {
+                GetComponent<Toggle>().interactable = true;
+            }
+            else
+            {
+                GetComponent<Toggle>().interactable = false;
+            }
+
         }
         else if (testUI.compteurAmelioration < 3)
         {
@@ -31,30 +42,31 @@ public class uiToggleAmelioration : MonoBehaviour
 
     public void Onclick()
     {
-        if (testUI.tripleSautActif)
+        if (GetComponent <Toggle>().interactable)
         {
-            if (testUI.tripleSautActivee)
+            if (testUI.tripleSautActif)
             {
-                testUI.compteurAmelioration -= 1;
+                if (tripleSaut.actif)
+                {
+                    testUI.compteurAmelioration -= 1;
+                }
+                else
+                {
+                    testUI.compteurAmelioration += 1;
+                }
             }
-            else
-            {
-                testUI.compteurAmelioration += 1;
-            }
-        }
         
-        if (testUI.doubleDashActif)
-        {
-            if (testUI.doubleDashActivee)
+            if (testUI.doubleDashActif)
             {
-                testUI.compteurAmelioration -= 1;
-            }
-            else
-            {
-                testUI.compteurAmelioration += 1;
+                if (doubleDash.actif)
+                {
+                    testUI.compteurAmelioration -= 1;
+                }
+                else
+                {
+                    testUI.compteurAmelioration += 1;
+                }
             }
         }
-
-        Debug.Log(testUI.compteurAmelioration);
     }
 }

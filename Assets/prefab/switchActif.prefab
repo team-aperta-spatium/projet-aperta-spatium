@@ -342,6 +342,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2ed065d464516248869470755eaabb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tripleSaut: {fileID: 11400000, guid: 4eb7f31871c554345800424b5a9ac50d, type: 2}
+  doubleDash: {fileID: 11400000, guid: 01d265a0c5cd93c499c82eb1bf64bcea, type: 2}
 --- !u!114 &4262325670601331310
 MonoBehaviour:
   m_ObjectHideFlags: 0
