@@ -130,6 +130,6 @@ public class AI : MonoBehaviour
     private void detruire()
     {
         Destroy(gameObject);
-        Destroy(nav);
+        //Destroy(nav);
     }
 }
