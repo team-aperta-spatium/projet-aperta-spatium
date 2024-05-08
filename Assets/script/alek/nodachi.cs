@@ -21,6 +21,7 @@ public class nodachi : MonoBehaviour
     bool attaqueSpeciale1EnAttente;
     bool attaqueSpeciale2EnAttente;
     bool attaqueSpeciale;
+    bool attaqueEquipementPrep;
     bool attaqueEquipement;
 
     float timerAttaque1;
@@ -182,10 +183,19 @@ public class nodachi : MonoBehaviour
                     {
                         if (Input.GetKeyDown(KeyCode.Q))
                         {
+                            attaqueEquipementPrep = true;
+                            GetComponent<Animator>().SetBool("attaqueEquipementPrep", true);
+                            //mouvement2.actionEnCours = true;
+                            //Invoke("ArretAttaqueEquipement", 1.84f);
+                        }
+                        else if (Input.GetKeyUp(KeyCode.Q))
+                        {
+                            attaqueEquipement = false;
                             attaqueEquipement = true;
+                            GetComponent<Animator>().SetBool("attaqueEquipementPrep", false);
                             GetComponent<Animator>().SetBool("attaqueEquipement", true);
                             mouvement2.actionEnCours = true;
-                            Invoke("ArretAttaqueEquipement", 1.84f);
+                            Invoke("ArretAttaqueEquipement", 1.59f);
                         }
                     }
                 }
