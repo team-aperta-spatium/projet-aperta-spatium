@@ -344,6 +344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tripleSaut: {fileID: 11400000, guid: 4eb7f31871c554345800424b5a9ac50d, type: 2}
   doubleDash: {fileID: 11400000, guid: 01d265a0c5cd93c499c82eb1bf64bcea, type: 2}
+  attaqueTornade: {fileID: 11400000, guid: 3275efd9dfd48ed478b90f3e3c226c9d, type: 2}
 --- !u!114 &4262325670601331310
 MonoBehaviour:
   m_ObjectHideFlags: 0

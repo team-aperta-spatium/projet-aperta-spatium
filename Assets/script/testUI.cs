@@ -14,13 +14,16 @@ public class testUI : MonoBehaviour
     public TMP_Text txtDescription;
     public inventaire doubleDash;
     public inventaire tripleSaut;
+    public inventaire attaqueTornade;
 
     public static bool tripleSautActif;
     public static bool doubleDashActif;
+    public static bool attaqueTornadeActif;
 
     public static bool toggleBool;
     public static bool tripleSautActivee;
     public static bool doubleDashActivee;
+    public static bool attaqueTornadeActivee;
 
     float timerInvokeTripleSaut;
     float timerInvokeDoubleDash;
@@ -41,6 +44,11 @@ public class testUI : MonoBehaviour
         }
         
         if (doubleDash.actif)
+        {
+            compteurAmelioration += 1;
+        }
+        
+        if (attaqueTornade.actif)
         {
             compteurAmelioration += 1;
         }
@@ -67,6 +75,15 @@ public class testUI : MonoBehaviour
         else
         {
             doubleDashActivee = false;
+        }
+        
+        if (attaqueTornade.actif)
+        {
+            attaqueTornadeActivee = true;
+        }
+        else
+        {
+            attaqueTornadeActivee = false;
         }
 
         if (timerInvokeTripleSaut > 0)
@@ -108,6 +125,7 @@ public class testUI : MonoBehaviour
     public void AfficherTripleSaut()
     {
         doubleDashActif = false;
+        attaqueTornadeActif = false;
 
         GameObject toggleObj = GameObject.Find("toggle");
         Destroy(toggleObj);
@@ -119,12 +137,43 @@ public class testUI : MonoBehaviour
     public void AfficherDoubleDash()
     {
         tripleSautActif = false;
+        attaqueTornadeActif = false;
 
         GameObject toggleObj = GameObject.Find("toggle");
         Destroy(toggleObj);
 
         timerInvokeDoubleDash = 0.01f;
         invokeDoubleDash = true;
+    }
+
+    public void AfficherAttaqueTornade()
+    {
+        tripleSautActif = false;
+        doubleDashActif = false;
+
+        GameObject toggleObj = GameObject.Find("toggle");
+        Destroy(toggleObj);
+
+        toggleBool = attaqueTornadeActivee;
+        txtNom.text = attaqueTornade.nom;
+        txtDescription.text = attaqueTornade.description;
+        attaqueTornadeActif = true;
+
+
+        GameObject toggleClone = Instantiate(toggle);
+
+        toggleClone.SetActive(true);
+
+        toggleClone.transform.SetParent(parent.transform, false);
+
+        if (attaqueTornadeActivee)
+        {
+            toggleClone.GetComponent<Toggle>().isOn = true;
+        }
+        else
+        {
+            toggleClone.GetComponent<Toggle>().isOn = false;
+        }
     }
 
     public void SetBoolAmelioration()
@@ -137,6 +186,11 @@ public class testUI : MonoBehaviour
         if (doubleDashActif)
         {
             doubleDash.actif = toggleBool;
+        }
+        
+        if (attaqueTornadeActif)
+        {
+            attaqueTornade.actif = toggleBool;
         }
     }
 

@@ -7,6 +7,7 @@ public class uiToggleAmelioration : MonoBehaviour
 {
     public inventaire tripleSaut;
     public inventaire doubleDash;
+    public inventaire attaqueTornade;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +60,18 @@ public class uiToggleAmelioration : MonoBehaviour
             if (testUI.doubleDashActif)
             {
                 if (doubleDash.actif)
+                {
+                    testUI.compteurAmelioration -= 1;
+                }
+                else
+                {
+                    testUI.compteurAmelioration += 1;
+                }
+            }
+
+            if (testUI.attaqueTornadeActif)
+            {
+                if (attaqueTornade.actif)
                 {
                     testUI.compteurAmelioration -= 1;
                 }

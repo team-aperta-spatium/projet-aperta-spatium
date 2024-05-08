@@ -765,6 +765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tempCdAttaque: 0.5
+  equipementAttaque: {fileID: 11400000, guid: 3275efd9dfd48ed478b90f3e3c226c9d, type: 2}
 --- !u!1 &8018675495287786360
 GameObject:
   m_ObjectHideFlags: 0

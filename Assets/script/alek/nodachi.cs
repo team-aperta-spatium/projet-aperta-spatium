@@ -3,6 +3,7 @@ using UnityEngine;
 public class nodachi : MonoBehaviour
 {
     public float tempCdAttaque;
+    public inventaire equipementAttaque;
 
     bool attaque1EnCours;
     bool attaque2EnCours;
@@ -20,6 +21,7 @@ public class nodachi : MonoBehaviour
     bool attaqueSpeciale1EnAttente;
     bool attaqueSpeciale2EnAttente;
     bool attaqueSpeciale;
+    bool attaqueEquipement;
 
     float timerAttaque1;
     float timerAttaque2;
@@ -59,7 +61,7 @@ public class nodachi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (attaqueNormale || attaqueLourde || attaqueSpeciale)
+        if (attaqueNormale || attaqueLourde || attaqueSpeciale || attaqueEquipement)
         {
             mouvement2.attaqueEnCours = true;
         }
@@ -74,7 +76,7 @@ public class nodachi : MonoBehaviour
             {
                 if (cdAttaque <=  0)
                 {
-                    if (!attaqueSpeciale && !attaqueLourde)
+                    if (!attaqueSpeciale && !attaqueLourde && !attaqueEquipement)
                     {
                         if (!attaque1EnCours && !attaque2EnCours && !attaque3EnCours)
                         {
@@ -105,7 +107,7 @@ public class nodachi : MonoBehaviour
             {
                 if (cdAttaque <= 0)
                 {
-                    if (!attaqueSpeciale && !attaqueNormale)
+                    if (!attaqueSpeciale && !attaqueNormale && !attaqueEquipement)
                     {
                         if (!attaqueLourd1EnCours && !attaqueLourd2EnCours)
                         {
@@ -126,7 +128,7 @@ public class nodachi : MonoBehaviour
 
             if (cdAttaque <= 0)
             {   
-                if (!attaqueNormale && !attaqueLourde)
+                if (!attaqueNormale && !attaqueLourde && !attaqueEquipement)
                 {
                     if (Input.GetKey(KeyCode.LeftAlt))
                     {
@@ -168,6 +170,23 @@ public class nodachi : MonoBehaviour
                         GetComponent<Animator>().SetBool("attaqueSpecialePrep", false);
                         timerAttaqueSpecialePrep = 0;
                         attaqueSpeciale = false;
+                    }
+                }
+            }
+
+            if (cdAttaque <= 0)
+            {
+                if (!attaqueSpeciale && !attaqueNormale && !attaqueLourde)
+                {
+                    if (equipementAttaque.actif)
+                    {
+                        if (Input.GetKeyDown(KeyCode.Q))
+                        {
+                            attaqueEquipement = true;
+                            GetComponent<Animator>().SetBool("attaqueEquipement", true);
+                            mouvement2.actionEnCours = true;
+                            Invoke("ArretAttaqueEquipement", 1.84f);
+                        }
                     }
                 }
             }
@@ -224,6 +243,11 @@ public class nodachi : MonoBehaviour
         if (attaqueSpecialePrep)
         {
             timerAttaqueSpecialePrep -= Time.deltaTime;
+        }
+
+        if (attaqueEquipement)
+        {
+            mouvement2.endurance -= 0.1f;
         }
 
         if (cdAttaque > 0)
@@ -385,6 +409,13 @@ public class nodachi : MonoBehaviour
         attaqueSpeciale2 = false;
         cdAttaque = tempCdAttaque;
         attaqueSpeciale = false;
+        mouvement2.actionEnCours = false;
+    }
+
+    void ArretAttaqueEquipement()
+    {
+        GetComponent<Animator>().SetBool("attaqueEquipement", false);
+        attaqueEquipement = false;
         mouvement2.actionEnCours = false;
     }
 }
