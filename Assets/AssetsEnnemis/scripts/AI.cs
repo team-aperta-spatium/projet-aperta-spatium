@@ -32,7 +32,7 @@ public class AI : MonoBehaviour
         {
             if (Physics.Linecast(transform.position, joueur.transform.position, out RaycastHit hitInfo))
             {
-                if (hitInfo.collider.name == "persoObj" && trouverPerso == true)
+                if (hitInfo.collider.tag == "perso" && trouverPerso == true)
                 {
                     ennemie.SetDestination(joueur.transform.position);
                     ennemie.speed = 10f;
