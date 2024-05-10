@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class testUI : MonoBehaviour
 {
@@ -24,12 +25,6 @@ public class testUI : MonoBehaviour
     public static bool tripleSautActivee;
     public static bool doubleDashActivee;
     public static bool attaqueTornadeActivee;
-
-    float timerInvokeTripleSaut;
-    float timerInvokeDoubleDash;
-
-    bool invokeTripleSaut;
-    bool invokeDoubleDash;
 
     public static float compteurAmelioration;
 
@@ -86,33 +81,47 @@ public class testUI : MonoBehaviour
             attaqueTornadeActivee = false;
         }
 
-        if (timerInvokeTripleSaut > 0)
+        if (gameObject.tag == tripleSaut.nom)
         {
-            timerInvokeTripleSaut -= 0.005f;
-        }
-        else
-        {
-            if (invokeTripleSaut)
+            if (!tripleSaut.enPossesion)
             {
-                AfficherTripleSautDelai();
-                invokeTripleSaut = false;
+                GetComponent<Image>().enabled = false;
+                GetComponent<EventTrigger>().enabled = false;
+            }
+            else
+            {
+                GetComponent<Image>().enabled = true;
+                GetComponent<EventTrigger>().enabled = true;
             }
         }
         
-        if (timerInvokeDoubleDash > 0)
+        if (gameObject.tag == doubleDash.nom)
         {
-            timerInvokeDoubleDash -= 0.001f;
-        }
-        else
-        {
-            if (invokeDoubleDash)
+            if (!doubleDash.enPossesion)
             {
-                AfficherDoubleDashDelai();
-                invokeDoubleDash = false;
+                GetComponent<Image>().enabled = false;
+                GetComponent<EventTrigger>().enabled = false;
+            }
+            else
+            {
+                GetComponent<Image>().enabled = true;
+                GetComponent<EventTrigger>().enabled = true;
             }
         }
-
-        Debug.Log(compteurAmelioration);
+        
+        if (gameObject.tag == attaqueTornade.nom)
+        {
+            if (!attaqueTornade.enPossesion)
+            {
+                GetComponent<Image>().enabled = false;
+                GetComponent<EventTrigger>().enabled = false;
+            }
+            else
+            {
+                GetComponent<Image>().enabled = true;
+                GetComponent<EventTrigger>().enabled = true;
+            }
+        }
     }
 
     public void SetActif()
@@ -130,8 +139,26 @@ public class testUI : MonoBehaviour
         GameObject toggleObj = GameObject.Find("toggle");
         Destroy(toggleObj);
 
-        timerInvokeTripleSaut = 0.01f;
-        invokeTripleSaut = true;
+        toggleBool = tripleSautActivee;
+        txtNom.text = tripleSaut.nom;
+        txtDescription.text = tripleSaut.description;
+        tripleSautActif = true;
+
+
+        GameObject toggleClone = Instantiate(toggle);
+
+        toggleClone.SetActive(true);
+
+        toggleClone.transform.SetParent(parent.transform, false);
+
+        if (tripleSautActivee)
+        {
+            toggleClone.GetComponent<Toggle>().isOn = true;
+        }
+        else
+        {
+            toggleClone.GetComponent<Toggle>().isOn = false;
+        }
     }
     
     public void AfficherDoubleDash()
@@ -142,8 +169,26 @@ public class testUI : MonoBehaviour
         GameObject toggleObj = GameObject.Find("toggle");
         Destroy(toggleObj);
 
-        timerInvokeDoubleDash = 0.01f;
-        invokeDoubleDash = true;
+        toggleBool = doubleDashActivee;
+        txtNom.text = doubleDash.nom;
+        txtDescription.text = doubleDash.description;
+        doubleDashActif = true;
+
+
+        GameObject toggleClone = Instantiate(toggle);
+
+        toggleClone.SetActive(true);
+
+        toggleClone.transform.SetParent(parent.transform, false);
+
+        if (doubleDashActivee)
+        {
+            toggleClone.GetComponent<Toggle>().isOn = true;
+        }
+        else
+        {
+            toggleClone.GetComponent<Toggle>().isOn = false;
+        }
     }
 
     public void AfficherAttaqueTornade()
@@ -191,54 +236,6 @@ public class testUI : MonoBehaviour
         if (attaqueTornadeActif)
         {
             attaqueTornade.actif = toggleBool;
-        }
-    }
-
-    void AfficherTripleSautDelai()
-    {
-        toggleBool = tripleSautActivee;
-        txtNom.text = tripleSaut.nom;
-        txtDescription.text = tripleSaut.description;
-        tripleSautActif = true;
-        
-
-        GameObject toggleClone = Instantiate(toggle);
-
-        toggleClone.SetActive(true);
-
-        toggleClone.transform.SetParent(parent.transform, false);
-
-        if (tripleSautActivee)
-        {
-            toggleClone.GetComponent<Toggle>().isOn = true;
-        }
-        else
-        {
-            toggleClone.GetComponent<Toggle>().isOn = false;
-        }
-    }
-    
-    void AfficherDoubleDashDelai()
-    {
-        toggleBool = doubleDashActivee;
-        txtNom.text = doubleDash.nom;
-        txtDescription.text = doubleDash.description;
-        doubleDashActif = true;
-        
-
-        GameObject toggleClone = Instantiate(toggle);
-
-        toggleClone.SetActive(true);
-
-        toggleClone.transform.SetParent(parent.transform, false);
-
-        if (doubleDashActivee)
-        {
-            toggleClone.GetComponent<Toggle>().isOn = true;
-        }
-        else
-        {
-            toggleClone.GetComponent<Toggle>().isOn = false;
         }
     }
 }

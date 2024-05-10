@@ -16,6 +16,9 @@ TagManager:
   - perso
   - prefabDoubleDash
   - prefabTripleSaut
+  - Attaque tornade
+  - Triple saut
+  - Double dash
   layers:
   - Default
   - TransparentFX

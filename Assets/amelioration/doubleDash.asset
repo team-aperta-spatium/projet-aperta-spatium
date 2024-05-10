@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: doubleDash
   m_EditorClassIdentifier: 
   enPossesion: 1
-  nom: double dash
+  nom: Double dash
   actif: 0
   description: ajoute un dash au joueur

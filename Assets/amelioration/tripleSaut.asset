@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: tripleSaut
   m_EditorClassIdentifier: 
   enPossesion: 1
-  nom: triple saut
+  nom: Triple saut
   actif: 0
   description: ajoute un saut au joueur
