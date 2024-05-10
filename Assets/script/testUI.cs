@@ -16,15 +16,18 @@ public class testUI : MonoBehaviour
     public inventaire doubleDash;
     public inventaire tripleSaut;
     public inventaire attaqueTornade;
+    public inventaire dashRapide;
 
     public static bool tripleSautActif;
     public static bool doubleDashActif;
     public static bool attaqueTornadeActif;
+    public static bool dashRapideActif;
 
     public static bool toggleBool;
     public static bool tripleSautActivee;
     public static bool doubleDashActivee;
     public static bool attaqueTornadeActivee;
+    public static bool dashRapideActivee;
 
     public static float compteurAmelioration;
 
@@ -44,6 +47,11 @@ public class testUI : MonoBehaviour
         }
         
         if (attaqueTornade.actif)
+        {
+            compteurAmelioration += 1;
+        }
+        
+        if (dashRapide.actif)
         {
             compteurAmelioration += 1;
         }
@@ -79,6 +87,15 @@ public class testUI : MonoBehaviour
         else
         {
             attaqueTornadeActivee = false;
+        }
+        
+        if (dashRapide.actif)
+        {
+            dashRapideActivee = true;
+        }
+        else
+        {
+            dashRapideActivee = false;
         }
 
         if (gameObject.tag == tripleSaut.nom)
@@ -122,6 +139,20 @@ public class testUI : MonoBehaviour
                 GetComponent<EventTrigger>().enabled = true;
             }
         }
+        
+        if (gameObject.tag == dashRapide.nom)
+        {
+            if (!dashRapide.enPossesion)
+            {
+                GetComponent<Image>().enabled = false;
+                GetComponent<EventTrigger>().enabled = false;
+            }
+            else
+            {
+                GetComponent<Image>().enabled = true;
+                GetComponent<EventTrigger>().enabled = true;
+            }
+        }
     }
 
     public void SetActif()
@@ -129,13 +160,14 @@ public class testUI : MonoBehaviour
         nom.GetComponent<TextMeshProUGUI>().enabled = true;
         description.GetComponent<TextMeshProUGUI>().enabled = true;
         Destroy(GameObject.FindWithTag("toggle"));
+        tripleSautActif = false;
+        doubleDashActif = false;
+        attaqueTornadeActif = false;
+        dashRapideActif = false;
     }
 
     public void AfficherTripleSaut()
     {
-        doubleDashActif = false;
-        attaqueTornadeActif = false;
-
         GameObject toggleObj = GameObject.Find("toggle");
         Destroy(toggleObj);
 
@@ -163,9 +195,6 @@ public class testUI : MonoBehaviour
     
     public void AfficherDoubleDash()
     {
-        tripleSautActif = false;
-        attaqueTornadeActif = false;
-
         GameObject toggleObj = GameObject.Find("toggle");
         Destroy(toggleObj);
 
@@ -193,9 +222,6 @@ public class testUI : MonoBehaviour
 
     public void AfficherAttaqueTornade()
     {
-        tripleSautActif = false;
-        doubleDashActif = false;
-
         GameObject toggleObj = GameObject.Find("toggle");
         Destroy(toggleObj);
 
@@ -220,6 +246,33 @@ public class testUI : MonoBehaviour
             toggleClone.GetComponent<Toggle>().isOn = false;
         }
     }
+    
+    public void AfficherDashRapide()
+    {
+        GameObject toggleObj = GameObject.Find("toggle");
+        Destroy(toggleObj);
+
+        toggleBool = dashRapideActivee;
+        txtNom.text = dashRapide.nom;
+        txtDescription.text = dashRapide.description;
+        dashRapideActif = true;
+
+
+        GameObject toggleClone = Instantiate(toggle);
+
+        toggleClone.SetActive(true);
+
+        toggleClone.transform.SetParent(parent.transform, false);
+
+        if (dashRapideActivee)
+        {
+            toggleClone.GetComponent<Toggle>().isOn = true;
+        }
+        else
+        {
+            toggleClone.GetComponent<Toggle>().isOn = false;
+        }
+    }
 
     public void SetBoolAmelioration()
     {
@@ -236,6 +289,11 @@ public class testUI : MonoBehaviour
         if (attaqueTornadeActif)
         {
             attaqueTornade.actif = toggleBool;
+        }
+        
+        if (dashRapideActif)
+        {
+            dashRapide.actif = toggleBool;
         }
     }
 }

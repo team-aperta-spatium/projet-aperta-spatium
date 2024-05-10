@@ -23,6 +23,7 @@ public class nodachi : MonoBehaviour
     bool attaqueSpeciale;
     bool attaqueEquipementPrep;
     bool attaqueEquipement;
+    bool enPause;
 
     float timerAttaque1;
     float timerAttaque2;
@@ -62,207 +63,217 @@ public class nodachi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (attaqueNormale || attaqueLourde || attaqueSpeciale || attaqueEquipement)
+        if (Input.GetKeyDown(KeyCode.Escape) && !enPause)
         {
-            mouvement2.attaqueEnCours = true;
+            enPause = true;
         }
         else
         {
-            mouvement2.attaqueEnCours = false;
+            enPause = false;
         }
 
-        if (mouvement2.actionPossible)
+        if (!enPause)
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (attaqueNormale || attaqueLourde || attaqueSpeciale || attaqueEquipement)
             {
-                if (cdAttaque <=  0)
+                mouvement2.attaqueEnCours = true;
+            }
+            else
+            {
+                mouvement2.attaqueEnCours = false;
+            }
+
+            if (mouvement2.actionPossible)
+            {
+                if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
-                    if (!attaqueSpeciale && !attaqueLourde && !attaqueEquipement)
+                    if (cdAttaque <=  0)
                     {
-                        if (!attaque1EnCours && !attaque2EnCours && !attaque3EnCours)
+                        if (!attaqueSpeciale && !attaqueLourde && !attaqueEquipement)
                         {
-                            GetComponent<Animator>().SetBool("attaque1", true);
-                            Invoke("ArretAttaque1", 1f);
-                            attaque1EnCours = true;
-                            timerAttaque1 = 1f;
-                            attaqueNormale = true;
-                            mouvement2.actionEnCours = true;
-                        }
-                        else if (attaque1EnCours && !attaque2EnCours && !attaque3EnCours)
-                        {
-                            attaque2EnAttente = true;
-                        }
-                        else if (attaque2EnCours && !attaque3EnCours)
-                        {
-                            attaque3EnAttente = true;
-                        }               
-                        else if (attaque2EnAttente)
-                        {
-                            attaque3EnAttente = true;
+                            if (!attaque1EnCours && !attaque2EnCours && !attaque3EnCours)
+                            {
+                                GetComponent<Animator>().SetBool("attaque1", true);
+                                Invoke("ArretAttaque1", 1f);
+                                attaque1EnCours = true;
+                                timerAttaque1 = 1f;
+                                attaqueNormale = true;
+                                mouvement2.actionEnCours = true;
+                            }
+                            else if (attaque1EnCours && !attaque2EnCours && !attaque3EnCours)
+                            {
+                                attaque2EnAttente = true;
+                            }
+                            else if (attaque2EnCours && !attaque3EnCours)
+                            {
+                                attaque3EnAttente = true;
+                            }               
+                            else if (attaque2EnAttente)
+                            {
+                                attaque3EnAttente = true;
+                            }
                         }
                     }
                 }
-            }
         
-            if (Input.GetKeyDown(KeyCode.Mouse1))
-            {
+                if (Input.GetKeyDown(KeyCode.Mouse1))
+                {
+                    if (cdAttaque <= 0)
+                    {
+                        if (!attaqueSpeciale && !attaqueNormale && !attaqueEquipement)
+                        {
+                            if (!attaqueLourd1EnCours && !attaqueLourd2EnCours)
+                            {
+                                GetComponent<Animator>().SetBool("attaqueLourd1", true);
+                                Invoke("ArretAttaqueLourd1", 2.5f);
+                                attaqueLourd1EnCours = true;
+                                timerAttaqueLourd1 = 2.5f;
+                                attaqueLourde = true;
+                                mouvement2.actionEnCours = true;
+                            }
+                            else if (attaqueLourd1EnCours && !attaqueLourd2EnCours)
+                            {
+                                attaqueLourd2EnAttente = true;
+                            }
+                        }
+                    }
+                }
+
+                if (cdAttaque <= 0)
+                {   
+                    if (!attaqueNormale && !attaqueLourde && !attaqueEquipement)
+                    {
+                        if (Input.GetKey(KeyCode.LeftAlt))
+                        {
+                            if (Input.GetKeyDown(KeyCode.Mouse0) && attaqueSpeciale)
+                            {
+                                if (timerAttaqueSpecialePrep > 0)
+                                {
+                                    attaqueSpeciale1EnAttente = true;
+                                }
+                                else
+                                {
+                                    Invoke("AttaqueSpeciale1", 0f);
+                                    Invoke("ArretAttaqueSpeciale1", 1f);
+                                }
+                            }
+                            else if (Input.GetKeyDown(KeyCode.Mouse1) && attaqueSpeciale)
+                            {
+                                if (timerAttaqueSpecialePrep > 0)
+                                {
+                                    attaqueSpeciale2EnAttente = true;
+                                }
+                                else
+                                {
+                                    Invoke("AttaqueSpeciale2", 0f);
+                                    Invoke("ArretAttaqueSpeciale2", 1f);
+                                }
+                            }
+                            else if (!attaqueSpeciale)
+                            {
+                                attaqueSpecialePrep = true;
+                                GetComponent<Animator>().SetBool("attaqueSpecialePrep", true);
+                                timerAttaqueSpecialePrep = 0.67f;
+                                attaqueSpeciale = true;
+                            }
+                        }
+                        else if (Input.GetKeyUp(KeyCode.LeftAlt))
+                        {
+                            attaqueSpecialePrep = false;
+                            GetComponent<Animator>().SetBool("attaqueSpecialePrep", false);
+                            timerAttaqueSpecialePrep = 0;
+                            attaqueSpeciale = false;
+                        }
+                    }
+                }
+
                 if (cdAttaque <= 0)
                 {
-                    if (!attaqueSpeciale && !attaqueNormale && !attaqueEquipement)
+                    if (!attaqueSpeciale && !attaqueNormale && !attaqueLourde)
                     {
-                        if (!attaqueLourd1EnCours && !attaqueLourd2EnCours)
+                        if (equipementAttaque.actif)
                         {
-                            GetComponent<Animator>().SetBool("attaqueLourd1", true);
-                            Invoke("ArretAttaqueLourd1", 2.5f);
-                            attaqueLourd1EnCours = true;
-                            timerAttaqueLourd1 = 2.5f;
-                            attaqueLourde = true;
-                            mouvement2.actionEnCours = true;
-                        }
-                        else if (attaqueLourd1EnCours && !attaqueLourd2EnCours)
-                        {
-                            attaqueLourd2EnAttente = true;
+                            if (Input.GetKeyDown(KeyCode.Q))
+                            {
+                                attaqueEquipementPrep = true;
+                                GetComponent<Animator>().SetBool("attaqueEquipementPrep", true);
+                            }
+                            else if (Input.GetKeyUp(KeyCode.Q))
+                            {
+                                attaqueEquipement = false;
+                                attaqueEquipement = true;
+                                GetComponent<Animator>().SetBool("attaqueEquipementPrep", false);
+                                GetComponent<Animator>().SetBool("attaqueEquipement", true);
+                                mouvement2.actionEnCours = true;
+                                Invoke("ArretAttaqueEquipement", 1.59f);
+                            }
                         }
                     }
                 }
             }
 
-            if (cdAttaque <= 0)
-            {   
-                if (!attaqueNormale && !attaqueLourde && !attaqueEquipement)
-                {
-                    if (Input.GetKey(KeyCode.LeftAlt))
-                    {
-                        if (Input.GetKeyDown(KeyCode.Mouse0) && attaqueSpeciale)
-                        {
-                            if (timerAttaqueSpecialePrep > 0)
-                            {
-                                attaqueSpeciale1EnAttente = true;
-                            }
-                            else
-                            {
-                                Invoke("AttaqueSpeciale1", 0f);
-                                Invoke("ArretAttaqueSpeciale1", 1f);
-                            }
-                        }
-                        else if (Input.GetKeyDown(KeyCode.Mouse1) && attaqueSpeciale)
-                        {
-                            if (timerAttaqueSpecialePrep > 0)
-                            {
-                                attaqueSpeciale2EnAttente = true;
-                            }
-                            else
-                            {
-                                Invoke("AttaqueSpeciale2", 0f);
-                                Invoke("ArretAttaqueSpeciale2", 1f);
-                            }
-                        }
-                        else if (!attaqueSpeciale)
-                        {
-                            attaqueSpecialePrep = true;
-                            GetComponent<Animator>().SetBool("attaqueSpecialePrep", true);
-                            timerAttaqueSpecialePrep = 0.67f;
-                            attaqueSpeciale = true;
-                        }
-                    }
-                    else if (Input.GetKeyUp(KeyCode.LeftAlt))
-                    {
-                        attaqueSpecialePrep = false;
-                        GetComponent<Animator>().SetBool("attaqueSpecialePrep", false);
-                        timerAttaqueSpecialePrep = 0;
-                        attaqueSpeciale = false;
-                    }
-                }
-            }
-
-            if (cdAttaque <= 0)
+            if (attaque2EnAttente && timerAttaque1 <= 0.25f)
             {
-                if (!attaqueSpeciale && !attaqueNormale && !attaqueLourde)
-                {
-                    if (equipementAttaque.actif)
-                    {
-                        if (Input.GetKeyDown(KeyCode.Q))
-                        {
-                            attaqueEquipementPrep = true;
-                            GetComponent<Animator>().SetBool("attaqueEquipementPrep", true);
-                            //mouvement2.actionEnCours = true;
-                            //Invoke("ArretAttaqueEquipement", 1.84f);
-                        }
-                        else if (Input.GetKeyUp(KeyCode.Q))
-                        {
-                            attaqueEquipement = false;
-                            attaqueEquipement = true;
-                            GetComponent<Animator>().SetBool("attaqueEquipementPrep", false);
-                            GetComponent<Animator>().SetBool("attaqueEquipement", true);
-                            mouvement2.actionEnCours = true;
-                            Invoke("ArretAttaqueEquipement", 1.59f);
-                        }
-                    }
-                }
+                CancelInvoke();
+                Invoke("Attaque2", 0);
+                Invoke("ArretAttaque2", 1f);
             }
-        }
 
-        if (attaque2EnAttente && timerAttaque1 <= 0.25f)
-        {
-            CancelInvoke();
-            Invoke("Attaque2", 0);
-            Invoke("ArretAttaque2", 1f);
-        }
-
-        if (attaque3EnAttente && timerAttaque2 <= 0.41f)
-        {
-            CancelInvoke();
-            Invoke("Attaque3", 0);
-            Invoke("ArretAttaque3", 1.5f);
-        }
+            if (attaque3EnAttente && timerAttaque2 <= 0.41f)
+            {
+                CancelInvoke();
+                Invoke("Attaque3", 0);
+                Invoke("ArretAttaque3", 1.5f);
+            }
         
-        if (attaqueLourd2EnAttente && timerAttaqueLourd1 <= 0.75f)
-        {
-            CancelInvoke();
-            Invoke("AttaqueLourd2", 0);
-            Invoke("ArretAttaqueLourd2", 1.5f);
-        }
+            if (attaqueLourd2EnAttente && timerAttaqueLourd1 <= 0.75f)
+            {
+                CancelInvoke();
+                Invoke("AttaqueLourd2", 0);
+                Invoke("ArretAttaqueLourd2", 1.5f);
+            }
 
-        if (attaqueSpeciale1EnAttente && timerAttaqueSpecialePrep <= 0)
-        {
-            Invoke("AttaqueSpeciale1", 0f);
-            Invoke("ArretAttaqueSpeciale1", 1f);
-        }
+            if (attaqueSpeciale1EnAttente && timerAttaqueSpecialePrep <= 0)
+            {
+                Invoke("AttaqueSpeciale1", 0f);
+                Invoke("ArretAttaqueSpeciale1", 1f);
+            }
         
-        if (attaqueSpeciale2EnAttente && timerAttaqueSpecialePrep <= 0)
-        {
-            Invoke("AttaqueSpeciale2", 0f);
-            Invoke("ArretAttaqueSpeciale2", 1f);
-        }
+            if (attaqueSpeciale2EnAttente && timerAttaqueSpecialePrep <= 0)
+            {
+                Invoke("AttaqueSpeciale2", 0f);
+                Invoke("ArretAttaqueSpeciale2", 1f);
+            }
 
-        if (attaque1EnCours)
-        {
-            timerAttaque1 -= Time.deltaTime;
-        }
+            if (attaque1EnCours)
+            {
+                timerAttaque1 -= Time.deltaTime;
+            }
 
-        if (attaque2EnCours)
-        {
-            timerAttaque2 -= Time.deltaTime;
-        }
+            if (attaque2EnCours)
+            {
+                timerAttaque2 -= Time.deltaTime;
+            }
 
-        if (attaqueLourd1EnCours)
-        {
-            timerAttaqueLourd1 -= Time.deltaTime;
-        }
+            if (attaqueLourd1EnCours)
+            {
+                timerAttaqueLourd1 -= Time.deltaTime;
+            }
 
-        if (attaqueSpecialePrep)
-        {
-            timerAttaqueSpecialePrep -= Time.deltaTime;
-        }
+            if (attaqueSpecialePrep)
+            {
+                timerAttaqueSpecialePrep -= Time.deltaTime;
+            }
 
-        if (attaqueEquipement)
-        {
-            mouvement2.endurance -= 0.1f;
-        }
+            if (attaqueEquipement && Time.timeScale != 0)
+            {
+                mouvement2.endurance -= 0.1f;
+            }
 
-        if (cdAttaque > 0)
-        {
-            cdAttaque -= Time.deltaTime;
+            if (cdAttaque > 0)
+            {
+                cdAttaque -= Time.deltaTime;
+            }
         }
     }
 
