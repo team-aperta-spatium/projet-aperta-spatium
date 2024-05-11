@@ -19,6 +19,8 @@ TagManager:
   - Attaque tornade
   - Triple saut
   - Double dash
+  - Dash rapide
+  - Ralenti temps
   layers:
   - Default
   - TransparentFX

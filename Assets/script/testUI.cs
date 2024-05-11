@@ -17,17 +17,20 @@ public class testUI : MonoBehaviour
     public inventaire tripleSaut;
     public inventaire attaqueTornade;
     public inventaire dashRapide;
+    public inventaire ralentiTemps;
 
     public static bool tripleSautActif;
     public static bool doubleDashActif;
     public static bool attaqueTornadeActif;
     public static bool dashRapideActif;
+    public static bool ralentiTempsActif;
 
     public static bool toggleBool;
     public static bool tripleSautActivee;
     public static bool doubleDashActivee;
     public static bool attaqueTornadeActivee;
     public static bool dashRapideActivee;
+    public static bool ralentiTempsActivee;
 
     public static float compteurAmelioration;
 
@@ -52,6 +55,11 @@ public class testUI : MonoBehaviour
         }
         
         if (dashRapide.actif)
+        {
+            compteurAmelioration += 1;
+        }
+        
+        if (ralentiTemps.actif)
         {
             compteurAmelioration += 1;
         }
@@ -96,6 +104,15 @@ public class testUI : MonoBehaviour
         else
         {
             dashRapideActivee = false;
+        }
+        
+        if (ralentiTemps.actif)
+        {
+            ralentiTempsActivee = true;
+        }
+        else
+        {
+            ralentiTempsActivee = false;
         }
 
         if (gameObject.tag == tripleSaut.nom)
@@ -153,6 +170,20 @@ public class testUI : MonoBehaviour
                 GetComponent<EventTrigger>().enabled = true;
             }
         }
+        
+        if (gameObject.tag == ralentiTemps.nom)
+        {
+            if (!ralentiTemps.enPossesion)
+            {
+                GetComponent<Image>().enabled = false;
+                GetComponent<EventTrigger>().enabled = false;
+            }
+            else
+            {
+                GetComponent<Image>().enabled = true;
+                GetComponent<EventTrigger>().enabled = true;
+            }
+        }
     }
 
     public void SetActif()
@@ -164,6 +195,7 @@ public class testUI : MonoBehaviour
         doubleDashActif = false;
         attaqueTornadeActif = false;
         dashRapideActif = false;
+        ralentiTempsActif = false;
     }
 
     public void AfficherTripleSaut()
@@ -273,6 +305,33 @@ public class testUI : MonoBehaviour
             toggleClone.GetComponent<Toggle>().isOn = false;
         }
     }
+    
+    public void AfficherRalentiTemps()
+    {
+        GameObject toggleObj = GameObject.Find("toggle");
+        Destroy(toggleObj);
+
+        toggleBool = ralentiTempsActivee;
+        txtNom.text = ralentiTemps.nom;
+        txtDescription.text = ralentiTemps.description;
+        ralentiTempsActif = true;
+
+
+        GameObject toggleClone = Instantiate(toggle);
+
+        toggleClone.SetActive(true);
+
+        toggleClone.transform.SetParent(parent.transform, false);
+
+        if (ralentiTempsActivee)
+        {
+            toggleClone.GetComponent<Toggle>().isOn = true;
+        }
+        else
+        {
+            toggleClone.GetComponent<Toggle>().isOn = false;
+        }
+    }
 
     public void SetBoolAmelioration()
     {
@@ -294,6 +353,11 @@ public class testUI : MonoBehaviour
         if (dashRapideActif)
         {
             dashRapide.actif = toggleBool;
+        }
+        
+        if (ralentiTempsActif)
+        {
+            ralentiTemps.actif = toggleBool;
         }
     }
 }

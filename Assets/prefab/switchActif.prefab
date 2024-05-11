@@ -346,6 +346,7 @@ MonoBehaviour:
   doubleDash: {fileID: 11400000, guid: 01d265a0c5cd93c499c82eb1bf64bcea, type: 2}
   attaqueTornade: {fileID: 11400000, guid: 3275efd9dfd48ed478b90f3e3c226c9d, type: 2}
   dashRapide: {fileID: 11400000, guid: 95822da8a11e3064d9aa1cfb882c5a92, type: 2}
+  ralentiTemps: {fileID: 11400000, guid: a024347617bc39e4b8fe1bd99bfd75f5, type: 2}
 --- !u!114 &4262325670601331310
 MonoBehaviour:
   m_ObjectHideFlags: 0
