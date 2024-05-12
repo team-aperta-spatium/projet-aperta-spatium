@@ -18,12 +18,14 @@ public class testUI : MonoBehaviour
     public inventaire attaqueTornade;
     public inventaire dashRapide;
     public inventaire ralentiTemps;
+    public inventaire clonage;
 
     public static bool tripleSautActif;
     public static bool doubleDashActif;
     public static bool attaqueTornadeActif;
     public static bool dashRapideActif;
     public static bool ralentiTempsActif;
+    public static bool clonageActif;
 
     public static bool toggleBool;
     public static bool tripleSautActivee;
@@ -31,6 +33,7 @@ public class testUI : MonoBehaviour
     public static bool attaqueTornadeActivee;
     public static bool dashRapideActivee;
     public static bool ralentiTempsActivee;
+    public static bool clonageActivee;
 
     public static float compteurAmelioration;
 
@@ -60,6 +63,11 @@ public class testUI : MonoBehaviour
         }
         
         if (ralentiTemps.actif)
+        {
+            compteurAmelioration += 1;
+        }
+        
+        if (clonage.actif)
         {
             compteurAmelioration += 1;
         }
@@ -113,6 +121,15 @@ public class testUI : MonoBehaviour
         else
         {
             ralentiTempsActivee = false;
+        }
+        
+        if (clonage.actif)
+        {
+            clonageActivee = true;
+        }
+        else
+        {
+            clonageActivee = false;
         }
 
         if (gameObject.tag == tripleSaut.nom)
@@ -184,6 +201,20 @@ public class testUI : MonoBehaviour
                 GetComponent<EventTrigger>().enabled = true;
             }
         }
+        
+        if (gameObject.tag == clonage.nom)
+        {
+            if (!clonage.enPossesion)
+            {
+                GetComponent<Image>().enabled = false;
+                GetComponent<EventTrigger>().enabled = false;
+            }
+            else
+            {
+                GetComponent<Image>().enabled = true;
+                GetComponent<EventTrigger>().enabled = true;
+            }
+        }
     }
 
     public void SetActif()
@@ -196,6 +227,7 @@ public class testUI : MonoBehaviour
         attaqueTornadeActif = false;
         dashRapideActif = false;
         ralentiTempsActif = false;
+        clonageActif = false;
     }
 
     public void AfficherTripleSaut()
@@ -332,6 +364,33 @@ public class testUI : MonoBehaviour
             toggleClone.GetComponent<Toggle>().isOn = false;
         }
     }
+    
+    public void AfficherClonage()
+    {
+        GameObject toggleObj = GameObject.Find("toggle");
+        Destroy(toggleObj);
+
+        toggleBool = clonageActivee;
+        txtNom.text = clonage.nom;
+        txtDescription.text = clonage.description;
+        clonageActif = true;
+
+
+        GameObject toggleClone = Instantiate(toggle);
+
+        toggleClone.SetActive(true);
+
+        toggleClone.transform.SetParent(parent.transform, false);
+
+        if (clonageActivee)
+        {
+            toggleClone.GetComponent<Toggle>().isOn = true;
+        }
+        else
+        {
+            toggleClone.GetComponent<Toggle>().isOn = false;
+        }
+    }
 
     public void SetBoolAmelioration()
     {
@@ -358,6 +417,11 @@ public class testUI : MonoBehaviour
         if (ralentiTempsActif)
         {
             ralentiTemps.actif = toggleBool;
+        }
+        
+        if (clonageActif)
+        {
+            clonage.actif = toggleBool;
         }
     }
 }

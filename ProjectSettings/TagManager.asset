@@ -21,6 +21,7 @@ TagManager:
   - Double dash
   - Dash rapide
   - Ralenti temps
+  - Clonage
   layers:
   - Default
   - TransparentFX

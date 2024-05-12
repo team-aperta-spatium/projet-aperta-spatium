@@ -10,6 +10,7 @@ public class uiToggleAmelioration : MonoBehaviour
     public inventaire attaqueTornade;
     public inventaire dashRapide;
     public inventaire ralentiTemps;
+    public inventaire clonage;
 
     // Start is called before the first frame update
     void Start()
@@ -98,6 +99,18 @@ public class uiToggleAmelioration : MonoBehaviour
             if (testUI.ralentiTempsActif)
             {
                 if (ralentiTemps.actif)
+                {
+                    testUI.compteurAmelioration -= 1;
+                }
+                else
+                {
+                    testUI.compteurAmelioration += 1;
+                }
+            }
+            
+            if (testUI.clonageActif)
+            {
+                if (clonage.actif)
                 {
                     testUI.compteurAmelioration -= 1;
                 }
