@@ -19,13 +19,20 @@ public class equipementRalentiTemps : MonoBehaviour
     {
         if (ralentiTemps.actif)
         {
-            if (Input.GetKeyUp(KeyCode.R) && !tempsEstRalenti)
+            if (Input.GetKey(KeyCode.R))
             {
                 Time.timeScale = 0.5f;
 
                 tempsEstRalenti = true;
 
-                Invoke("TempsNormale", 1.5f);
+                mouvement2.endurance -= 0.2f;
+
+                //Invoke("TempsNormale", 1.5f);
+            }
+            else if (Input.GetKeyUp(KeyCode.R))
+            {
+                Time.timeScale = 1f;
+                tempsEstRalenti = false;
             }
         }
     }
