@@ -22,4 +22,12 @@ public class vieEnnemi : MonoBehaviour
             
         }
     }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if(collision.name == "nodachi" && ennemie.name.Contains("ennemie"))
+        {
+            ennemie.GetComponent<AI>().trouverPerso = true;
+        }
+    }
 }

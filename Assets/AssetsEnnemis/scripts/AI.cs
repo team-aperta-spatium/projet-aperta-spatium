@@ -35,6 +35,7 @@ public class AI : MonoBehaviour
                 if (hitInfo.collider.tag == "perso" && trouverPerso == true)
                 {
                     ennemie.SetDestination(joueur.transform.position);
+                    ennemie.transform.LookAt(new Vector3(joueur.transform.position.x, 0, joueur.transform.position.z));
                     ennemie.speed = 10f;
                     ennemie.angularSpeed = 1000f;
                     animator.SetBool("cours", true);
