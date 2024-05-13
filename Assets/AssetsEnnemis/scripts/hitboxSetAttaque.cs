@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class hitboxAttaque : MonoBehaviour
+public class hitboxSetAttaque : MonoBehaviour
 {
     public GameObject chevre;
     private void OnTriggerEnter(Collider collision)
