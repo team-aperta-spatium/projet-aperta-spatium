@@ -16,6 +16,7 @@ TagManager:
   - perso
   - prefabDoubleDash
   - prefabTripleSaut
+  - colliderEnnemi
   layers:
   - Default
   - TransparentFX

@@ -7,18 +7,19 @@ public class vieEnnemi : MonoBehaviour
     public float nbrVie;
     public GameObject ennemie;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        nbrVie = 100;
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (nbrVie <= 0)
         {
-            ennemie.GetComponent<AI>().mort();
+            if (ennemie.name.Contains("ennemie"))
+            {
+                ennemie.GetComponent<AI>().mort();
+            }
+            else if (ennemie.name.Contains("chevre"))
+            {
+                ennemie.GetComponent<aiChevre>().mort();
+            }
+            
         }
     }
 }

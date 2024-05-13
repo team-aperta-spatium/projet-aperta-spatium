@@ -13,6 +13,7 @@ public class aiChevre : MonoBehaviour
     public bool attaquer;
     public bool hit;
     public bool confu;
+    public bool etatMort;
 
     private bool setDirection;
     private Vector3 direction;
@@ -28,33 +29,35 @@ public class aiChevre : MonoBehaviour
     {
         if (!confu)
         {
+            ennemie.isStopped = false;
             if (!trouverPerso)
             {
                 if (ennemie.pathPending || !ennemie.isOnNavMesh || ennemie.remainingDistance > 0.1f)
                     return;
                 trouverNouvelleDest();
             }
-            if(trouverPerso && !attaquer)
+            else if(trouverPerso && !attaquer)
             {
                 ennemie.destination = ennemie.transform.position;
                 ennemie.transform.LookAt(new Vector3(joueur.transform.position.x, 0, joueur.transform.position.z));
             }
-            if(trouverPerso && attaquer)
+            else if(trouverPerso && attaquer)
             {
                 if (!setDirection)
                 {
                     direction = ennemie.transform.forward;
                     setDirection = true;
                 }
+                ennemie.updateRotation = false;
                 ennemie.Move(direction/2);
             }
         }
         else
         {
-            ennemie.destination = ennemie.transform.position;
+            ennemie.isStopped = true;
         }
 
-        if (attaquer)
+        if (attaquer && !confu)
         {
             hitboxAttaque.SetActive(true);
         }
@@ -65,8 +68,6 @@ public class aiChevre : MonoBehaviour
 
         if (hit)
         {
-            trouverPerso = false;
-            attaquer = false;
             confu = true;
             hitboxAttaque.GetComponent<attaqueChevre>().isHit = true;
             Invoke("annuleConfu", 5f);
@@ -75,7 +76,7 @@ public class aiChevre : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerStay(Collider collision)
     {
         if (collision.tag == "perso")
         {   
@@ -105,6 +106,15 @@ public class aiChevre : MonoBehaviour
 
     public void annuleConfu()
     {
+        ennemie.updateRotation = true;
+        ennemie.transform.LookAt(new Vector3(joueur.transform.position.x, 0, joueur.transform.position.z));
+        setDirection = false;
         confu = false;
+    }
+
+    public void mort()
+    {
+        etatMort = true;
+        Destroy(gameObject);
     }
 }

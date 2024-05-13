@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4897416983867920490}
   m_Layer: 0
   m_Name: ennemie 2
-  m_TagString: Untagged
+  m_TagString: ennemi
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,6 +73,7 @@ MonoBehaviour:
   ennemie: {fileID: 7557096089088232331}
   joueur: {fileID: 0}
   hitbox: {fileID: 7482094184646817307}
+  nav: {fileID: 0}
   trouverPerso: 0
   attEnCours: 0
   etatMort: 0
@@ -224,6 +225,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: modelRenardFinal
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9475156715cef2145935b6c470046bc2, type: 3}
+      propertyPath: m_TagString
+      value: ennemi
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -234,6 +239,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9475156715cef2145935b6c470046bc2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8208151494914949207}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9475156715cef2145935b6c470046bc2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 710149301245946305}
   m_SourcePrefab: {fileID: 100100000, guid: 9475156715cef2145935b6c470046bc2, type: 3}
 --- !u!4 &492652163517793021 stripped
 Transform:
@@ -287,3 +295,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &710149301245946305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981098781602617415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf58c10d9b146e4eb7d56fd88c861ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nbrVie: 100
+  ennemie: {fileID: 6366212448154910315}
