@@ -26,7 +26,7 @@ public class gestionSymbolePerso : MonoBehaviour
     }
     void Update()
     {
-        gameObject.GetComponent<RectTransform>().position = new Vector2(positionX, positionY);
-        //x25 z85
+        rectTransform.sizeDelta = new Vector2(Screen.width * width / 100, ((preserveAspect) ? Screen.width * width : Screen.height * height) / 100);
+        rectTransform.anchoredPosition = new Vector2(Screen.width * offsetX / 100, Screen.height * offsetY / 100);
     }
 }
