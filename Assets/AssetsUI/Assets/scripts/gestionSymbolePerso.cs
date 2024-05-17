@@ -9,5 +9,6 @@ public class gestionSymbolePerso : MonoBehaviour
     void Update()
     {
         gameObject.GetComponent<RectTransform>().position = new Vector2(positionX, positionY);
+        //x25 z85
     }
 }
