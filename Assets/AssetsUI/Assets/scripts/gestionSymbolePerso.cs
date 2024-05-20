@@ -14,15 +14,17 @@ public class gestionSymbolePerso : MonoBehaviour
     [SerializeField] private bool preserveAspect = false;
 
     public GameObject perso;
-    Vector3 posPerso;
+    public GameObject zeroZero;
 
     private void Start()
     {
+        //position zero-zero ingame = 2255, 58.5, 30
+
+
         rectTransform = GetComponent<RectTransform>();
         rectTransform.pivot = Vector2.zero;
         rectTransform.anchorMax = Vector2.zero;
         rectTransform.anchorMin = Vector2.zero;
-        posPerso = perso.transform.position;
     }
     void Update()
     {
