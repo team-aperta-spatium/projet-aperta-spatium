@@ -180,6 +180,5 @@ public class gestionMenus : MonoBehaviour
     public void quitter()
     {
         SceneManager.LoadScene(0);
-      
     }
 }

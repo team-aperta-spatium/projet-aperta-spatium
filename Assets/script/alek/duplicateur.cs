@@ -25,7 +25,7 @@ public class duplicateur : MonoBehaviour
     public GameObject canvasMiniJeu;
     public GameObject ctnMiniJeu;
 
-    GameObject laCamera;
+    public GameObject laCamera;
     GameObject parentClone;
     GameObject camPerso;
     GameObject persoObj;
@@ -41,7 +41,6 @@ public class duplicateur : MonoBehaviour
         camPerso = GameObject.Find("cameraPerso");
         persoObj = GameObject.Find("perso");
         persoRb = persoObj.GetComponent<Rigidbody>();
-        laCamera = GameObject.Find("cameraMiniJeu");
     }
 
     // Update is called once per frame
@@ -127,13 +126,12 @@ public class duplicateur : MonoBehaviour
 
     void FermerMiniJeu()
     {
-        laCamera.GetComponent<CRTCameraBehaviour>().enabled = false;
-        //ctnMiniJeu.SetActive(false);
-        laCamera.GetComponent<Camera>().enabled = false;
-        laCamera.GetComponent<AudioListener>().enabled = false;
+        //laCamera.GetComponent<CRTCameraBehaviour>().enabled = false;
+        ctnMiniJeu.SetActive(false);
+        laCamera.SetActive(false);
+        camPerso.SetActive(true);
         camPerso.GetComponent<Camera>().enabled = true;
-        camPerso.GetComponent<AudioListener>().enabled = true;
-        canvasMiniJeu.GetComponent<Canvas>().enabled = false;
+        canvasMiniJeu.SetActive(false);
         coffre.canvasMiniJeuActif = false;
         InteractionCoffre.jeuActif = false;
         persoRb.constraints = RigidbodyConstraints.None;
@@ -173,7 +171,7 @@ public class duplicateur : MonoBehaviour
     {
         CancelInvoke();
         laCamera.GetComponent<CRTCameraBehaviour>().enabled = false;
-        //ctnMiniJeu.SetActive(false);
+        ctnMiniJeu.SetActive(false);
         laCamera.GetComponent<Camera>().enabled = false;
         laCamera.GetComponent<AudioListener>().enabled = false;
         camPerso.GetComponent<Camera>().enabled = true;

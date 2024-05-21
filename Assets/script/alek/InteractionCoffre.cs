@@ -11,8 +11,8 @@ public class InteractionCoffre : MonoBehaviour
     public float vitesseRound;
     public float vitesseObstacle;
 
-    GameObject laCamera;
-    GameObject ctnMiniJeu;
+    public GameObject laCamera;
+    public GameObject ctnMiniJeu;
 
     static public bool jeuActif;
 
@@ -43,8 +43,6 @@ public class InteractionCoffre : MonoBehaviour
         jeuActif = false;
 
         duplicateur = GameObject.Find("duplicateur");
-        laCamera = GameObject.Find("cameraMiniJeu");
-        ctnMiniJeu = GameObject.Find("ctnMiniJeu");
     }
 
     void Update()
@@ -54,9 +52,10 @@ public class InteractionCoffre : MonoBehaviour
             if (Input.GetKeyDown("e"))
             {
                 laCamera.GetComponent<CRTCameraBehaviour>().enabled = true;
-                //ctnMiniJeu.SetActive(true);
+                ctnMiniJeu.SetActive(true);
                 jeuActif = true;
                 Invoke("activerJeu", 2f);
+                print("ok");
             }
         }
     }

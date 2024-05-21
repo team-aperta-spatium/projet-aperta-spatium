@@ -10,9 +10,8 @@ public class gestionTailleCtn : MonoBehaviour
     public GameObject ctnItem;
 
     // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        
-        
+        nbItems = transform.childCount;
     }
 }
