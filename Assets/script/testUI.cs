@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 
 public class testUI : MonoBehaviour
 {
+    public GameObject ctn;
     public GameObject toggle;
     public GameObject parent;
     public GameObject nom;
@@ -131,90 +132,6 @@ public class testUI : MonoBehaviour
         {
             clonageActivee = false;
         }
-
-        if (gameObject.tag == tripleSaut.nom)
-        {
-            if (!tripleSaut.enPossesion)
-            {
-                GetComponent<Image>().enabled = false;
-                GetComponent<EventTrigger>().enabled = false;
-            }
-            else
-            {
-                GetComponent<Image>().enabled = true;
-                GetComponent<EventTrigger>().enabled = true;
-            }
-        }
-        
-        if (gameObject.tag == doubleDash.nom)
-        {
-            if (!doubleDash.enPossesion)
-            {
-                GetComponent<Image>().enabled = false;
-                GetComponent<EventTrigger>().enabled = false;
-            }
-            else
-            {
-                GetComponent<Image>().enabled = true;
-                GetComponent<EventTrigger>().enabled = true;
-            }
-        }
-        
-        if (gameObject.tag == attaqueTornade.nom)
-        {
-            if (!attaqueTornade.enPossesion)
-            {
-                GetComponent<Image>().enabled = false;
-                GetComponent<EventTrigger>().enabled = false;
-            }
-            else
-            {
-                GetComponent<Image>().enabled = true;
-                GetComponent<EventTrigger>().enabled = true;
-            }
-        }
-        
-        if (gameObject.tag == dashRapide.nom)
-        {
-            if (!dashRapide.enPossesion)
-            {
-                GetComponent<Image>().enabled = false;
-                GetComponent<EventTrigger>().enabled = false;
-            }
-            else
-            {
-                GetComponent<Image>().enabled = true;
-                GetComponent<EventTrigger>().enabled = true;
-            }
-        }
-        
-        if (gameObject.tag == ralentiTemps.nom)
-        {
-            if (!ralentiTemps.enPossesion)
-            {
-                GetComponent<Image>().enabled = false;
-                GetComponent<EventTrigger>().enabled = false;
-            }
-            else
-            {
-                GetComponent<Image>().enabled = true;
-                GetComponent<EventTrigger>().enabled = true;
-            }
-        }
-        
-        if (gameObject.tag == clonage.nom)
-        {
-            if (!clonage.enPossesion)
-            {
-                GetComponent<Image>().enabled = false;
-                GetComponent<EventTrigger>().enabled = false;
-            }
-            else
-            {
-                GetComponent<Image>().enabled = true;
-                GetComponent<EventTrigger>().enabled = true;
-            }
-        }
     }
 
     public void SetActif()
@@ -228,6 +145,7 @@ public class testUI : MonoBehaviour
         dashRapideActif = false;
         ralentiTempsActif = false;
         clonageActif = false;
+        ctn.SetActive(true);
     }
 
     public void AfficherTripleSaut()

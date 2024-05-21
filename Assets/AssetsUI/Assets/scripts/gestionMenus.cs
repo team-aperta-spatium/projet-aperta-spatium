@@ -75,7 +75,7 @@ public class gestionMenus : MonoBehaviour
         menuEquip.GetComponent<RectTransform>().anchoredPosition = new Vector2(posEquip, 0);
         menuMap.GetComponent<RectTransform>().anchoredPosition = new Vector2(posMap, 0);
 
-        nbItems = conteneur.transform.childCount;
+        nbItems = conteneur.GetComponentsInChildren<Animator>().GetLength(0);
         conteneur.GetComponent<RectTransform>().sizeDelta = new Vector2(700f, nbItems * 300f);
 
         if (Input.GetKeyDown(KeyCode.Escape))

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc3d961a75736c48b9fe3c002942132, type: 3}
   m_Name: dashRapide
   m_EditorClassIdentifier: 
-  enPossesion: 1
+  enPossesion: 0
   nom: Dash rapide
   actif: 0
   description: dash plus rapidement
