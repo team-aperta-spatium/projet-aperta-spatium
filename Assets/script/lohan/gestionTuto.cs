@@ -5,6 +5,8 @@ using TMPro;
 
 public class gestionTuto : MonoBehaviour
 {
+    public GameObject gestionAudio;
+
     public TMP_Text text1;
     public TMP_Text text2;
     public TMP_Text text3;
@@ -16,6 +18,14 @@ public class gestionTuto : MonoBehaviour
     bool onDash;
     bool onCrouch;
     bool onAttaque;
+    bool w;
+    bool shift;
+    bool space;
+    bool ctrl;
+    bool c;
+    bool mouse0;
+    bool mouse1;
+    bool alt;
 
     bool onAlt;
     // Start is called before the first frame update
@@ -25,6 +35,14 @@ public class gestionTuto : MonoBehaviour
         onDash = false;
         onCrouch = false;
         onAttaque = false;
+        w = false;
+        shift = false;
+        space = false;
+        ctrl = false;
+        c = false;
+        mouse0 = false;
+        mouse1 = false;
+        alt = false;
     }
 
     // Update is called once per frame
@@ -35,16 +53,31 @@ public class gestionTuto : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.W))
             {
                 pouce1.SetActive(true);
+                if (!w)
+                {
+                    gestionAudio.GetComponent<gestionMusique>().jouerOk();
+                    w = true;
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 pouce2.SetActive(true);
+                if (!shift)
+                {
+                    gestionAudio.GetComponent<gestionMusique>().jouerOk();
+                    shift = true;
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 pouce3.SetActive(true);
+                if (!space)
+                {
+                    gestionAudio.GetComponent<gestionMusique>().jouerOk();
+                    space = true;
+                }
             }
         }
         else if (onDash)
@@ -52,6 +85,11 @@ public class gestionTuto : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftControl))
             {
                 pouce1.SetActive(true);
+                if (!ctrl)
+                {
+                    gestionAudio.GetComponent<gestionMusique>().jouerOk();
+                    ctrl = true;
+                }
             }
         }
         else if (onCrouch)
@@ -59,6 +97,11 @@ public class gestionTuto : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.C))
             {
                 pouce1.SetActive(true);
+                if (!c)
+                {
+                    gestionAudio.GetComponent<gestionMusique>().jouerOk();
+                    c = true;
+                }
             }
         }
         else if(onAttaque)
@@ -66,11 +109,21 @@ public class gestionTuto : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse0) && !onAlt)
             {
                 pouce1.SetActive(true);
+                if (!mouse0)
+                {
+                    gestionAudio.GetComponent<gestionMusique>().jouerOk();
+                    mouse0 = true;
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 pouce2.SetActive(true);
+                if (!mouse1)
+                {
+                    gestionAudio.GetComponent<gestionMusique>().jouerOk();
+                    mouse1 = true;
+                }
             }
 
             if (Input.GetKey(KeyCode.LeftAlt))
@@ -79,6 +132,11 @@ public class gestionTuto : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Mouse0) && onAlt)
                 {
                     pouce3.SetActive(true);
+                    if (!alt)
+                    {
+                        gestionAudio.GetComponent<gestionMusique>().jouerOk();
+                        alt = true;
+                    }
                 }
             }
             else if(Input.GetKeyUp(KeyCode.LeftAlt))
