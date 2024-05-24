@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class dash2 : MonoBehaviour
 {
+    public inventaire dashRapide;
+
     [Header("References")]
     public Transform orientation;
     public Transform cameraPerso;
 
     [Header("Dash")]
-    public float forceDash;
+    public float forceDashInitiale;
     public float forceDashHaut;
     public float dureeDash;
     public float cdDash;
@@ -27,6 +29,7 @@ public class dash2 : MonoBehaviour
 
     float dureeCdDash;
     float dashRestant;
+    float forceDash;
 
     Rigidbody rb;
 
@@ -71,6 +74,15 @@ public class dash2 : MonoBehaviour
         if (dureeCdDash > 0)
         {
             dureeCdDash -= Time.deltaTime;
+        }
+
+        if (dashRapide.actif)
+        {
+            forceDash = 60;
+        }
+        else
+        {
+            forceDash = forceDashInitiale;
         }
     }
 

@@ -3,7 +3,16 @@ guid: 98c0021ddb95df94bbfff959fae489a3
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - toggle: {instanceID: 0}
+  - parent: {instanceID: 0}
+  - nom: {instanceID: 0}
+  - description: {instanceID: 0}
+  - txtNom: {instanceID: 0}
+  - txtDescription: {instanceID: 0}
+  - doubleDash: {instanceID: 0}
+  - tripleSaut: {instanceID: 0}
+  - attaqueTornade: {fileID: 11400000, guid: 3275efd9dfd48ed478b90f3e3c226c9d, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

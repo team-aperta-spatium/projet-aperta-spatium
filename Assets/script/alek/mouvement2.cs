@@ -131,12 +131,12 @@ public class mouvement2 : MonoBehaviour
         }
         else if (endurance > 0 && endurance < 100 && !actionEnCours && Time.timeScale != 0 && !attaqueEnCours && actionPossible)
         {
-            endurance += 0.25f;
+            endurance += 0.15f;
         }
 
         if (!actionPossible && Time.timeScale != 0)
         {
-            endurance += 0.6f;
+            endurance += 0.3f;
 
             if (endurance >= 100)
             {

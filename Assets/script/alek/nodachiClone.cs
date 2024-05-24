@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class nodachi : MonoBehaviour
+public class nodachiClone : MonoBehaviour
 {
     public float tempCdAttaque;
     public inventaire equipementAttaque;
+    public GameObject clonePerso;
 
     bool attaque1EnCours;
     bool attaque2EnCours;
@@ -74,18 +75,18 @@ public class nodachi : MonoBehaviour
 
         if (!enPause)
         {
-            if (attaqueNormale || attaqueLourde || attaqueSpeciale || attaqueEquipement)
-            {
-                mouvement2.attaqueEnCours = true;
-            }
-            else
-            {
-                mouvement2.attaqueEnCours = false;
-            }
+            //if (attaqueNormale || attaqueLourde || attaqueSpeciale || attaqueEquipement)
+            //{
+            //    clonePerso.GetComponent<mouvementClonePerso>().peutAttaquer = false;
+            //}
+            //else
+            //{
+            //    clonePerso.GetComponent<mouvementClonePerso>().peutAttaquer = true;
+            //}
 
-            if (mouvement2.actionPossible)
-            {
-                if (Input.GetKeyDown(KeyCode.Mouse0))
+            //if (mouvement2.actionPossible)
+            //{
+                if (clonePerso.GetComponent<mouvementClonePerso>().nbrAttaque == 1)
                 {
                     if (cdAttaque <=  0)
                     {
@@ -94,29 +95,30 @@ public class nodachi : MonoBehaviour
                             if (!attaque1EnCours && !attaque2EnCours && !attaque3EnCours)
                             {
                                 GetComponent<Animator>().SetBool("attaque1", true);
-                                Invoke("ArretAttaque1", 1f);
+                                //Invoke("ArretAttaque1", 1f);
                                 attaque1EnCours = true;
                                 timerAttaque1 = 1f;
                                 attaqueNormale = true;
-                                mouvement2.actionEnCours = true;
-                            }
-                            else if (attaque1EnCours && !attaque2EnCours && !attaque3EnCours)
-                            {
                                 attaque2EnAttente = true;
+                                clonePerso.GetComponent<mouvementClonePerso>().peutAttaquer = false;
                             }
-                            else if (attaque2EnCours && !attaque3EnCours)
-                            {
-                                attaque3EnAttente = true;
-                            }               
-                            else if (attaque2EnAttente)
-                            {
-                                attaque3EnAttente = true;
-                            }
+                            //else if (attaque1EnCours && !attaque2EnCours && !attaque3EnCours)
+                            //{
+                            //    attaque2EnAttente = true;
+                            //}
+                            //else if (attaque2EnCours && !attaque3EnCours)
+                            //{
+                            //    attaque3EnAttente = true;
+                            //}               
+                            //else if (attaque2EnAttente)
+                            //{
+                            //    attaque3EnAttente = true;
+                            //}
                         }
                     }
                 }
         
-                if (Input.GetKeyDown(KeyCode.Mouse1))
+                if (clonePerso.GetComponent<mouvementClonePerso>().nbrAttaque == 2)
                 {
                     if (cdAttaque <= 0)
                     {
@@ -125,67 +127,64 @@ public class nodachi : MonoBehaviour
                             if (!attaqueLourd1EnCours && !attaqueLourd2EnCours)
                             {
                                 GetComponent<Animator>().SetBool("attaqueLourd1", true);
-                                Invoke("ArretAttaqueLourd1", 2.5f);
+                                //Invoke("ArretAttaqueLourd1", 2.5f);
                                 attaqueLourd1EnCours = true;
                                 timerAttaqueLourd1 = 2.5f;
                                 attaqueLourde = true;
-                                mouvement2.actionEnCours = true;
-                            }
-                            else if (attaqueLourd1EnCours && !attaqueLourd2EnCours)
-                            {
                                 attaqueLourd2EnAttente = true;
+                                clonePerso.GetComponent<mouvementClonePerso>().peutAttaquer = false;
                             }
                         }
                     }
                 }
 
-                if (cdAttaque <= 0)
-                {   
-                    if (!attaqueNormale && !attaqueLourde && !attaqueEquipement)
-                    {
-                        if (Input.GetKey(KeyCode.LeftAlt))
-                        {
-                            if (Input.GetKeyDown(KeyCode.Mouse0) && attaqueSpeciale)
-                            {
-                                if (timerAttaqueSpecialePrep > 0)
-                                {
-                                    attaqueSpeciale1EnAttente = true;
-                                }
-                                else
-                                {
-                                    Invoke("AttaqueSpeciale1", 0f);
-                                    Invoke("ArretAttaqueSpeciale1", 1f);
-                                }
-                            }
-                            else if (Input.GetKeyDown(KeyCode.Mouse1) && attaqueSpeciale)
-                            {
-                                if (timerAttaqueSpecialePrep > 0)
-                                {
-                                    attaqueSpeciale2EnAttente = true;
-                                }
-                                else
-                                {
-                                    Invoke("AttaqueSpeciale2", 0f);
-                                    Invoke("ArretAttaqueSpeciale2", 1f);
-                                }
-                            }
-                            else if (!attaqueSpeciale)
-                            {
-                                attaqueSpecialePrep = true;
-                                GetComponent<Animator>().SetBool("attaqueSpecialePrep", true);
-                                timerAttaqueSpecialePrep = 0.67f;
-                                attaqueSpeciale = true;
-                            }
-                        }
-                        else if (Input.GetKeyUp(KeyCode.LeftAlt))
-                        {
-                            attaqueSpecialePrep = false;
-                            GetComponent<Animator>().SetBool("attaqueSpecialePrep", false);
-                            timerAttaqueSpecialePrep = 0;
-                            attaqueSpeciale = false;
-                        }
-                    }
-                }
+                //if (cdAttaque <= 0)
+                //{   
+                //    if (!attaqueNormale && !attaqueLourde && !attaqueEquipement)
+                //    {
+                //        if (clonePerso.GetComponent<mouvementClonePerso>().nbrAttaque == 3 || clonePerso.GetComponent<mouvementClonePerso>().nbrAttaque == 4)
+                //        {
+                //            if (clonePerso.GetComponent<mouvementClonePerso>().nbrAttaque == 3 && attaqueSpeciale)
+                //            {
+                //                if (timerAttaqueSpecialePrep > 0)
+                //                {
+                //                    attaqueSpeciale1EnAttente = true;
+                //                }
+                //                else
+                //                {
+                //                    Invoke("AttaqueSpeciale1", 0f);
+                //                    Invoke("ArretAttaqueSpeciale1", 1f);
+                //                }
+                //            }
+                //            else if (clonePerso.GetComponent<mouvementClonePerso>().nbrAttaque == 4 && attaqueSpeciale)
+                //            {
+                //                if (timerAttaqueSpecialePrep > 0)
+                //                {
+                //                    attaqueSpeciale2EnAttente = true;
+                //                }
+                //                else
+                //                {
+                //                    Invoke("AttaqueSpeciale2", 0f);
+                //                    Invoke("ArretAttaqueSpeciale2", 1f);
+                //                }
+                //            }
+                //            else if (!attaqueSpeciale)
+                //            {
+                //                attaqueSpecialePrep = true;
+                //                GetComponent<Animator>().SetBool("attaqueSpecialePrep", true);
+                //                timerAttaqueSpecialePrep = 0.67f;
+                //                attaqueSpeciale = true;
+                //            }
+                //        }
+                //        else if (clonePerso.GetComponent<mouvementClonePerso>().nbrAttaque == 0)
+                //        {
+                //            attaqueSpecialePrep = false;
+                //            GetComponent<Animator>().SetBool("attaqueSpecialePrep", false);
+                //            timerAttaqueSpecialePrep = 0;
+                //            attaqueSpeciale = false;
+                //        }
+                //    }
+                //}
 
                 if (cdAttaque <= 0)
                 {
@@ -193,30 +192,22 @@ public class nodachi : MonoBehaviour
                     {
                         if (equipementAttaque.actif)
                         {
-                            if (Input.GetKeyDown(KeyCode.Q))
+                            if (clonePerso.GetComponent<mouvementClonePerso>().nbrAttaque == 3)
                             {
                                 attaqueEquipementPrep = true;
                                 GetComponent<Animator>().SetBool("attaqueEquipementPrep", true);
-                            }
-                            else if (Input.GetKeyUp(KeyCode.Q))
-                            {
-                                attaqueEquipement = false;
-                                attaqueEquipement = true;
-                                GetComponent<Animator>().SetBool("attaqueEquipementPrep", false);
-                                GetComponent<Animator>().SetBool("attaqueEquipement", true);
-                                mouvement2.actionEnCours = true;
-                                Invoke("ArretAttaqueEquipement", 1.59f);
+                                Invoke("AttaqueEquipement", 0.5f);
                             }
                         }
                     }
                 }
-            }
+            //}
 
             if (attaque2EnAttente && timerAttaque1 <= 0.25f)
             {
                 CancelInvoke();
                 Invoke("Attaque2", 0);
-                Invoke("ArretAttaque2", 1f);
+                //Invoke("ArretAttaque2", 1f);
             }
 
             if (attaque3EnAttente && timerAttaque2 <= 0.41f)
@@ -263,11 +254,6 @@ public class nodachi : MonoBehaviour
             if (attaqueSpecialePrep)
             {
                 timerAttaqueSpecialePrep -= Time.deltaTime;
-            }
-
-            if (attaqueEquipement && Time.timeScale != 0)
-            {
-                mouvement2.endurance -= 0.1f;
             }
 
             if (cdAttaque > 0)
@@ -318,10 +304,10 @@ public class nodachi : MonoBehaviour
         attaque2EnCours = true;
         attaque1EnCours = false;
         attaque2EnAttente = false;
+        attaque3EnAttente = true;
         GetComponent<Animator>().SetBool("attaque1", false);
         timerAttaque2 = 1f;
         timerAttaque1 = 0f;
-        mouvement2.actionEnCours = true;
     }
 
     void Attaque3()
@@ -332,7 +318,6 @@ public class nodachi : MonoBehaviour
         attaque3EnAttente = false;
         GetComponent<Animator>().SetBool("attaque2", false);
         timerAttaque2 = 0f;
-        mouvement2.actionEnCours = true;
     }
     
     void AttaqueLourd2()
@@ -343,7 +328,6 @@ public class nodachi : MonoBehaviour
         attaqueLourd2EnAttente = false;
         GetComponent<Animator>().SetBool("attaqueLourd1", false);
         timerAttaqueLourd1 = 0f;
-        mouvement2.actionEnCours = true;
     }
 
     void AttaqueSpeciale1()
@@ -355,7 +339,6 @@ public class nodachi : MonoBehaviour
         GetComponent<Animator>().SetBool("attaqueSpeciale1", true);
         timerAttaqueSpecialePrep = 0f;
         mouvement2.endurance -= 5;
-        mouvement2.actionEnCours = true;
     }
     
     void AttaqueSpeciale2()
@@ -367,7 +350,15 @@ public class nodachi : MonoBehaviour
         GetComponent<Animator>().SetBool("attaqueSpeciale2", true);
         timerAttaqueSpecialePrep = 0f;
         mouvement2.endurance -= 5;
-        mouvement2.actionEnCours = true;
+    }
+
+    void AttaqueEquipement()
+    {
+        attaqueEquipement = false;
+        attaqueEquipement = true;
+        GetComponent<Animator>().SetBool("attaqueEquipementPrep", false);
+        GetComponent<Animator>().SetBool("attaqueEquipement", true);
+        Invoke("ArretAttaqueEquipement", 1.59f);
     }
 
     void ArretAttaque1()
@@ -376,7 +367,6 @@ public class nodachi : MonoBehaviour
         attaque1EnCours = false;
         cdAttaque = tempCdAttaque;
         attaqueNormale = false;
-        mouvement2.actionEnCours = false;
     }
 
     void ArretAttaque2()
@@ -385,7 +375,6 @@ public class nodachi : MonoBehaviour
         attaque2EnCours = false;
         cdAttaque = tempCdAttaque;
         attaqueNormale = false;
-        mouvement2.actionEnCours = false;
     }
 
     void ArretAttaque3()
@@ -394,7 +383,6 @@ public class nodachi : MonoBehaviour
         attaque3EnCours = false;
         cdAttaque = tempCdAttaque;
         attaqueNormale = false;
-        mouvement2.actionEnCours = false;
     }
 
     void ArretAttaqueLourd1()
@@ -403,7 +391,6 @@ public class nodachi : MonoBehaviour
         attaqueLourd1EnCours = false;
         cdAttaque = tempCdAttaque;
         attaqueLourde = false;
-        mouvement2.actionEnCours = false;
     }
 
     void ArretAttaqueLourd2()
@@ -412,7 +399,6 @@ public class nodachi : MonoBehaviour
         attaqueLourd2EnCours = false;
         cdAttaque = tempCdAttaque;
         attaqueLourde = false;
-        mouvement2.actionEnCours = false;
     }
 
     void ArretAttaqueSpeciale1()
@@ -421,7 +407,6 @@ public class nodachi : MonoBehaviour
         attaqueSpeciale1 = false;
         cdAttaque = tempCdAttaque;
         attaqueSpeciale = false;
-        mouvement2.actionEnCours = false;
     }
     
     void ArretAttaqueSpeciale2()
@@ -430,13 +415,11 @@ public class nodachi : MonoBehaviour
         attaqueSpeciale2 = false;
         cdAttaque = tempCdAttaque;
         attaqueSpeciale = false;
-        mouvement2.actionEnCours = false;
     }
 
     void ArretAttaqueEquipement()
     {
         GetComponent<Animator>().SetBool("attaqueEquipement", false);
         attaqueEquipement = false;
-        mouvement2.actionEnCours = false;
     }
 }
