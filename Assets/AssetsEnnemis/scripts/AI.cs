@@ -8,6 +8,7 @@ public class AI : MonoBehaviour
     public NavMeshAgent ennemie;
     public GameObject joueur;
     public GameObject hitbox;
+    public GameObject nav;
     public bool trouverPerso;
     public bool attEnCours;
     public bool etatMort;
@@ -31,9 +32,10 @@ public class AI : MonoBehaviour
         {
             if (Physics.Linecast(transform.position, joueur.transform.position, out RaycastHit hitInfo))
             {
-                if (hitInfo.collider.name == "persoObj" && trouverPerso == true)
+                if (hitInfo.collider.tag == "perso" && trouverPerso == true)
                 {
                     ennemie.SetDestination(joueur.transform.position);
+                    ennemie.transform.LookAt(new Vector3(joueur.transform.position.x, 0, joueur.transform.position.z));
                     ennemie.speed = 10f;
                     ennemie.angularSpeed = 1000f;
                     animator.SetBool("cours", true);
@@ -129,5 +131,6 @@ public class AI : MonoBehaviour
     private void detruire()
     {
         Destroy(gameObject);
+        //Destroy(nav);
     }
 }

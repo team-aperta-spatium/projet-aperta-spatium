@@ -11,11 +11,11 @@ public class coffre : MonoBehaviour
     public GameObject canvasTxt;
     public GameObject refClone;
 
-    GameObject canvasMiniJeu;
+    public GameObject canvasMiniJeu;
     GameObject cameraPerso;
     GameObject parentTxt;
     GameObject cloneTxt;
-    GameObject cameraMiniJeu;
+    public GameObject cameraMiniJeu;
     bool clonageFait;
 
     static public bool canvasMiniJeuActif;
@@ -28,8 +28,6 @@ public class coffre : MonoBehaviour
         persoGO = perso.GetComponent<Rigidbody>();
         cameraPerso = GameObject.Find("cameraPerso");
         parentTxt = GameObject.Find("txtProximite");
-        canvasMiniJeu = GameObject.Find("canvasMiniJeu");
-        cameraMiniJeu = GameObject.Find("cameraMiniJeu");
     }
 
     // Update is called once per frame
@@ -41,10 +39,10 @@ public class coffre : MonoBehaviour
         {
             if (Input.GetKeyUp(KeyCode.E))
             {
-                canvasMiniJeu.GetComponent<Canvas>().enabled = true;
+                canvasMiniJeu.SetActive(true);
                 cameraPerso.GetComponent<Camera>().enabled = false;
                 cameraPerso.GetComponent<AudioListener>().enabled = false;
-                cameraMiniJeu.GetComponent<Camera>().enabled = true;
+                cameraMiniJeu.SetActive(true);
                 cameraMiniJeu.GetComponent<AudioListener>().enabled = true;
                 canvasMiniJeuActif = true;
                 refClone.SetActive(true);

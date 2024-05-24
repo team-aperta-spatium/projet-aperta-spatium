@@ -5,6 +5,7 @@ using UnityEngine.UIElements;
 
 public class mouvement : MonoBehaviour
 {
+    public float vitesse;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,11 +37,11 @@ public class mouvement : MonoBehaviour
 
         if (Input.GetKey("a"))
         {
-            boite.Rotate(0f, 0f, 0.75f);
+            boite.Rotate(0f, 0f, vitesse);
         }
         else if (Input.GetKey("d"))
         {
-            boite.Rotate(0f, 0f, -0.75f);
+            boite.Rotate(0f, 0f, -vitesse);
         }
     }
 }
