@@ -37,7 +37,6 @@ public class gestionAmelioPourTestUtil : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 amelioration.enPossesion = true;
-                amelioration.actif = true;
                 Destroy(gameObject);
                 Destroy(txtClone);
             }

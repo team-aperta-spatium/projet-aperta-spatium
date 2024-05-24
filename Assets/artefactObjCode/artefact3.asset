@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ddc3d961a75736c48b9fe3c002942132, type: 3}
-  m_Name: doubleDash
+  m_Name: artefact3
   m_EditorClassIdentifier: 
-  enPossesion: 1
-  nom: Double dash
-  actif: 1
-  description: ajoute un dash au joueur
+  enPossesion: 0
+  nom: artefact3
+  actif: 0
+  description: 

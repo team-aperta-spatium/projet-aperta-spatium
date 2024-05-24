@@ -6,35 +6,50 @@ using UnityEngine.SceneManagement;
 
 public class controleArtefact : MonoBehaviour
 {
-    public Transform perso;
+    public GameObject perso;
     public float distanceDetection;
     public GameObject txt;
+    public inventaire artefact;
+    public GameObject parentTxt;
+    GameObject cloneTxt;
+    bool clonageFait;
 
     // Start is called before the first frame update
     void Start()
     {
         txt.SetActive(false);
+
+        parentTxt = GameObject.Find("txtProximite");
+
+        perso = GameObject.Find("perso");
     }
 
     // Update is called once per frame
     void Update()
     {
-        float distanceAuPerso = Vector3.Distance(transform.position, perso.position);
+        float distanceAuPerso = Vector3.Distance(transform.position, perso.transform.position);
 
         if (distanceAuPerso <= distanceDetection)
         {
-            txt.SetActive(true);
-
-            Debug.Log("true");
+            if (!clonageFait)
+            {
+                cloneTxt = Instantiate(txt);
+                cloneTxt.SetActive(true);
+                cloneTxt.transform.SetParent(parentTxt.transform, false);
+                clonageFait = true;
+            }
 
             if (Input.GetKeyDown(KeyCode.P))
             {
-                SceneManager.LoadScene("bossTrueModel");
+                artefact.enPossesion = true;
+                Destroy(gameObject);
+                Destroy(cloneTxt);
             }
         }
         else
         {
-            txt.SetActive(false);
+            Destroy(cloneTxt);
+            clonageFait = false;
         }
     }
 }

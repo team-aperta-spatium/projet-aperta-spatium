@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: f2ab3b9373e93354e87d58c23dca6e9a, type: 2}
     - target: {fileID: 919132149155446097, guid: bb86a3edd889f472b85669979e3ab48f, type: 3}
       propertyPath: m_Name
-      value: Artefact
+      value: Artefact1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -124,4 +124,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   perso: {fileID: 0}
   distanceDetection: 5
-  txt: {fileID: 0}
+  txt: {fileID: 3607044045246344733, guid: ef7225af5b785574a86d26b60c8841c2, type: 3}
+  artefact: {fileID: 11400000, guid: 70f156211246ed043a656bc73776827d, type: 2}
+  parentTxt: {fileID: 0}
