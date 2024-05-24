@@ -40,6 +40,7 @@ public class aiChevre : MonoBehaviour
             {
                 ennemie.destination = ennemie.transform.position;
                 ennemie.transform.LookAt(new Vector3(joueur.transform.position.x, 0, joueur.transform.position.z));
+                setDirection = false;
             }
             else if(trouverPerso && attaquer)
             {
@@ -69,7 +70,7 @@ public class aiChevre : MonoBehaviour
         if (hit)
         {
             confu = true;
-            hitboxAttaque.GetComponent<attaqueChevre>().isHit = true;
+            //hitboxAttaque.GetComponent<attaqueChevre>().isHit = true;
             Invoke("annuleConfu", 5f);
             hit = false;
         }
