@@ -8,6 +8,7 @@ public class aiChevre : MonoBehaviour
     public NavMeshAgent ennemie;
     public GameObject joueur;
     public GameObject hitboxAttaque;
+    public Animator animator;
 
     public bool trouverPerso;
     public bool attaquer;
