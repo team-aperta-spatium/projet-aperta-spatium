@@ -12,6 +12,6 @@ public class gestionTailleCtn : MonoBehaviour
     // Start is called before the first frame update
     private void Update()
     {
-        nbItems = transform.childCount;
+        nbItems = GetComponentsInChildren<Animator>().GetLength(0);
     }
 }
