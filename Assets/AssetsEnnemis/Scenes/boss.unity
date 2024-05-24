@@ -2315,6 +2315,7 @@ MonoBehaviour:
   navBoss: {fileID: 1573010156}
   joueur: {fileID: 1138722023}
   animator: {fileID: 894453778}
+  canvasGagne: {fileID: 0}
   baseProjectiles: {fileID: 1631348202}
   projectile: {fileID: 230164464}
   groupeProj: []
@@ -2322,6 +2323,8 @@ MonoBehaviour:
   onStop: 0
   animOn: 0
   attaqueOn: 0
+  mort: 0
+  nbrVies: 1000
 --- !u!195 &1573010156
 NavMeshAgent:
   m_ObjectHideFlags: 0
