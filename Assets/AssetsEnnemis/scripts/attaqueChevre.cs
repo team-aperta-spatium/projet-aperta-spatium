@@ -18,12 +18,14 @@ public class attaqueChevre : MonoBehaviour
         }
     }
     private void OnTriggerEnter(Collider collision)
-    {
-        chevre.GetComponent<aiChevre>().hit = true;
+    { 
         isHit = true;
         if (collision.tag == "perso")
         {
             collision.GetComponent<viePerso>().nbrViePerso -= 1;
         }
+        chevre.GetComponent<aiChevre>().confu = true;
+        chevre.GetComponent<aiChevre>().hit = false;
+        chevre.GetComponent<aiChevre>().Invoke("annuleConfu", 5f);
     }
 }
