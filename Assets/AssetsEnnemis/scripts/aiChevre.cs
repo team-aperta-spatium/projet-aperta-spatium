@@ -67,14 +67,6 @@ public class aiChevre : MonoBehaviour
         {
             hitboxAttaque.SetActive(false);
         }
-
-        if (hit)
-        {
-            confu = true;
-            //hitboxAttaque.GetComponent<attaqueChevre>().isHit = true;
-            Invoke("annuleConfu", 5f);
-            hit = false;
-        }
     }
 
 
