@@ -51,12 +51,13 @@ public class aiChevre : MonoBehaviour
                     setDirection = true;
                 }
                 ennemie.updateRotation = false;
-                ennemie.Move(direction/2);
+                ennemie.Move(direction/8f);
             }
         }
         else
         {
             ennemie.isStopped = true;
+            animator.SetBool("trouverPerso", true);
         }
 
         if (attaquer && !confu)
@@ -75,6 +76,7 @@ public class aiChevre : MonoBehaviour
         if (collision.tag == "perso")
         {   
             trouverPerso = true;
+            animator.SetBool("trouverPerso", true);
         }
     }
 
@@ -82,6 +84,7 @@ public class aiChevre : MonoBehaviour
     {
         if (collision.tag == "perso")
         {
+            animator.SetBool("trouverPerso", false);
             trouverPerso = false;
             attaquer = false;
             setDirection = false;
@@ -106,8 +109,21 @@ public class aiChevre : MonoBehaviour
         confu = false;
     }
 
+    public void setAttaque()
+    {
+        animator.SetTrigger("preAttaque");
+        Invoke("attaque", 1f);
+    }
+
+    public void attaque()
+    {
+        animator.SetBool("Attaque", true);
+        attaquer = true;
+    }
+
     public void mort()
     {
+        animator.SetTrigger("morty");
         etatMort = true;
         Destroy(gameObject);
     }

@@ -17,15 +17,20 @@ public class attaqueChevre : MonoBehaviour
             isHit = false;
         }
     }
-    private void OnTriggerEnter(Collider collision)
-    { 
-        isHit = true;
-        if (collision.tag == "perso")
+    private void OnTriggerStay(Collider collision)
+    {
+        if(collision.tag != "ennemi")
         {
-            collision.GetComponent<viePerso>().nbrViePerso -= 1;
+            print(collision.gameObject.name);
+            chevre.GetComponent<aiChevre>().confu = true;
+            chevre.GetComponent<aiChevre>().hit = false;
+            chevre.GetComponent<aiChevre>().animator.SetBool("Attaque", false);
+            chevre.GetComponent<aiChevre>().Invoke("annuleConfu", 5f);
+            if (collision.tag == "perso")
+            {
+                isHit = true;
+                collision.GetComponent<viePerso>().nbrViePerso -= 1;
+            }
         }
-        chevre.GetComponent<aiChevre>().confu = true;
-        chevre.GetComponent<aiChevre>().hit = false;
-        chevre.GetComponent<aiChevre>().Invoke("annuleConfu", 5f);
     }
 }
