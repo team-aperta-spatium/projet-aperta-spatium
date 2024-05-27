@@ -12,6 +12,11 @@ public class gestionAccueil : MonoBehaviour
 
     public void commencerJeu()
     {
+        SceneManager.LoadScene(2);
+    }
+    
+    public void nouvellePartie()
+    {
         SceneManager.LoadScene(1);
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7557096089088232331}
   - component: {fileID: 1370207783473418169}
   - component: {fileID: 4897416983867920490}
+  - component: {fileID: 2374279378890813682}
   m_Layer: 0
   m_Name: ennemie 2
   m_TagString: ennemi
@@ -44,7 +45,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6366212448154910315}
   m_Enabled: 1
-  m_AgentTypeID: 2
+  m_AgentTypeID: 0
   m_Radius: 2.17
   m_Speed: 3.5
   m_Acceleration: 100
@@ -99,6 +100,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 11.96, y: 2.5, z: 19.4}
   m_Center: {x: 0.03, y: 0.92, z: 9.52}
+--- !u!114 &2374279378890813682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6366212448154910315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf58c10d9b146e4eb7d56fd88c861ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nbrVie: 250
+  ennemie: {fileID: 6366212448154910315}
 --- !u!1 &7482094184646817307
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +127,7 @@ GameObject:
   - component: {fileID: 8566231177475745004}
   m_Layer: 0
   m_Name: hitbox
-  m_TagString: Untagged
+  m_TagString: ennemi
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -270,7 +285,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

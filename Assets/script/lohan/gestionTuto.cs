@@ -161,6 +161,10 @@ public class gestionTuto : MonoBehaviour
         {
             setAttaque();
         }
+        else if (nomTuto == "Fin")
+        {
+            setFin();
+        }
     }
 
     void setDash()
@@ -197,6 +201,16 @@ public class gestionTuto : MonoBehaviour
         text1.SetText("\u2022 Clique gauche pour l'attaque de base (combo de 3)");
         text2.SetText("\u2022 Clique droit pour l'attaque lourde (combo de 2)");
         text3.SetText("\u2022 Alt gauche pour charger et clique gauche pour attaquer");
+        pouce1.SetActive(false);
+        pouce2.SetActive(false);
+        pouce3.SetActive(false);
+    }
+
+    void setFin()
+    {
+        text1.SetText("Pour terminer le tuto :");
+        text2.SetText("tuer tous les ennemis");
+        text3.SetText("continuer tous droit");
         pouce1.SetActive(false);
         pouce2.SetActive(false);
         pouce3.SetActive(false);
