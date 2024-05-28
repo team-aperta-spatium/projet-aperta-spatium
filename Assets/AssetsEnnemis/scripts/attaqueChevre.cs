@@ -21,9 +21,8 @@ public class attaqueChevre : MonoBehaviour
     {
         if(collision.tag != "ennemi")
         {
-            print(collision.gameObject.name);
             chevre.GetComponent<aiChevre>().confu = true;
-            chevre.GetComponent<aiChevre>().hit = false;
+            chevre.GetComponent<aiChevre>().attaquer = false;
             chevre.GetComponent<aiChevre>().animator.SetBool("Attaque", false);
             chevre.GetComponent<aiChevre>().Invoke("annuleConfu", 5f);
             if (collision.tag == "perso")

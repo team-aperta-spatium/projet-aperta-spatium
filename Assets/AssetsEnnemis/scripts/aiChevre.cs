@@ -12,7 +12,6 @@ public class aiChevre : MonoBehaviour
 
     public bool trouverPerso;
     public bool attaquer;
-    public bool hit;
     public bool confu;
     public bool etatMort;
 
@@ -31,19 +30,21 @@ public class aiChevre : MonoBehaviour
         if (!confu)
         {
             ennemie.isStopped = false;
-            if (!trouverPerso)
+            if (!trouverPerso && !attaquer)
             {
                 if (ennemie.pathPending || !ennemie.isOnNavMesh || ennemie.remainingDistance > 0.1f)
                     return;
                 trouverNouvelleDest();
+                animator.SetBool("trouverPerso", false);
             }
             else if(trouverPerso && !attaquer)
             {
                 ennemie.destination = ennemie.transform.position;
                 ennemie.transform.LookAt(new Vector3(joueur.transform.position.x, 0, joueur.transform.position.z));
                 setDirection = false;
+                animator.SetBool("trouverPerso", true);
             }
-            else if(trouverPerso && attaquer)
+            else if(attaquer)
             {
                 if (!setDirection)
                 {
@@ -57,7 +58,7 @@ public class aiChevre : MonoBehaviour
         else
         {
             ennemie.isStopped = true;
-            animator.SetBool("trouverPerso", true);
+            animator.SetBool("trouverPerso", false);
         }
 
         if (attaquer && !confu)
@@ -76,7 +77,6 @@ public class aiChevre : MonoBehaviour
         if (collision.tag == "perso")
         {   
             trouverPerso = true;
-            animator.SetBool("trouverPerso", true);
         }
     }
 
@@ -84,10 +84,7 @@ public class aiChevre : MonoBehaviour
     {
         if (collision.tag == "perso")
         {
-            animator.SetBool("trouverPerso", false);
             trouverPerso = false;
-            attaquer = false;
-            setDirection = false;
         }
     }
 
@@ -112,12 +109,12 @@ public class aiChevre : MonoBehaviour
     public void setAttaque()
     {
         animator.SetTrigger("preAttaque");
+        animator.SetBool("Attaque", true);
         Invoke("attaque", 1f);
     }
 
     public void attaque()
     {
-        animator.SetBool("Attaque", true);
         attaquer = true;
     }
 
