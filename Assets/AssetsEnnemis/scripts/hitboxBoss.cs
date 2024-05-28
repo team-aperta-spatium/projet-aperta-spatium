@@ -7,7 +7,7 @@ public class hitboxBoss : MonoBehaviour
     {
         if(collision.tag == "perso")
         {
-            collision.GetComponent<viePerso>().nbrViePerso -= 1;
+            viePerso.nbrViePerso -= 1;
             if (Physics.Linecast(transform.position, joueur.transform.position, out RaycastHit hitInfo))
             {
                 Vector3 forceBoss = hitInfo.point - joueur.transform.position;

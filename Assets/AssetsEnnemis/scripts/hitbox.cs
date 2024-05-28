@@ -19,7 +19,7 @@ public class hitbox : MonoBehaviour
     {
         if(collision.tag == "perso")
         {
-            collision.GetComponent<viePerso>().nbrViePerso -= 1;
+            viePerso.nbrViePerso -= 1;
             isHit = true;
         }
     }

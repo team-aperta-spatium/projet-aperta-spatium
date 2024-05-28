@@ -27,7 +27,7 @@ public class gestionVies : MonoBehaviour
     }
     void Update()
     {
-        vieActive = persoObj.GetComponent<viePerso>().nbrViePerso;
+        vieActive = viePerso.nbrViePerso;
 
         if (nbVies - vieActive > 0) { vie1.SetActive(false); }
         if (nbVies - vieActive > 1) { vie2.SetActive(false); }

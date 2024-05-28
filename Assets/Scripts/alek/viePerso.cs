@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class viePerso : MonoBehaviour
 {
-    public float nbrViePerso;
+    public static float nbrViePerso;
     public GameObject perso;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        nbrViePerso = 6;
     }
 
     // Update is called once per frame

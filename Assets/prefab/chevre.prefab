@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5520659030184819831}
   - component: {fileID: 7069445935895364886}
-  - component: {fileID: 2446883432265586569}
+  - component: {fileID: 3848361125621624787}
   m_Layer: 0
   m_Name: zoneAggro
   m_TagString: ennemi
@@ -54,7 +54,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 25, y: 2, z: 25}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &2446883432265586569
+--- !u!114 &3848361125621624787
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,7 +67,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chevre: {fileID: 6103195077381427057}
-  confu: 0
 --- !u!1 &5035710507519601241
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,8 +77,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3533117764118030484}
   - component: {fileID: 5283999094322563327}
-  - component: {fileID: 4778889240633979559}
   - component: {fileID: 6157195970532826004}
+  - component: {fileID: 1188213989569762352}
   m_Layer: 0
   m_Name: hitboxAttaque
   m_TagString: Untagged
@@ -123,22 +122,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.76, y: 1.65, z: 2.38}
   m_Center: {x: 0, y: 0, z: -0.71}
---- !u!114 &4778889240633979559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5035710507519601241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b513743ef51969645978a0dbde5433d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chevre: {fileID: 6103195077381427057}
-  joueur: {fileID: 0}
-  persoObj: {fileID: 0}
-  isHit: 0
 --- !u!54 &6157195970532826004
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -166,6 +149,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1188213989569762352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5035710507519601241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b513743ef51969645978a0dbde5433d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chevre: {fileID: 6103195077381427057}
+  joueur: {fileID: 0}
+  isHit: 0
 --- !u!1 &6103195077381427057
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +174,7 @@ GameObject:
   m_Component:
   - component: {fileID: 887183955926526395}
   - component: {fileID: 4332743866987491173}
-  - component: {fileID: 2701759136290854523}
+  - component: {fileID: 8985942624056990146}
   - component: {fileID: 589931702678039589}
   m_Layer: 0
   m_Name: chevre
@@ -225,7 +223,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2701759136290854523
+--- !u!114 &8985942624056990146
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -239,11 +237,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ennemie: {fileID: 4332743866987491173}
   joueur: {fileID: 0}
-  zoneAggro: {fileID: 1549929878296033045}
   hitboxAttaque: {fileID: 5035710507519601241}
   animator: {fileID: 6293647682823575304}
   trouverPerso: 0
   attaquer: 0
+  hit: 0
   confu: 0
   etatMort: 0
 --- !u!135 &589931702678039589

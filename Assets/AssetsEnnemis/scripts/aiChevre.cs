@@ -7,12 +7,12 @@ public class aiChevre : MonoBehaviour
 {
     public NavMeshAgent ennemie;
     public GameObject joueur;
+    public GameObject zoneAggro;
     public GameObject hitboxAttaque;
     public Animator animator;
 
     public bool trouverPerso;
     public bool attaquer;
-    public bool hit;
     public bool confu;
     public bool etatMort;
 
@@ -28,22 +28,24 @@ public class aiChevre : MonoBehaviour
 
     void Update()
     {
-        if (!confu)
+        if (!confu && !etatMort)
         {
             ennemie.isStopped = false;
-            if (!trouverPerso)
+            if (!trouverPerso && !attaquer)
             {
                 if (ennemie.pathPending || !ennemie.isOnNavMesh || ennemie.remainingDistance > 0.1f)
                     return;
                 trouverNouvelleDest();
+                animator.SetBool("trouverPerso", false);
             }
             else if(trouverPerso && !attaquer)
             {
                 ennemie.destination = ennemie.transform.position;
                 ennemie.transform.LookAt(new Vector3(joueur.transform.position.x, 0, joueur.transform.position.z));
                 setDirection = false;
+                animator.SetBool("trouverPerso", true);
             }
-            else if(trouverPerso && attaquer)
+            else if(attaquer)
             {
                 if (!setDirection)
                 {
@@ -51,12 +53,18 @@ public class aiChevre : MonoBehaviour
                     setDirection = true;
                 }
                 ennemie.updateRotation = false;
-                ennemie.Move(direction/2);
+                ennemie.Move(direction/2f);
             }
         }
         else
         {
             ennemie.isStopped = true;
+            animator.SetBool("trouverPerso", false);
+            hitboxAttaque.SetActive(false);
+            if (etatMort)
+            {
+                CancelInvoke();
+            }
         }
 
         if (attaquer && !confu)
@@ -66,14 +74,6 @@ public class aiChevre : MonoBehaviour
         else
         {
             hitboxAttaque.SetActive(false);
-        }
-
-        if (hit)
-        {
-            confu = true;
-            //hitboxAttaque.GetComponent<attaqueChevre>().isHit = true;
-            Invoke("annuleConfu", 5f);
-            hit = false;
         }
     }
 
@@ -91,8 +91,6 @@ public class aiChevre : MonoBehaviour
         if (collision.tag == "perso")
         {
             trouverPerso = false;
-            attaquer = false;
-            setDirection = false;
         }
     }
 
@@ -112,11 +110,31 @@ public class aiChevre : MonoBehaviour
         ennemie.transform.LookAt(new Vector3(joueur.transform.position.x, 0, joueur.transform.position.z));
         setDirection = false;
         confu = false;
+        zoneAggro.GetComponent<hitboxSetAttaque>().confu = false;
+    }
+
+    public void setAttaque()
+    {
+        animator.SetTrigger("preAttaque");
+        animator.SetBool("Attaque", true);
+        Invoke("attaque", 1f);
+    }
+
+    public void attaque()
+    {
+        attaquer = true;
     }
 
     public void mort()
     {
+        animator.SetBool("mort", true);
         etatMort = true;
+        StartCoroutine(destroy());
+    }
+
+    IEnumerator destroy()
+    {
+        yield return new WaitForSeconds(5f);
         Destroy(gameObject);
     }
 }
