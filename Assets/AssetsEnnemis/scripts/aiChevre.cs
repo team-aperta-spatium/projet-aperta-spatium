@@ -28,7 +28,7 @@ public class aiChevre : MonoBehaviour
 
     void Update()
     {
-        if (!confu)
+        if (!confu && !etatMort)
         {
             ennemie.isStopped = false;
             if (!trouverPerso && !attaquer)
@@ -60,6 +60,11 @@ public class aiChevre : MonoBehaviour
         {
             ennemie.isStopped = true;
             animator.SetBool("trouverPerso", false);
+            hitboxAttaque.SetActive(false);
+            if (etatMort)
+            {
+                CancelInvoke();
+            }
         }
 
         if (attaquer && !confu)
@@ -122,8 +127,14 @@ public class aiChevre : MonoBehaviour
 
     public void mort()
     {
-        animator.SetTrigger("morty");
+        animator.SetBool("mort", true);
         etatMort = true;
+        StartCoroutine(destroy());
+    }
+
+    IEnumerator destroy()
+    {
+        yield return new WaitForSeconds(5f);
         Destroy(gameObject);
     }
 }
