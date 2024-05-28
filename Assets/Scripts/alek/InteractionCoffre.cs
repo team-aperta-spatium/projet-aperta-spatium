@@ -1,4 +1,4 @@
-using BrewedInk.CRT;
+//using BrewedInk.CRT;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -51,7 +51,7 @@ public class InteractionCoffre : MonoBehaviour
         {
             if (Input.GetKeyDown("e"))
             {
-                laCamera.GetComponent<CRTCameraBehaviour>().enabled = true;
+                //laCamera.GetComponent<CRTCameraBehaviour>().enabled = true;
                 ctnMiniJeu.SetActive(true);
                 jeuActif = true;
                 Invoke("activerJeu", 2f);

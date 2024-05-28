@@ -1,4 +1,4 @@
-using BrewedInk.CRT;
+//using BrewedInk.CRT;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -170,7 +170,7 @@ public class duplicateur : MonoBehaviour
     public void Defaite()
     {
         CancelInvoke();
-        laCamera.GetComponent<CRTCameraBehaviour>().enabled = false;
+        //laCamera.GetComponent<CRTCameraBehaviour>().enabled = false;
         ctnMiniJeu.SetActive(false);
         laCamera.GetComponent<Camera>().enabled = false;
         laCamera.GetComponent<AudioListener>().enabled = false;
