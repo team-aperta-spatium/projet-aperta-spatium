@@ -7,6 +7,7 @@ public class aiChevre : MonoBehaviour
 {
     public NavMeshAgent ennemie;
     public GameObject joueur;
+    public GameObject zoneAggro;
     public GameObject hitboxAttaque;
     public Animator animator;
 
@@ -104,6 +105,7 @@ public class aiChevre : MonoBehaviour
         ennemie.transform.LookAt(new Vector3(joueur.transform.position.x, 0, joueur.transform.position.z));
         setDirection = false;
         confu = false;
+        zoneAggro.GetComponent<hitboxSetAttaque>().confu = false;
     }
 
     public void setAttaque()

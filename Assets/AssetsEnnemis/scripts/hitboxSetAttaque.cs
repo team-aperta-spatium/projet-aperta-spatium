@@ -5,11 +5,18 @@ using UnityEngine;
 public class hitboxSetAttaque : MonoBehaviour
 {
     public GameObject chevre;
-    private void OnTriggerEnter(Collider collision)
+    public bool confu;
+
+    private void Start()
     {
-        if(collision.tag == "perso") 
+        confu = false;
+    }
+    private void OnTriggerStay(Collider collision)
+    {
+        if(collision.tag == "perso" && !confu) 
         {
             chevre.GetComponent<aiChevre>().setAttaque();
+            confu = true;
         }
     }
 
