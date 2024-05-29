@@ -15,4 +15,4 @@ MonoBehaviour:
   enPossesion: 0
   nom: Ralenti temps
   actif: 0
-  description: permet de ralentir le temps
+  description: permet de ralentir le temps. Appuie sur r pour l'activer.

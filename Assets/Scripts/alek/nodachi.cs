@@ -33,6 +33,7 @@ public class nodachi : MonoBehaviour
     float dmgNormal;
     float dmgLourd;
     float dmgSpeciale;
+    float dmgEquipement;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +59,7 @@ public class nodachi : MonoBehaviour
         dmgNormal = 34;
         dmgLourd = 50;
         dmgSpeciale = 100;
+        dmgEquipement = 100;
     }
 
     // Update is called once per frame
@@ -200,7 +202,7 @@ public class nodachi : MonoBehaviour
                             }
                             else if (Input.GetKeyUp(KeyCode.Q))
                             {
-                                attaqueEquipement = false;
+                                attaqueEquipementPrep = false;
                                 attaqueEquipement = true;
                                 GetComponent<Animator>().SetBool("attaqueEquipementPrep", false);
                                 GetComponent<Animator>().SetBool("attaqueEquipement", true);
@@ -267,7 +269,7 @@ public class nodachi : MonoBehaviour
 
             if (attaqueEquipement && Time.timeScale != 0)
             {
-                mouvement2.endurance -= 0.1f;
+                mouvement2.endurance -= 0.3f;
             }
 
             if (cdAttaque > 0)
@@ -293,6 +295,10 @@ public class nodachi : MonoBehaviour
             {
                 other.gameObject.GetComponent<vieEnnemi>().nbrVie -= dmgSpeciale;
             }
+            else if (attaqueEquipement)
+            {
+                other.gameObject.GetComponent<vieEnnemi>().nbrVie -= dmgEquipement;
+            }
         }
 
         if (other.gameObject.tag == "boss")
@@ -308,6 +314,10 @@ public class nodachi : MonoBehaviour
             else if (attaqueSpeciale)
             {
                 other.gameObject.GetComponentInParent<comportementBoss>().nbrVies -= dmgSpeciale;
+            }
+            else if (attaqueEquipement)
+            {
+                other.gameObject.GetComponentInParent<comportementBoss>().nbrVies -= dmgEquipement;
             }
         }
     }

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc3d961a75736c48b9fe3c002942132, type: 3}
   m_Name: attaqueTornade
   m_EditorClassIdentifier: 
-  enPossesion: 0
+  enPossesion: 1
   nom: Attaque tornade
-  actif: 0
-  description: rajoute une attaque qui fait plusieurs rotation autour du perso
+  actif: 1
+  description: rajoute une attaque qui fait plusieurs rotation autour du perso. Appuie
+    sur q pour l'activer.

@@ -15,4 +15,4 @@ MonoBehaviour:
   enPossesion: 0
   nom: Clonage
   actif: 0
-  description: permet de creer un clone du perso
+  description: permet de creer un clone du perso. Appuie sur t pour l'activer.
