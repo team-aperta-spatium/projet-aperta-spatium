@@ -73,5 +73,6 @@ Material:
     m_Floats:
     - _GlossMapScale: 0.41
     - _Smoothness: 0.41
+    - _SpecularHighlights: 1
     m_Colors: []
   m_BuildTextureStacks: []
