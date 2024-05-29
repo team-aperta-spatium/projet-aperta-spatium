@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class AI : MonoBehaviour
 {
     public NavMeshAgent ennemie;
-    public GameObject joueur;
+    GameObject joueur;
     public GameObject hitbox;
     public GameObject nav;
     public bool trouverPerso;
@@ -23,6 +23,7 @@ public class AI : MonoBehaviour
         etatMort = false;
         trouverPerso = false;
         distanceStop = ennemie.stoppingDistance;
+        joueur = GameObject.Find("perso");
     }
 
     // Update is called once per frame

@@ -7,7 +7,7 @@ public class gestionVies : MonoBehaviour
 {
     float nbVies = 6;
     public float vieActive;
-    public GameObject persoObj;
+    GameObject persoObj;
 
 
     public GameObject vie1;
@@ -24,6 +24,8 @@ public class gestionVies : MonoBehaviour
         vie4.SetActive(true);
         vie5.SetActive(true);
         vie6.SetActive(true);
+
+        persoObj = GameObject.Find("persoObj");
     }
     void Update()
     {

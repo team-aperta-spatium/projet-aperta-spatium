@@ -28,6 +28,8 @@ public class coffre : MonoBehaviour
         persoGO = perso.GetComponent<Rigidbody>();
         cameraPerso = GameObject.Find("cameraPerso");
         parentTxt = GameObject.Find("txtProximite");
+        canvasMiniJeu = GameObject.Find("canvasMiniJeu");
+        cameraMiniJeu = GameObject.Find("cameraMiniJeu");
     }
 
     // Update is called once per frame
@@ -42,7 +44,7 @@ public class coffre : MonoBehaviour
                 canvasMiniJeu.SetActive(true);
                 cameraPerso.GetComponent<Camera>().enabled = false;
                 cameraPerso.GetComponent<AudioListener>().enabled = false;
-                cameraMiniJeu.SetActive(true);
+                cameraMiniJeu.GetComponent<Camera>().enabled = true;
                 cameraMiniJeu.GetComponent<AudioListener>().enabled = true;
                 canvasMiniJeuActif = true;
                 refClone.SetActive(true);

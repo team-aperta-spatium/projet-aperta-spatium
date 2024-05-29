@@ -43,6 +43,9 @@ public class InteractionCoffre : MonoBehaviour
         jeuActif = false;
 
         duplicateur = GameObject.Find("duplicateur");
+
+        laCamera = GameObject.Find("cameraMiniJeu");
+        ctnMiniJeu = GameObject.Find("ctnMiniJeu");
     }
 
     void Update()

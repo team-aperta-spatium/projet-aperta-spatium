@@ -22,6 +22,10 @@ TagManager:
   - Dash rapide
   - Ralenti temps
   - Clonage
+  - prefabAttaqueTornade
+  - prefabClonage
+  - prefabDashRapide
+  - prefabRalentiTemps
   layers:
   - Default
   - TransparentFX

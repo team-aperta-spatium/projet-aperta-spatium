@@ -9,6 +9,10 @@ public class gestionAmelioPourTestUtil : MonoBehaviour
     public inventaire amelioration;
     public GameObject txtTripleSaut;
     public GameObject txtDoubleDash;
+    public GameObject txtAttaqueTornade;
+    public GameObject txtClonage;
+    public GameObject txtDashRapide;
+    public GameObject txtRalentiTemps;
     GameObject perso;
     GameObject parentTxt;
     GameObject txtClone;
@@ -57,6 +61,22 @@ public class gestionAmelioPourTestUtil : MonoBehaviour
         else if (gameObject.tag == "prefabDoubleDash")
         {
             txtClone = Instantiate(txtDoubleDash);
+        }
+        else if (gameObject.tag == "prefabClonage")
+        {
+            txtClone = Instantiate(txtClonage);
+        }
+        else if (gameObject.tag == "prefabAttaqueTornade")
+        {
+            txtClone = Instantiate(txtAttaqueTornade);
+        }
+        else if (gameObject.tag == "prefabDashRapide")
+        {
+            txtClone = Instantiate(txtDashRapide);
+        }
+        else if (gameObject.tag == "prefabRalentiTemps")
+        {
+            txtClone = Instantiate(txtRalentiTemps);
         }
 
         txtClone.SetActive(true);

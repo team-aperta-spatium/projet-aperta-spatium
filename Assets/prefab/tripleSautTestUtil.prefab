@@ -123,6 +123,10 @@ MonoBehaviour:
   amelioration: {fileID: 11400000, guid: 4eb7f31871c554345800424b5a9ac50d, type: 2}
   txtTripleSaut: {fileID: 2504317678538222717, guid: c28bfe70c6a8a4444b25f5fc09cf2fff, type: 3}
   txtDoubleDash: {fileID: 2504317678538222717, guid: 9a878c3152f1f6749b1a5d0fa5d624bd, type: 3}
+  txtAttaqueTornade: {fileID: 2504317678538222717, guid: af2ecfd577d65f64aa17c3798c233158, type: 3}
+  txtClonage: {fileID: 2504317678538222717, guid: f9a66564fbf50ed42843fbcb45edaa7c, type: 3}
+  txtDashRapide: {fileID: 2504317678538222717, guid: e212deade2ca19a44805f0066826e850, type: 3}
+  txtRalentiTemps: {fileID: 2504317678538222717, guid: 64e50c35fa4aaaa47905646c9994b60d, type: 3}
 --- !u!54 &5123343367115707238
 Rigidbody:
   m_ObjectHideFlags: 0

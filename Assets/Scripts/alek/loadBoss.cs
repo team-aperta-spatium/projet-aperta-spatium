@@ -36,7 +36,7 @@ public class loadBoss : MonoBehaviour
         {
             if (peutCharger)
             {
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene(3);
             }
         }
     }
