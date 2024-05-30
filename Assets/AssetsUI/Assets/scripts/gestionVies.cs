@@ -31,11 +31,75 @@ public class gestionVies : MonoBehaviour
     {
         vieActive = viePerso.nbrViePerso;
 
-        if (nbVies - vieActive > 0) { vie1.SetActive(false); }
-        if (nbVies - vieActive > 1) { vie2.SetActive(false); }
-        if (nbVies - vieActive > 2) { vie3.SetActive(false); }
-        if (nbVies - vieActive > 3) { vie4.SetActive(false); }
-        if (nbVies - vieActive > 4) { vie5.SetActive(false); }
-        if (nbVies - vieActive > 5) { vie6.SetActive(false); }
+        //if (nbVies - vieActive > 0) { vie1.SetActive(false); }
+        //if (nbVies - vieActive > 1) { vie2.SetActive(false); }
+        //if (nbVies - vieActive > 2) { vie3.SetActive(false); }
+        //if (nbVies - vieActive > 3) { vie4.SetActive(false); }
+        //if (nbVies - vieActive > 4) { vie5.SetActive(false); }
+        //if (nbVies - vieActive > 5) { vie6.SetActive(false); }
+
+        if (vieActive == 0)
+        {
+            vie1.SetActive(false);
+            vie2.SetActive(false);
+            vie3.SetActive(false);
+            vie4.SetActive(false);
+            vie5.SetActive(false);
+            vie6.SetActive(false);
+        }
+        if (vieActive == 1) 
+        { 
+            vie1.SetActive(true);
+            vie2.SetActive(false);
+            vie3.SetActive(false);
+            vie4.SetActive(false);
+            vie5.SetActive(false);
+            vie6.SetActive(false);
+        }
+        if (vieActive == 2) 
+        {
+            vie1.SetActive(true);
+            vie2.SetActive(true);
+            vie3.SetActive(false);
+            vie4.SetActive(false);
+            vie5.SetActive(false);
+            vie6.SetActive(false);
+        }
+        if (vieActive == 3) 
+        {
+            vie1.SetActive(true);
+            vie2.SetActive(true);
+            vie3.SetActive(true);
+            vie4.SetActive(false);
+            vie5.SetActive(false);
+            vie6.SetActive(false);
+        }
+        if (vieActive == 4) 
+        {
+            vie1.SetActive(true);
+            vie2.SetActive(true);
+            vie3.SetActive(true);
+            vie4.SetActive(true);
+            vie5.SetActive(false);
+            vie6.SetActive(false);
+        }
+        if (vieActive == 5) 
+        {
+            vie1.SetActive(true);
+            vie2.SetActive(true);
+            vie3.SetActive(true);
+            vie4.SetActive(true);
+            vie5.SetActive(true);
+            vie6.SetActive(false);
+        }
+        if (vieActive == 6) 
+        {
+            vie1.SetActive(true);
+            vie2.SetActive(true);
+            vie3.SetActive(true);
+            vie4.SetActive(true);
+            vie5.SetActive(true);
+            vie6.SetActive(true);
+        }
     }
 }

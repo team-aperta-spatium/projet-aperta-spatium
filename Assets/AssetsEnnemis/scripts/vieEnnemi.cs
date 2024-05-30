@@ -6,6 +6,12 @@ public class vieEnnemi : MonoBehaviour
 {
     public float nbrVie;
     public GameObject ennemie;
+    bool peutViePerso;
+
+    private void Start()
+    {
+        peutViePerso = true;
+    }
 
     void Update()
     {
@@ -19,7 +25,12 @@ public class vieEnnemi : MonoBehaviour
             {
                 ennemie.GetComponent<aiChevre>().mort();
             }
-            
+
+            if (peutViePerso)
+            {
+                viePerso.nbrViePerso += 1;
+                peutViePerso = false;
+            }
         }
     }
 

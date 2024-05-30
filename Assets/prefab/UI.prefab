@@ -361,13 +361,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vieActive: 6
-  persoObj: {fileID: 0}
-  vie1: {fileID: 5694061831407956678}
-  vie2: {fileID: 8494432979155753783}
-  vie3: {fileID: 5999180378194639201}
-  vie4: {fileID: 8919225943568447156}
-  vie5: {fileID: 8662404483647048679}
-  vie6: {fileID: 4170802478016043063}
+  vie1: {fileID: 8662404483647048679}
+  vie2: {fileID: 5999180378194639201}
+  vie3: {fileID: 8494432979155753783}
+  vie4: {fileID: 4170802478016043063}
+  vie5: {fileID: 8919225943568447156}
+  vie6: {fileID: 5694061831407956678}
 --- !u!1 &3941207869568575942
 GameObject:
   m_ObjectHideFlags: 0
