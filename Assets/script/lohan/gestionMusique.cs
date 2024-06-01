@@ -12,7 +12,7 @@ public class gestionMusique : MonoBehaviour
     public AudioClip musique;
     public AudioClip ok;
     public AudioClip footstep;
-
+    [Header("Valeurs autres")]
     public GameObject perso;
     public float multiPitch;
 
