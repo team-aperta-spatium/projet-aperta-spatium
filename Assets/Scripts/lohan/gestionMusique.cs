@@ -12,7 +12,7 @@ public class gestionMusique : MonoBehaviour
     public AudioClip musique;
     public AudioClip ok;
     public AudioClip footstep;
-
+    [Header("valeurs autres")]
     public GameObject perso;
     public float multiPitch;
 
@@ -23,6 +23,9 @@ public class gestionMusique : MonoBehaviour
 
         bruitPas.clip = footstep;
         bruitPas.Play();
+
+        DontDestroyOnLoad(gameObject);
+        print("ok");
     }
     private void Update()
     {
