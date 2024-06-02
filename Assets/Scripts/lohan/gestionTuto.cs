@@ -43,6 +43,8 @@ public class gestionTuto : MonoBehaviour
         mouse0 = false;
         mouse1 = false;
         alt = false;
+
+        gestionAudio = GameObject.Find("gestionMusique");
     }
 
     // Update is called once per frame

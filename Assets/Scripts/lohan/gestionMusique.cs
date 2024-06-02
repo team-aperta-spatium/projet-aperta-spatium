@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class gestionMusique : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class gestionMusique : MonoBehaviour
     public GameObject perso;
     public float multiPitch;
 
+    private Scene scene;
+
     private void Start()
     {
         sourceMusique.clip = musique;
@@ -25,11 +28,17 @@ public class gestionMusique : MonoBehaviour
         bruitPas.Play();
 
         DontDestroyOnLoad(gameObject);
-        print("ok");
+        Scene scene = SceneManager.GetActiveScene();
     }
     private void Update()
     {
-        if (perso.GetComponent<Rigidbody>().velocity != new Vector3(0,0,0) && (perso.GetComponent<mouvement2>().etat == mouvement2.etatMouve.marche || perso.GetComponent<mouvement2>().etat == mouvement2.etatMouve.course))
+        if(SceneManager.GetActiveScene() != scene)
+        {
+            perso = GameObject.Find("/persoParent/perso");
+            scene = SceneManager.GetActiveScene();
+        }
+
+        if (perso != null && perso.GetComponent<Rigidbody>().velocity != new Vector3(0,0,0) && (perso.GetComponent<mouvement2>().etat == mouvement2.etatMouve.marche || perso.GetComponent<mouvement2>().etat == mouvement2.etatMouve.course))
         {
             if(perso.GetComponent<Rigidbody>().velocity.x > perso.GetComponent<Rigidbody>().velocity.z)
             {

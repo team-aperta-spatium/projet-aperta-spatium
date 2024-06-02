@@ -259,7 +259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6282461544353076454, guid: bd1a123259fdc3f4c81848d27729de55, type: 3}
       propertyPath: m_Name
-      value: perso
+      value: persoParent
       objectReference: {fileID: 0}
     - target: {fileID: 8816218178629474455, guid: bd1a123259fdc3f4c81848d27729de55, type: 3}
       propertyPath: m_IsActive
@@ -397,6 +397,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a17853efc20a8e54d9596a10d411f989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  joueur: {fileID: 0}
+  renard: {fileID: 0}
 --- !u!1 &262400723
 GameObject:
   m_ObjectHideFlags: 0
@@ -2589,7 +2591,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.33333334
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: eec789ccb14210f449a10c626fca8247, type: 2}
   m_BuildHeightMesh: 0
