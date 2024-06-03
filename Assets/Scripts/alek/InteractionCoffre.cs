@@ -51,15 +51,12 @@ public class InteractionCoffre : MonoBehaviour
     void Update()
     {
         if (jeuActif == false)
-        {
-            if (Input.GetKeyDown("e"))
-            {
-                //laCamera.GetComponent<CRTCameraBehaviour>().enabled = true;
-                ctnMiniJeu.SetActive(true);
-                jeuActif = true;
-                Invoke("activerJeu", 2f);
-                print("ok");
-            }
+        {  
+            //laCamera.GetComponent<CRTCameraBehaviour>().enabled = true;
+            ctnMiniJeu.SetActive(true);
+            jeuActif = true;
+            Invoke("activerJeu", 2f);
+            print("ok");
         }
     }
 
