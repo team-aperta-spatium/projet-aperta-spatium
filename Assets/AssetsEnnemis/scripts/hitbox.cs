@@ -18,7 +18,7 @@ public class hitbox : MonoBehaviour
     }
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.name == "persoObj" && !aPerduVie)
+        if(collision.tag == "perso" && !aPerduVie)
         {
             viePerso.nbrViePerso -= 1;
             isHit = true;

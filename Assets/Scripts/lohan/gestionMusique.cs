@@ -23,6 +23,7 @@ public class gestionMusique : MonoBehaviour
     public AudioClip coupEpeeFort1;
     public AudioClip coupEpeeFort2;
     public AudioClip musiqueEnnemi;
+    public AudioClip musiqueBoss;
     [Header("valeurs autres")]
     public GameObject perso;
     public float multiPitch;
@@ -51,6 +52,11 @@ public class gestionMusique : MonoBehaviour
             if(scene.name == "tutoriel")
             {
                 jouerNarrateur();
+            }
+            else if(scene.name == "bossTrueModel")
+            {
+                jouerMusiqueBoss();
+                StopAllCoroutines();
             }
         }
 
@@ -176,5 +182,12 @@ public class gestionMusique : MonoBehaviour
         sound.Play();
         yield return new WaitForSeconds(l - endIntro);
         goto LOOP;
+    }
+
+    public void jouerMusiqueBoss()
+    {
+        sourceMusique.clip = musiqueBoss;
+        sourceMusique.loop = true;
+        sourceMusique.Play();
     }
 }

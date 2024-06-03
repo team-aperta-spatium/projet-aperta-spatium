@@ -2460,10 +2460,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: chevre
       objectReference: {fileID: 0}
-    - target: {fileID: 6103195077381427057, guid: 165869c93bc10c94e91f56065d9cddb5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8985942624056990146, guid: 165869c93bc10c94e91f56065d9cddb5, type: 3}
       propertyPath: joueur
       value: 

@@ -4,6 +4,7 @@ public class nodachi : MonoBehaviour
 {
     public float tempCdAttaque;
     public inventaire equipementAttaque;
+    public GameObject gestionMusique;
 
     bool attaque1EnCours;
     bool attaque2EnCours;
@@ -38,6 +39,8 @@ public class nodachi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gestionMusique = GameObject.Find("gestionMusique");
+
         attaque1EnCours = false;
         attaque2EnCours = false;
         attaque3EnCours = false;
@@ -96,6 +99,7 @@ public class nodachi : MonoBehaviour
                             if (!attaque1EnCours && !attaque2EnCours && !attaque3EnCours)
                             {
                                 GetComponent<Animator>().SetBool("attaque1", true);
+                                gestionMusique.GetComponent<gestionMusique>().jouerEpeeFaible();
                                 Invoke("ArretAttaque1", 1f);
                                 attaque1EnCours = true;
                                 timerAttaque1 = 1f;
@@ -127,6 +131,7 @@ public class nodachi : MonoBehaviour
                             if (!attaqueLourd1EnCours && !attaqueLourd2EnCours)
                             {
                                 GetComponent<Animator>().SetBool("attaqueLourd1", true);
+                                gestionMusique.GetComponent<gestionMusique>().jouerEpeeFaible();
                                 Invoke("ArretAttaqueLourd1", 2.5f);
                                 attaqueLourd1EnCours = true;
                                 timerAttaqueLourd1 = 2.5f;
@@ -207,6 +212,7 @@ public class nodachi : MonoBehaviour
                                 GetComponent<Animator>().SetBool("attaqueEquipementPrep", false);
                                 GetComponent<Animator>().SetBool("attaqueEquipement", true);
                                 mouvement2.actionEnCours = true;
+                                gestionMusique.GetComponent<gestionMusique>().jouerEpeeFort();
                                 Invoke("ArretAttaqueEquipement", 1.59f);
                             }
                         }
@@ -332,6 +338,7 @@ public class nodachi : MonoBehaviour
         timerAttaque2 = 1f;
         timerAttaque1 = 0f;
         mouvement2.actionEnCours = true;
+        gestionMusique.GetComponent<gestionMusique>().jouerEpeeFaible();
     }
 
     void Attaque3()
@@ -343,6 +350,7 @@ public class nodachi : MonoBehaviour
         GetComponent<Animator>().SetBool("attaque2", false);
         timerAttaque2 = 0f;
         mouvement2.actionEnCours = true;
+        gestionMusique.GetComponent<gestionMusique>().jouerEpeeFaible();
     }
     
     void AttaqueLourd2()
@@ -354,6 +362,7 @@ public class nodachi : MonoBehaviour
         GetComponent<Animator>().SetBool("attaqueLourd1", false);
         timerAttaqueLourd1 = 0f;
         mouvement2.actionEnCours = true;
+        gestionMusique.GetComponent<gestionMusique>().jouerEpeeFort();
     }
 
     void AttaqueSpeciale1()
@@ -366,6 +375,7 @@ public class nodachi : MonoBehaviour
         timerAttaqueSpecialePrep = 0f;
         mouvement2.endurance -= 5;
         mouvement2.actionEnCours = true;
+        gestionMusique.GetComponent<gestionMusique>().jouerEpeeFort();
     }
     
     void AttaqueSpeciale2()
@@ -378,6 +388,7 @@ public class nodachi : MonoBehaviour
         timerAttaqueSpecialePrep = 0f;
         mouvement2.endurance -= 5;
         mouvement2.actionEnCours = true;
+        gestionMusique.GetComponent<gestionMusique>().jouerEpeeFort();
     }
 
     void ArretAttaque1()
