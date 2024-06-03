@@ -12,6 +12,8 @@ public class mouvementClonePerso : MonoBehaviour
     public float distanceAttaque;
     public inventaire clonage;
     public int nbrAttaque;
+    float timerMort;
+    public GameObject jondo;
 
     NavMeshAgent agent;
 
@@ -19,12 +21,16 @@ public class mouvementClonePerso : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        timerMort = 20f;
+        peutAttaquer = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         GameObject[] ennemies = GameObject.FindGameObjectsWithTag("ennemi");
+
+        timerMort -= Time.deltaTime;
 
         foreach (GameObject ennemie in ennemies)
         {
@@ -34,7 +40,8 @@ public class mouvementClonePerso : MonoBehaviour
             {
                 if (distanceAUnEnnemie <= distanceAttaque)
                 {
-                    agent.isStopped = true;
+                    //agent.isStopped = true;
+
 
                     if (peutAttaquer)
                     {
@@ -61,15 +68,23 @@ public class mouvementClonePerso : MonoBehaviour
             }
             else
             {
-                agent.isStopped =true;
-            }
-            
-            if (ennemieDetecter)
-            {
-                
+                //agent.isStopped = true;
             }
         }
 
-        Debug.Log(nbrAttaque);
+        if (timerMort <= 0)
+        {
+            Destroy(gameObject);
+            clonageScript.nbrClone -= 1;
+        }
+
+        if (GetComponent<NavMeshAgent>().velocity.magnitude > 0.1)
+        {
+            jondo.GetComponent<Animator>().SetBool("cours", true);
+        }
+        else
+        {
+            jondo.GetComponent<Animator>().SetBool("cours", false);
+        }
     }
 }

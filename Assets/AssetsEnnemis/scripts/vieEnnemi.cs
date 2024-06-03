@@ -17,6 +17,12 @@ public class vieEnnemi : MonoBehaviour
     {
         if (nbrVie <= 0)
         {
+            if (peutViePerso)
+            {
+                viePerso.nbrViePerso += 1;
+                peutViePerso = false;
+            }
+
             if (ennemie.name.Contains("ennemie"))
             {
                 ennemie.GetComponent<AI>().mort();
@@ -24,12 +30,6 @@ public class vieEnnemi : MonoBehaviour
             else if (ennemie.name.Contains("chevre"))
             {
                 ennemie.GetComponent<aiChevre>().mort();
-            }
-
-            if (peutViePerso)
-            {
-                viePerso.nbrViePerso += 1;
-                peutViePerso = false;
             }
         }
     }

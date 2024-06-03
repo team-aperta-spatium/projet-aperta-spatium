@@ -6,6 +6,7 @@ public class clonageScript : MonoBehaviour
 {
     public inventaire clonage;
     public GameObject clonePerso;
+    public static float nbrClone;
 
     // Start is called before the first frame update
     void Start()
@@ -20,9 +21,13 @@ public class clonageScript : MonoBehaviour
 
         if (clonage.actif)
         {
-            if (Input.GetKeyDown(KeyCode.T))
+            if (nbrClone < 2)
             {
-                GameObject clone = Instantiate(clonePerso, new Vector3(perso.transform.position.x + 5, perso.transform.position.y, perso.transform.position.z) , perso.transform.rotation);
+                if (Input.GetKeyDown(KeyCode.T))
+                {
+                    GameObject clone = Instantiate(clonePerso, new Vector3(perso.transform.position.x + 5, perso.transform.position.y, perso.transform.position.z) , perso.transform.rotation);
+                    nbrClone += 1;
+                }
             }
         }
     }

@@ -21,6 +21,6 @@ public class viePerso : MonoBehaviour
         {
             SceneManager.LoadScene("mort");
         }
-        Debug.Log(nbrViePerso);
+        //Debug.Log(nbrViePerso);
     }
 }

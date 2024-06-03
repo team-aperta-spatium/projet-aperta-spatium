@@ -413,10 +413,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1167814297409148303}
-  - component: {fileID: 8200324661104569668}
-  - component: {fileID: 3731133982526144716}
-  - component: {fileID: 3401671744145267586}
-  - component: {fileID: 4485277410361693537}
   - component: {fileID: 195460285763291142}
   - component: {fileID: 4096332135103868863}
   m_Layer: 0
@@ -443,105 +439,6 @@ Transform:
   - {fileID: 3535011194998993300}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &8200324661104569668
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5347591807024957207}
-  serializedVersion: 4
-  m_Mass: 2
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 112
-  m_CollisionDetection: 1
---- !u!114 &3731133982526144716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5347591807024957207}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c5bbe2246e5d6e4fa143292238faea2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dragSol: 6
-  vitesseMarche: 10
-  vitesseCourse: 20
-  vitesseDash: 40
-  facteurChangeVitesseDash: 100
-  vitesseYMax: 0
-  forceSaut: 20
-  cdSaut: 0.5
-  multiplicateurAir: 0.2
-  vitesseAccroupi: 5
-  echelleYAccroupi: 0.5
-  anglePentesMax: 60
-  hauteurPerso: 2
-  quoiSol:
-    serializedVersion: 2
-    m_Bits: 8
-  etat: 0
-  enDash: 0
-  camPerso: {fileID: 0}
-  uiEnergie: {fileID: 0}
-  orientation: {fileID: 887555498216947123}
---- !u!114 &3401671744145267586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5347591807024957207}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 310d6f10b5fc10049a0362935aa19d0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dashRapide: {fileID: 11400000, guid: 95822da8a11e3064d9aa1cfb882c5a92, type: 2}
-  orientation: {fileID: 887555498216947123}
-  cameraPerso: {fileID: 0}
-  forceDashInitiale: 40
-  forceDashHaut: 0
-  dureeDash: 0.25
-  cdDash: 1.5
-  vitesseDashYMax: 0
-  cam: {fileID: 0}
-  fovDash: 90
-  utiliseCameraAvant: 1
-  permettreTousDirections: 1
-  desactiverGravite: 1
-  reiniVel: 1
---- !u!114 &4485277410361693537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5347591807024957207}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79f9a83a6424a774b87535d89846dc80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ralentiTemps: {fileID: 11400000, guid: a024347617bc39e4b8fe1bd99bfd75f5, type: 2}
 --- !u!195 &195460285763291142
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -552,7 +449,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -581,6 +478,7 @@ MonoBehaviour:
   distanceAttaque: 3
   clonage: {fileID: 11400000, guid: a8bfb7f5d7eecef40902dc630da9f87b, type: 2}
   nbrAttaque: 0
+  jondo: {fileID: 5839075390885333257}
 --- !u!1 &7913242603546928395
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,6 +724,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53842f65fd7efcd4a81750a506c98e0f, type: 3}
+--- !u!1 &5839075390885333257 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4867473190544681370, guid: 53842f65fd7efcd4a81750a506c98e0f, type: 3}
+  m_PrefabInstance: {fileID: 1334241084365414547}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6504113261200430003 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5244280960192049952, guid: 53842f65fd7efcd4a81750a506c98e0f, type: 3}

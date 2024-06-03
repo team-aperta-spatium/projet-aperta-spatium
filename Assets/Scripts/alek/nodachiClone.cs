@@ -383,6 +383,7 @@ public class nodachiClone : MonoBehaviour
         attaque3EnCours = false;
         cdAttaque = tempCdAttaque;
         attaqueNormale = false;
+        clonePerso.GetComponent<mouvementClonePerso>().peutAttaquer = true;
     }
 
     void ArretAttaqueLourd1()
@@ -399,6 +400,7 @@ public class nodachiClone : MonoBehaviour
         attaqueLourd2EnCours = false;
         cdAttaque = tempCdAttaque;
         attaqueLourde = false;
+        clonePerso.GetComponent<mouvementClonePerso>().peutAttaquer = true;
     }
 
     void ArretAttaqueSpeciale1()
@@ -421,5 +423,6 @@ public class nodachiClone : MonoBehaviour
     {
         GetComponent<Animator>().SetBool("attaqueEquipement", false);
         attaqueEquipement = false;
+        clonePerso.GetComponent<mouvementClonePerso>().peutAttaquer = true;
     }
 }

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enPossesion: 0
   nom: Clonage
-  actif: 0
+  actif: 1
   description: permet de creer un clone du perso. Appuie sur t pour l'activer.

@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class gestionJeu : MonoBehaviour
 {
-    public GameObject canvasUI;
-
-    bool canvasUIActif;
+    public inventaire artefact1;
+    public inventaire artefact2;
+    public inventaire artefact3;
+    public GameObject colone1;
+    public GameObject colone2;
+    public GameObject colone3;
+    public GameObject colone4;
 
     // Start is called before the first frame update
     void Start()
@@ -17,26 +21,24 @@ public class gestionJeu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (artefact1.enPossesion)
         {
-            if (!canvasUIActif)
-            {
-                canvasUIActif = true;
-                //canvasUI.GetComponent<Canvas>().enabled = true;
-                canvasUI.SetActive(true);
-                Time.timeScale = 0f;
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
-            else
-            {
-                canvasUIActif = false;
-                //canvasUI.GetComponent<Canvas>().enabled = false;
-                canvasUI.SetActive(false);
-                Time.timeScale = 1f;
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
+            Destroy(colone1);
+        }
+
+        if (artefact2.enPossesion)
+        {
+            Destroy(colone2);
+        }
+
+        if (artefact3.enPossesion)
+        {
+            Destroy(colone3);
+        }
+        
+        if (artefact1.enPossesion && artefact2.enPossesion && artefact3.enPossesion)
+        {
+            Instantiate(colone4);
         }
     }
 }
