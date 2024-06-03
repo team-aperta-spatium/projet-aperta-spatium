@@ -9,6 +9,7 @@ public class aiChevre : MonoBehaviour
     public GameObject joueur;
     public GameObject zoneAggro;
     public GameObject hitboxAttaque;
+    public GameObject gestionMusique;
     public Animator animator;
 
     public bool trouverPerso;
@@ -24,6 +25,7 @@ public class aiChevre : MonoBehaviour
         trouverPerso = false;
         attaquer = false;
         setDirection = false;
+        gestionMusique = GameObject.Find("gestionMusique");
     }
 
     void Update()
@@ -41,7 +43,7 @@ public class aiChevre : MonoBehaviour
             else if(trouverPerso && !attaquer)
             {
                 ennemie.destination = ennemie.transform.position;
-                ennemie.transform.LookAt(new Vector3(joueur.transform.position.x, 0, joueur.transform.position.z));
+                ennemie.transform.LookAt(new Vector3(joueur.transform.position.x, transform.position.y, joueur.transform.position.z));
                 setDirection = false;
                 animator.SetBool("trouverPerso", true);
             }
@@ -51,6 +53,10 @@ public class aiChevre : MonoBehaviour
                 {
                     direction = ennemie.transform.forward;
                     setDirection = true;
+                }
+                if (!gestionMusique.GetComponent<gestionMusique>().sourceMusiqueEnnemi.isPlaying)
+                {
+                    gestionMusique.GetComponent<gestionMusique>().jouerMusiqueEnnemi();
                 }
                 ennemie.updateRotation = false;
                 ennemie.Move(direction/2f);
@@ -91,6 +97,7 @@ public class aiChevre : MonoBehaviour
         if (collision.tag == "perso")
         {
             trouverPerso = false;
+            gestionMusique.GetComponent<gestionMusique>().arreterMusiqueEnnemi();
         }
     }
 
@@ -107,7 +114,7 @@ public class aiChevre : MonoBehaviour
     public void annuleConfu()
     {
         ennemie.updateRotation = true;
-        ennemie.transform.LookAt(new Vector3(joueur.transform.position.x, 0, joueur.transform.position.z));
+        ennemie.transform.LookAt(new Vector3(joueur.transform.position.x, transform.position.y, joueur.transform.position.z));
         setDirection = false;
         confu = false;
         zoneAggro.GetComponent<hitboxSetAttaque>().confu = false;
@@ -129,6 +136,7 @@ public class aiChevre : MonoBehaviour
     {
         animator.SetBool("mort", true);
         etatMort = true;
+        gestionMusique.GetComponent<gestionMusique>().arreterMusiqueEnnemi();
         StartCoroutine(destroy());
     }
 

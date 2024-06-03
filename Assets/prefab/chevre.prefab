@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chevre: {fileID: 6103195077381427057}
+  confu: 0
 --- !u!1 &5035710507519601241
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,11 +238,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ennemie: {fileID: 4332743866987491173}
   joueur: {fileID: 0}
+  zoneAggro: {fileID: 1549929878296033045}
   hitboxAttaque: {fileID: 5035710507519601241}
+  gestionMusique: {fileID: 0}
   animator: {fileID: 6293647682823575304}
   trouverPerso: 0
   attaquer: 0
-  hit: 0
   confu: 0
   etatMort: 0
 --- !u!135 &589931702678039589
@@ -357,6 +359,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: ennemi
       objectReference: {fileID: 0}
+    - target: {fileID: 1591393880107014257, guid: 4c0c8226e6ec58e419c8b3c26bb075c6, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 564e0d684d9e88b4b8c1b3bb9fbfc565, type: 2}
     - target: {fileID: 2124052303514935009, guid: 4c0c8226e6ec58e419c8b3c26bb075c6, type: 3}
       propertyPath: m_TagString
       value: ennemi

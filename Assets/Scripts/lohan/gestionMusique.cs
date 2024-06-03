@@ -7,6 +7,7 @@ public class gestionMusique : MonoBehaviour
 {
     [Header("AudioSources")]
     [SerializeField] AudioSource sourceMusique;
+    [SerializeField] public AudioSource sourceMusiqueEnnemi;
     [SerializeField] AudioSource sons;
     [SerializeField] AudioSource bruitPas;
     [SerializeField] AudioSource sourceNarrateur;
@@ -21,19 +22,22 @@ public class gestionMusique : MonoBehaviour
     public AudioClip coupEpeeFaible3;
     public AudioClip coupEpeeFort1;
     public AudioClip coupEpeeFort2;
+    public AudioClip musiqueEnnemi;
     [Header("valeurs autres")]
     public GameObject perso;
     public float multiPitch;
 
     private Scene scene;
+    private IEnumerator coroutineEnnemi;
 
     private void Start()
     {
         sourceMusique.clip = musique;
-        sourceMusique.Play();
+        StartCoroutine(PlayCustomLoop(sourceMusique, 22f));
 
         bruitPas.clip = footstep;
         bruitPas.Play();
+        coroutineEnnemi = IEMusiqueEnnemi(sourceMusiqueEnnemi, 7f);
 
         DontDestroyOnLoad(gameObject);
         Scene scene = SceneManager.GetActiveScene();
@@ -127,5 +131,50 @@ public class gestionMusique : MonoBehaviour
         {
             coupEpee.PlayOneShot(coupEpeeFort2);
         }
+    }
+
+    public void jouerMusiqueEnnemi()
+    {
+        StartCoroutine(coroutineEnnemi);
+        sourceMusique.volume = 0.2f;
+    } 
+
+    public IEnumerator IEMusiqueEnnemi(AudioSource sound, float endIntro)
+    {
+        sound.loop = false;
+        float l = sound.clip.length - 27f;
+        int t = 0;
+        sound.Play();
+        yield return new WaitForSeconds(endIntro);
+        t = sound.timeSamples;
+        yield return new WaitForSeconds(l - endIntro);
+    LOOP:
+        sound.timeSamples = t;
+        sound.Play();
+        yield return new WaitForSeconds(l - endIntro);
+        goto LOOP;
+    }
+
+    public void arreterMusiqueEnnemi()
+    {
+        StopCoroutine(coroutineEnnemi);
+        sourceMusiqueEnnemi.Stop();
+        resetSons();
+    }
+
+    IEnumerator PlayCustomLoop(AudioSource sound, float endIntro)
+    {
+        sound.loop = false;
+        float l = sound.clip.length - 27f;
+        int t = 0;
+        sound.Play();
+        yield return new WaitForSeconds(endIntro);
+        t = sound.timeSamples;
+        yield return new WaitForSeconds(l - endIntro);
+    LOOP:
+        sound.timeSamples = t;
+        sound.Play();
+        yield return new WaitForSeconds(l - endIntro);
+        goto LOOP;
     }
 }

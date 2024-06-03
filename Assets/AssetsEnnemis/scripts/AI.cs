@@ -9,6 +9,8 @@ public class AI : MonoBehaviour
     GameObject joueur;
     public GameObject hitbox;
     public GameObject nav;
+    public GameObject gestionMusique;
+    public AudioClip bruitMonstre;
     public bool trouverPerso;
     public bool attEnCours;
     public bool etatMort;
@@ -24,6 +26,7 @@ public class AI : MonoBehaviour
         trouverPerso = false;
         distanceStop = ennemie.stoppingDistance;
         joueur = GameObject.Find("perso");
+        gestionMusique = GameObject.Find("gestionMusique");
     }
 
     // Update is called once per frame
@@ -36,7 +39,6 @@ public class AI : MonoBehaviour
                 if (hitInfo.collider.tag == "perso" && trouverPerso == true)
                 {
                     ennemie.SetDestination(joueur.transform.position);
-                    ennemie.transform.LookAt(new Vector3(joueur.transform.position.x, 0, joueur.transform.position.z));
                     ennemie.speed = 10f;
                     ennemie.angularSpeed = 1000f;
                     animator.SetBool("cours", true);
@@ -55,21 +57,28 @@ public class AI : MonoBehaviour
                 if (ennemie.remainingDistance <= distanceStop && trouverPerso == true && attEnCours == false)
                 {
                     attEnCours = true;
+                    hitbox.GetComponent<hitbox>().aPerduVie = false;
                     animator.SetBool("attaque", true);
                     ennemie.speed = 0f;
+                    gameObject.GetComponent<AudioSource>().PlayOneShot(bruitMonstre);
                     Invoke("cancelAttaque", 1.5f);
-                    Invoke("actionAttaque", 3f);
+                    Invoke("actionAttaque", 5f);
                 }
             }
 
-            if (animator.GetBool("attaque") == true && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.4f && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.65f)
+            if (trouverPerso)
             {
-                hitbox.SetActive(true);
+                ennemie.transform.LookAt(new Vector3(joueur.transform.position.x, ennemie.transform.position.y, joueur.transform.position.z));
             }
-            else
-            {
-                hitbox.SetActive(false);
-            }
+
+            //if (animator.GetBool("attaque") == true && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.4f && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.65f)
+            //{
+            //    hitbox.SetActive(true);
+            //}
+            //else
+            //{
+            //    hitbox.SetActive(false);
+            //}
         }
         
 
@@ -80,7 +89,18 @@ public class AI : MonoBehaviour
     {
         if (collision.name == "persoObj")
         {
+            if (!gestionMusique.GetComponent<gestionMusique>().sourceMusiqueEnnemi.isPlaying)
+            {
+                gestionMusique.GetComponent<gestionMusique>().jouerMusiqueEnnemi();
+            } 
             trouverPerso = true;
+        }
+    }
+
+    private void OnTriggerStay(Collider collision)
+    {
+        if(collision.name == "persoObj")
+        {
             CancelInvoke("perduPerso");
         }
     }
@@ -99,6 +119,7 @@ public class AI : MonoBehaviour
         animator.SetBool("cours", false);
         ennemie.destination = ennemie.transform.position;
         trouverNouvelleDest();
+        gestionMusique.GetComponent<gestionMusique>().arreterMusiqueEnnemi();
     }
 
     private void actionAttaque()
@@ -126,6 +147,7 @@ public class AI : MonoBehaviour
         etatMort = true;
         ennemie.enabled = false;
         animator.SetBool("mort", true);
+        gestionMusique.GetComponent<gestionMusique>().arreterMusiqueEnnemi();
         Invoke("detruire", 10f);
     }
 
