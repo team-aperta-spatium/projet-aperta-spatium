@@ -56,20 +56,21 @@ public class comportementBoss : MonoBehaviour
     {
         if (!mort)
         {
+            float dist = Vector3.Distance(transform.position, joueur.transform.position);
             if (navBoss.remainingDistance <= 0.2)
             {
                 onStop = true;
-                boss.transform.LookAt(joueur.transform.position);
+                boss.transform.LookAt(new Vector3(joueur.transform.position.x, transform.position.y, joueur.transform.position.z));
 
                 if (!attaqueOn)
                 {
                     int nbAle = UnityEngine.Random.Range(0, 1000000);
-                    if (nbAle >= 999550)
+                    if (nbAle >= 998000 && dist < 9f)
                     {
                         grosseAttaque();
                         attaqueOn = true;
                     }
-                    else if (nbAle <= 500)
+                    else if (nbAle <= 1000)
                     {
                         lanceProjectile();
                     }

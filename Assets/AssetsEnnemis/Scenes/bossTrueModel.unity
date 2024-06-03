@@ -399,6 +399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   joueur: {fileID: 0}
   renard: {fileID: 0}
+  aPerduVie: 0
 --- !u!1 &262400723
 GameObject:
   m_ObjectHideFlags: 0
@@ -1519,7 +1520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dd24e2d5476ecb44badc87a33a68af1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0.007427436
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dd24e2d5476ecb44badc87a33a68af1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1527,19 +1528,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dd24e2d5476ecb44badc87a33a68af1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.00996061
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dd24e2d5476ecb44badc87a33a68af1, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.5977812
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dd24e2d5476ecb44badc87a33a68af1, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dd24e2d5476ecb44badc87a33a68af1, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.80165935
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dd24e2d5476ecb44badc87a33a68af1, type: 3}
       propertyPath: m_LocalRotation.z
@@ -1551,7 +1552,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dd24e2d5476ecb44badc87a33a68af1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 106.578
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3dd24e2d5476ecb44badc87a33a68af1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
