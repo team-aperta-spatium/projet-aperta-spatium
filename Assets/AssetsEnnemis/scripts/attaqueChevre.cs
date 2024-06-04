@@ -6,11 +6,11 @@ public class attaqueChevre : MonoBehaviour
 {
     public GameObject chevre;
     public GameObject joueur;
-
+    public GameObject gestionMusique;
     public bool isHit;
-    private void Update()
+    private void Start()
     {
-        
+        gestionMusique = GameObject.Find("gestionMusique");
     }
     private void OnTriggerEnter(Collider collision)
     {
@@ -25,6 +25,7 @@ public class attaqueChevre : MonoBehaviour
             {
                 isHit = true;
                 viePerso.nbrViePerso -= 1;
+                gestionMusique.GetComponent<gestionMusique>().jouerHitEnnemi();
                 if (Physics.Linecast(chevre.transform.position, joueur.transform.position, out RaycastHit hitInfo) && isHit)
                 {
                     Vector3 forceChevre = hitInfo.point - joueur.transform.position;

@@ -24,7 +24,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5595421859475573820}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
@@ -62,11 +62,15 @@ MonoBehaviour:
   posPause: 0
   posEquip: 0
   posMap: 0
-  imgMapNW: {fileID: 2800000, guid: 2441089ed1033304194f06c21da75c8e, type: 3}
-  imgMapNE: {fileID: 2800000, guid: 2c49921301dae4b4b8a90232e0d3de74, type: 3}
-  imgMapSW: {fileID: 2800000, guid: 9b57211292039994c8abcd7cff978ced, type: 3}
-  imgMapSE: {fileID: 2800000, guid: fa1cdc91e5e8ec34a8f903f5a1df7ba6, type: 3}
+  imgMapNW: {fileID: 2800000, guid: 5033e8699271d4942be8216811a88146, type: 3}
+  imgMapNE: {fileID: 2800000, guid: efe7b35b570446d4fb619810e004ac00, type: 3}
+  imgMapSW: {fileID: 2800000, guid: 125856835f455f04382e9394267a58b6, type: 3}
+  imgMapSE: {fileID: 2800000, guid: 3d8cc6a0d385ed645bdb0c16b7288df3, type: 3}
   menu: {fileID: 0}
   infoMap: {fileID: 4900000, guid: 4fa4b3b1c554e5141b192ec7f23aa2b4, type: 3}
+  conteneur: {fileID: 0}
+  equipement: {fileID: 0}
+  nomDescEquip: {fileID: 0}
+  DescEquip: {fileID: 0}
   mapList:
     map: []

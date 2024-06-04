@@ -35,10 +35,13 @@ public class dash2 : MonoBehaviour
 
     mouvement2 scriptMouve;
 
+    public GameObject gestionMusique;
+
     // Start is called before the first frame update
     void Start()
     {
         dashRestant = logiqueAmelioration.nbrDashMax;
+        gestionMusique = GameObject.Find("gestionMusique");
     }
 
     // Update is called once per frame
@@ -98,6 +101,8 @@ public class dash2 : MonoBehaviour
             {
                 dureeCdDash = cdDash;
             }
+
+            gestionMusique.GetComponent<gestionMusique>().jouerDash();
 
             scriptMouve.enDash = true;
 

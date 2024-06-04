@@ -12,6 +12,8 @@ public class gestionMusique : MonoBehaviour
     [SerializeField] AudioSource bruitPas;
     [SerializeField] AudioSource sourceNarrateur;
     [SerializeField] AudioSource coupEpee;
+    [SerializeField] AudioSource sourceDash;
+    [SerializeField] AudioSource sourceHitEnnemi;
     [Header("AudioClip")]
     public AudioClip musique;
     public AudioClip ok;
@@ -24,6 +26,8 @@ public class gestionMusique : MonoBehaviour
     public AudioClip coupEpeeFort2;
     public AudioClip musiqueEnnemi;
     public AudioClip musiqueBoss;
+    public AudioClip dash;
+    public AudioClip hitEnnemi;
     [Header("valeurs autres")]
     public GameObject perso;
     public float multiPitch;
@@ -189,5 +193,15 @@ public class gestionMusique : MonoBehaviour
         sourceMusique.clip = musiqueBoss;
         sourceMusique.loop = true;
         sourceMusique.Play();
+    }
+
+    public void jouerDash()
+    {
+        sourceDash.PlayOneShot(dash);
+    }
+
+    public void jouerHitEnnemi()
+    {
+        sourceHitEnnemi.PlayOneShot(hitEnnemi);
     }
 }

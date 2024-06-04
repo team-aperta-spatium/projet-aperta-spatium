@@ -4,9 +4,14 @@ public class hitbox : MonoBehaviour
 {
     public GameObject joueur;
     public GameObject renard;
+    public GameObject gestionMusique;
 
     private bool isHit;
     public bool aPerduVie = false;
+    private void Start()
+    {
+        gestionMusique = GameObject.Find("gestionMusique");
+    }
     private void Update()
     {
         if (Physics.Linecast(renard.transform.position, joueur.transform.position, out RaycastHit hitInfo) && isHit)
@@ -20,6 +25,7 @@ public class hitbox : MonoBehaviour
     {
         if(collision.tag == "perso" && !aPerduVie)
         {
+            gestionMusique.GetComponent<gestionMusique>().jouerHitEnnemi();
             viePerso.nbrViePerso -= 1;
             isHit = true;
             aPerduVie = true;

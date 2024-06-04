@@ -1,25 +1,23 @@
 {
   "map": [
     {
-      "donneeNomPartieMap": "mapNW",
-      "donneeQuete1": "trouver coffre 1",
-      "donneeQuete2": "trouver coffre 2",
-      "donneeQuete3": "trouver coffre 3"
+      "donneeNomPartieMap": "Partie Nord-Ouest",
+      "donneeQuete1": "   trouver bouteille",
+      "donneeQuete2": "trouver 2 coffres"
     },
     {
-      "donneeNomPartieMap": "mapNE",
-      "donneeQuete1": "trouver coffre 1",
-      "donneeQuete2": "trouver coffre 2",
-      "donneeQuete3": "trouver coffre 3"
+      "donneeNomPartieMap": "Partie Nord-Est",
+      "donneeQuete1": "trouver 1 coffre"
     },
     {
-      "donneeNomPartieMap": "mapSW",
-      "donneeQuete1": "trouver coffre 1",
-      "donneeQuete2": "trouver coffre 2"
+      "donneeNomPartieMap": "Partie Sud-Ouest",
+      "donneeQuete1": "   trouver handle",
+      "donneeQuete2": "   trouver core",
+      "donneeQuete3": "trouver 4 coffres"
     },
     {
-      "donneeNomPartieMap": "mapSE",
-      "donneeQuete1": "trouver coffre 1"
+      "donneeNomPartieMap": "Partie Sud-Est",
+      "donneeQuete1": "trouver 1 coffre"
     }
   ]
 }

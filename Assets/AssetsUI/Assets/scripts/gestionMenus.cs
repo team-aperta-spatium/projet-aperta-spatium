@@ -15,6 +15,8 @@ public class gestionMenus : MonoBehaviour
     public GameObject mapNE;
     public GameObject mapSW;
     public GameObject mapSE;
+    public GameObject etoile1;
+    public GameObject etoile2;
     public TMP_Text nomPartieMap;
     public TMP_Text quete1;
     public TMP_Text quete2;
@@ -121,21 +123,29 @@ public class gestionMenus : MonoBehaviour
         {
             nbMap = 0;
             cible.GetComponent<RawImage>().texture = imgMapNW;
+            etoile1.SetActive(true);
+            etoile2.SetActive(false);
         }
         else if (cible.name == "NE")
         {
             nbMap = 1;
             cible.GetComponent<RawImage>().texture = imgMapNE;
+            etoile1.SetActive(false);
+            etoile2.SetActive(false);
         }
         else if (cible.name == "SW")
         {
             nbMap = 2;
             cible.GetComponent<RawImage>().texture = imgMapSW;
+            etoile1.SetActive(true);
+            etoile2.SetActive(true);
         }
         else
         {
             nbMap = 3;
             cible.GetComponent<RawImage>().texture = imgMapSE;
+            etoile1.SetActive(false);
+            etoile2.SetActive(false);
         }
         nomPartieMap.SetText(mapList.map[nbMap].donneeNomPartieMap);
         quete1.SetText(mapList.map[nbMap].donneeQuete1);
