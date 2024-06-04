@@ -164,6 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chevre: {fileID: 6103195077381427057}
   joueur: {fileID: 0}
+  gestionMusique: {fileID: 0}
   isHit: 0
 --- !u!1 &6103195077381427057
 GameObject:

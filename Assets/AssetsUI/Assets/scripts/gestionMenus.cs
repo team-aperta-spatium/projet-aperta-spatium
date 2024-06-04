@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class gestionMenus : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class gestionMenus : MonoBehaviour
     public GameObject mapSE;
     public GameObject etoile1;
     public GameObject etoile2;
+    public GameObject gestionMusique;
+    public GameObject narrateur;
     public TMP_Text nomPartieMap;
     public TMP_Text quete1;
     public TMP_Text quete2;
@@ -70,6 +73,7 @@ public class gestionMenus : MonoBehaviour
         posMap = -1920;
 
         mapList = JsonUtility.FromJson<DonneeMapList>(infoMap.text);
+        gestionMusique = GameObject.Find("gestionMusique");
     }
     private void Update()
     {
@@ -190,5 +194,6 @@ public class gestionMenus : MonoBehaviour
     public void quitter()
     {
         SceneManager.LoadScene(0);
+        gestionMusique.transform.GetChild(3).GetComponent<AudioSource>().Stop();
     }
 }
